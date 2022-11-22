@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&family=Rubik:wght@400;500&display=swap');
+
+.sidenav-container {
+    height: 100%;
+
+}
+.mat-sidenav {
+    width: 250px;
+    
+}
+.mat-nav-list{
+    font-family: 'Rubik', sans-serif;
+    font-weight: 500;
+}
+.mat-nav-list a{
+    padding-bottom: 50px;
+}
+.mat-nav-list .mat-icon{
+    display: inline-flex;
+    align-items: center;
+    padding-right: 40px;
+    size: 20px
+}
+
+.sidenav .mat-toolbar{
+    background: inherit;
+}
+
+.mat-toolbar.mat-primary{
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    height: 50px;
+}
+.content-container{
+    padding: 20px;
+    min-height: 95vh;
+    background-color: #dae0e6;
+}
+.outButton{
+    margin-top: 600px;
+    width: 150px;
+    height: 35px;
+    margin-left: 45px;
+    color: white;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 500;
+    background: #F44242;
+    border-radius: 12px;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    padding-left: 30px;
+    position: relative;
+}

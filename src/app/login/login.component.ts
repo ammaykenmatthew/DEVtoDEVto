@@ -79,14 +79,17 @@ export class LoginComponent implements OnInit {
       role: '',
       token: '',
     }
-    this.submitted = true;
+    // this.submitted = true;
     if(this.frmGroup.valid){               //this.loginForm.value
       this._apiService.request('login', '', user, 'post').subscribe((res:any)=>{
+        console.log(res);
         if (res !=null){
           alert("Login Successfully...")
+          this.token =  res.token;  
           this.data =  res.user.role;                 //res.data.user.role;  //res.payload or data na ipapass
-          localStorage.setItem('token', this.data.token); //.data
+          localStorage.setItem('token', this.token); //.data
           
+
           if(res.user.role === "admin"){
             this.route.navigate(['/admin'],{replaceUrl:true});
           }
@@ -94,7 +97,8 @@ export class LoginComponent implements OnInit {
             this.route.navigate(['/main'],{replaceUrl:true});
           }
 
-          console.log(this.data);
+          // console.log(res);
+          console.log("Logged In Successfully");
           // this.route.navigate(['/main']);
         }
       }), (error: any)=>{

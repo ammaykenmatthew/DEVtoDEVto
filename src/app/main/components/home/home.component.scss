@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&family=Rubik:wght@400;500&display=swap');
+
+.page{
+   text-align: center;
+    &__content{
+        width: 80vh;
+        min-height: calc(50vh - 160px);
+        // border-radius: 10px;
+        background: white;
+        color: black;
+        font-size: 2rem;
+        display: inline-block;    
+}
+}
+.page-header{
+    font-family: 'Rubik', sans-serif;
+    height: 200px;
+    font-size: 30px;
+    button{
+        font-size: 15px;
+        color: white;
+        margin-left: 320px;
+        background-color: #00A3FF;
+        width: 150px;
+        height: 45px;
+        border-radius: 12px;
+        border: none;
+       
+    }
+    button:hover {
+        background-color:#002ead;
+        transition: 0.3s;
+    }
+}
+.question{
+    border: none;
+}

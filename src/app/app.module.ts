@@ -11,6 +11,7 @@ import { MainComponent } from './main/main.component';
 import { LoginComponent } from './login/login.component';
 
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 
@@ -27,7 +28,9 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModules, //global material modules
+    MaterialModules,
+    FontAwesomeModule, //global material modules
+  
 
   ],
   providers: [

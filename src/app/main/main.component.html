@@ -19,7 +19,7 @@
             aria-label="Toggle sidenav"
             mat-icon-button
             (click)="drawer.toggle()"
-            *ngIf="isHandset$ | async"> 
+            *ngIf="isHandset$ | async">
             <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
             </button>
             <span>Dev2Dev</span>
@@ -28,6 +28,6 @@
         <div class="content-container">
             <router-outlet></router-outlet>
         </div>
-       
+
     </mat-sidenav-content>
 </mat-sidenav-container>

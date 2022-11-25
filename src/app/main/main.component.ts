@@ -25,13 +25,13 @@ export class MainComponent{
     public _apiService: AuthService,
     private route: Router,
     public token: UserService,
-  ) { 
+  ) {
     //localStorage.clear();
   }
   ngOnInit(){
-   
+
   }
-  
+
   // logoutUser(){
   //   localStorage.removeItem('token')
   //   this.route.navigate(['/login']);
@@ -44,5 +44,5 @@ export class MainComponent{
       this.route.navigate(['/login']);
     });
   }
- 
+
 }

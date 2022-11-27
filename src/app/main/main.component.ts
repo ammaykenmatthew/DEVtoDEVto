@@ -42,6 +42,7 @@ export class MainComponent{
       this.token = res;
       localStorage.removeItem('token');
       this.route.navigate(['/login']);
+      console.log("Logged out successfully")
     });
   }
 

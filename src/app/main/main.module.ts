@@ -9,6 +9,9 @@ import { BookmarksComponent } from './components/bookmarks/bookmarks.component';
 
 import { MaterialModules } from "../modules/material.module";
 import { MainRoutingModule } from "./main-routing.module";
+import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
+import { PostTileComponent } from './components/post-tile/post-tile.component';
+import { VoteButtonComponent } from './components/vote-button/vote-button.component';
 // import { MainRoutingModule } from "./main-routing.module";
 // import { QuestionsComponent } from './components/questions/questions.component';
 // import { BookmarksComponent } from './components/bookmarks/bookmarks.component';
@@ -20,7 +23,9 @@ import { MainRoutingModule } from "./main-routing.module";
         ProfileComponent,
         QuestionsComponent,
         BookmarksComponent,
-     
+        PostTileComponent,
+        VoteButtonComponent,
+
     ],
     imports: [
         CommonModule,
@@ -28,6 +33,7 @@ import { MainRoutingModule } from "./main-routing.module";
         ReactiveFormsModule,
         MaterialModules,
         MainRoutingModule, // lagi meron ditong import ng MainRoutingModule
+        FontAwesomeModule
     ],
 })
 export class MainModule {}

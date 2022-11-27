@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl,FormGroup,Validators,FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
-import { LoginUsers, Users } from '../services/data.schema';
+import { LoginUsers} from '../services/data.schema';
 
 
 @Component({
@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
   // token: any = [];
   role:any;
   data:any;
+  userData:any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -57,22 +58,21 @@ export class LoginComponent implements OnInit {
       token: '',
     }
     // this.submitted = true;
-    if(this.frmGroup.valid){               //this.loginForm.value
-      this._apiService.request('login', '', user, 'post').subscribe(async(res:any)=>{
+    if(this.frmGroup.valid){
+      this._apiService.request('login', '', user, 'post').subscribe((res:any)=>{
         console.log(res);
         if (res !=null){
           alert("Login Successfully...")
           this.token =  res.token;
-          this.data =  res.user.role;                 //res.data.user.role;  //res.payload or data na ipapass
-          await localStorage.setItem('token', this.token); //.data
-          await localStorage.setItem('users', res.user);
+          this.role =  res.user.role;
+          this.userData = res.user;
+          // token
+          localStorage.setItem('token', this.token);
+          // user Data
+          localStorage.setItem('userdata', JSON.stringify(this.userData));
 
-          let userData:any = await localStorage.getItem('users');
-          console.log(userData.user)
-          if (userData != null){
-              userData = userData as unknown as Users;
-          }
-          console.log(res.user);
+          let retrievedData = localStorage.getItem('userdata');
+          console.log(retrievedData);
 
           if(res.user.role === "admin"){
             this.route.navigate(['/admin'],{replaceUrl:true});
@@ -80,10 +80,7 @@ export class LoginComponent implements OnInit {
           if(res.user.role === "student"){
             this.route.navigate(['/main'],{replaceUrl:true});
           }
-
-          // console.log(res);
           console.log("Logged In Successfully");
-          // this.route.navigate(['/main']);
         }
       }), (error: any)=>{
         console.log ("Error", error);
@@ -95,29 +92,6 @@ export class LoginComponent implements OnInit {
       }
     }
   }
-
-
-  //sa loob ng onsubmit
-
-
-  // let ct = this.FormGroup.controls;
-  // let user: LoginUnit = {
-  //   email: ct['email'].value, //email_fld
-  //   password: ct['password'].value, //pword_fld
-  //   token: '',
-  //   grade: '',
-  // } -- loob ng onSubmit()
-
-  //admin  res.data.user.role; //access
-  //if(res.data.user.grade === "admin"){
-  //   this.router.navigate(['/main2'],{replaceUrl:true  //main2 == admin login
-  //   });
-  // }
-  //role === admin
-
-  // this.token = res; //wala nato
-  // this.grade = res.data.user.grade;
-  // localStorage.setItem('token', this.responsedata.token);
 
 }
 

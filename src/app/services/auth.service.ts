@@ -27,7 +27,7 @@ export class AuthService {
       return this.http.delete(this._url + epoint + params, {headers: this.header()
       });
     }
-    
+
   }
 
   // login(data:any){
@@ -48,6 +48,6 @@ export class AuthService {
     return localStorage.getItem('token')!=null;
   }
 
- 
+
 
 }

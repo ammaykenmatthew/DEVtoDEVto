@@ -11,28 +11,40 @@
         font-size: 2rem;
 
 }
+
 }
 .page-header{
-    font-family: 'Rubik', sans-serif;
-    height: 200px;
-    font-size: 30px;
+    margin-top: 1vh;
+    height: 130px;
+    width: 92vh;
     background-color: #ffffff;
-    button{
-        font-size: 15px;
-        color: white;
-        margin-left: 320px;
-        background-color: #00A3FF;
-        width: 150px;
-        height: 45px;
-        border-radius: 12px;
-        border: none;
+    span{
+      font-family: 'Rubik', sans-serif;
+      font-size: 30px;
+      font-weight: 500;
+      margin-top: 1vh;
 
     }
-    button:hover {
-        background-color:#002ead;
-        transition: 0.3s;
-    }
 }
+.add{
+    button{
+      position: relative;
+      font-size: 15px;
+      color: white;
+      background-color: #0a95ff;
+      width: 150px;
+      height: 45px;
+      border-radius: 12px;
+      border-color: #002ead;
+
+
+  }
+  button:hover {
+      background-color:#1f45ad;
+      transition: 0.3s;
+  }
+}
+
 .question{
     border: none;
 }

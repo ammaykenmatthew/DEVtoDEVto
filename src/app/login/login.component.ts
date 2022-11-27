@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl,FormGroup,Validators,FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
-import { LoginUsers} from '../services/data.schema';
+import { LoginUsers, Users} from '../services/data.schema';
 
 
 @Component({
@@ -71,8 +71,16 @@ export class LoginComponent implements OnInit {
           // user Data
           localStorage.setItem('userdata', JSON.stringify(this.userData));
 
-          let retrievedData = localStorage.getItem('userdata');
-          console.log(retrievedData);
+          let retrievedData = localStorage.getItem('userdata') as unknown as string;
+          console.log(JSON.parse(retrievedData));
+
+          this.userData.email_add = res.user.email_add;
+          this.userData.fname_fld = res.user.fname_fld;
+          this.userData.mname_fld = res.user.mname_fld;
+          this.userData.lname_fld = res.user.lname_fld;
+
+          console.log(this.userData.fname_fld)
+
 
           if(res.user.role === "admin"){
             this.route.navigate(['/admin'],{replaceUrl:true});

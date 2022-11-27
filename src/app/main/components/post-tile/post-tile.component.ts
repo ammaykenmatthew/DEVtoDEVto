@@ -10,15 +10,18 @@ import { Posts } from 'src/app/services/data.schema';
 })
 export class PostTileComponent implements OnInit {
 
-  posts$: Array<Posts> = [];
+  posts$: Array<any> = [];
   faArrowUp = faArrowUp;
   faArrowDown = faArrowDown;
   faComments = faComments;
+
+  fname_fld:any;
 
   constructor(private _apiService: AuthService,) {
       this._apiService.request('showAll', '', this.posts$, 'get').subscribe((res:any)=>{
         this.posts$ = res;
 
+        console.log(res);
       });
    }
 

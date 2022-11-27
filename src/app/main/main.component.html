@@ -9,9 +9,12 @@
     </mat-toolbar>
     <div class="user">
       <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="">
-      <h4 class="name">Student Name</h4>
-      <p class="mail">studnum_fld@gmail.com</p>
+      <p class="name">{{fname_fld}} {{mname_fld}} {{lname_fld}} </p>
+      <p class="mail">{{email_add}}</p>
+      <h4 class="dept">{{dept_fld}}/{{program_fld}}</h4>
+      <hr />
     </div>
+
     <div class="menu">
       <div class="menu-head">
         <span>Catalog</span>
@@ -35,6 +38,7 @@
       <span>Profile</span>
     </button>
     </div>
+    <hr />
     <button class="outButton" type="button" (click)="logoutUsers()"><mat-icon>logout</mat-icon>Sign Out</button>
   </mat-sidenav>
 

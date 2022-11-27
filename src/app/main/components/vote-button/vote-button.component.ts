@@ -18,4 +18,5 @@ export class VoteButtonComponent implements OnInit {
   ngOnInit(): void {
   }
 
+
 }

@@ -21,6 +21,7 @@ export interface LoginUsers{
 export interface Posts{
       id: number,
       user_id: number,
+
       title: string,
       description: string,
       created_at: string,

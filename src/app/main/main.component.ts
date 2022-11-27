@@ -5,6 +5,8 @@ import {map, shareReplay } from 'rxjs/operators';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
+import { Users } from '../services/data.schema';
+
 
 
 @Component({
@@ -14,6 +16,16 @@ import { UserService } from '../services/user.service';
 })
 export class MainComponent{
 
+  users$: Array<Users> = [];
+
+
+  userData:any;
+  email_add:any;
+  fname_fld:any;
+  mname_fld:any;
+  lname_fld:any;
+  program_fld:any;
+  dept_fld:any;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
   .pipe(
@@ -25,12 +37,26 @@ export class MainComponent{
     public _apiService: AuthService,
     private route: Router,
     public token: UserService,
+
   ) {
     //localStorage.clear();
-  }
-  ngOnInit(){
+  // let retrievedData = localStorage.getItem('userdata');
+  //   console.log(retrievedData);
 
   }
+
+  ngOnInit(){
+    let retrievedData = localStorage.getItem('userdata') as unknown as string;
+    console.log(JSON.parse(retrievedData));
+    let fullData:any = JSON.parse(retrievedData);
+
+    this.email_add = fullData.email_add;
+    this.fname_fld = fullData.fname_fld;
+    this.mname_fld = fullData.mname_fld;
+    this.lname_fld = fullData.lname_fld;
+    this.program_fld = fullData.program_fld;
+    this.dept_fld = fullData.dept_fld;
+   }
 
   // logoutUser(){
   //   localStorage.removeItem('token')

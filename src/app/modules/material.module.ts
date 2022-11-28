@@ -11,9 +11,11 @@ import { MatCardModule } from '@angular/material/card';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 // import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatChipsModule} from '@angular/material/chips';
 
-
-//Includes all modules 
+//Includes all modules
 const MatModules = [
     MatToolbarModule,
     MatButtonModule,
@@ -25,6 +27,9 @@ const MatModules = [
     MatCardModule,
     HttpClientModule,
     ReactiveFormsModule,
+    MatSnackBarModule,
+    MatDialogModule,
+    MatChipsModule,
 ];
 
 @NgModule({

@@ -12,6 +12,7 @@ import { MainRoutingModule } from "./main-routing.module";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { PostTileComponent } from './components/post-tile/post-tile.component';
 import { VoteButtonComponent } from './components/vote-button/vote-button.component';
+import { PostFormComponent } from './components/post-form/post-form.component';
 // import { MainRoutingModule } from "./main-routing.module";
 // import { QuestionsComponent } from './components/questions/questions.component';
 // import { BookmarksComponent } from './components/bookmarks/bookmarks.component';
@@ -25,6 +26,7 @@ import { VoteButtonComponent } from './components/vote-button/vote-button.compon
         BookmarksComponent,
         PostTileComponent,
         VoteButtonComponent,
+        PostFormComponent,
 
     ],
     imports: [

@@ -6,6 +6,7 @@ import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
 import { Users } from '../services/data.schema';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 
@@ -16,8 +17,9 @@ import { Users } from '../services/data.schema';
 })
 export class MainComponent{
 
-  users$: Array<Users> = [];
+  durationInSeconds = 2;
 
+  users$: Array<Users> = [];
 
   userData:any;
   email_add:any;
@@ -37,6 +39,8 @@ export class MainComponent{
     public _apiService: AuthService,
     private route: Router,
     public token: UserService,
+    public snackbar: MatSnackBar
+
 
   ) {
     //localStorage.clear();
@@ -56,6 +60,11 @@ export class MainComponent{
     this.lname_fld = fullData.lname_fld;
     this.program_fld = fullData.program_fld;
     this.dept_fld = fullData.dept_fld;
+
+    const message = 'Welcome, ' + this.fname_fld + ' ' + this.mname_fld + ' ' +  this.lname_fld + '!';
+    this.snackbar.open(message , '' , {
+      duration: this.durationInSeconds * 1000,
+    });
    }
 
   // logoutUser(){

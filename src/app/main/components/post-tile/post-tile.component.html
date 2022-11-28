@@ -5,12 +5,12 @@
   <div class="col-md-11">
       <span>
           <span class="subreddit-text"></span>
-          <span> Posted by <a class="username" routerLink="/user/{{post.fname_fld}}{{post.mname_fld}}{{post.lname_fld}}">{{post.fname_fld}} {{post.mname_fld}} {{post.lname_fld}}</a></span>
-          <span> at {{post.created_at}}</span>
+          <span><a>Posted by {{post.program_fld}} | {{post.fname_fld}} {{post.mname_fld}} {{post.lname_fld}}</a></span>
+          <span> at {{post.created_at|date:'medium'}}</span>
       </span>
       <hr />
       <div class="post-title">
-          <a class="postname" href="{{post.title}}">{{post.title}}</a>
+          <a>{{post.title}}</a>
       </div>
       <hr />
       <span>

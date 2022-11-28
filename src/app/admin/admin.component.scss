@@ -6,7 +6,7 @@
     text-decoration: none;
 }
 mat-icon{
-    color: rgb(197, 197, 197);
+    color: rgb(255, 255, 255);
     font-family: 'Material Icons';
     vertical-align: middle;
 }
@@ -18,7 +18,7 @@ mat-icon{
     width: 250px;
     background-color: #162341;
     height: 100%;
-    
+
 }
 .mat-nav-list{
     font-family: 'Rubik', sans-serif;
@@ -69,15 +69,15 @@ mat-icon{
     color: #466be0;
     text-transform: uppercase;
     font-weight: 900;
-    margin-left: 50px;
+    margin-left: 90px;
     margin-bottom: 20px;
 }
 
 .menu-item{
 
     margin: 0 10px 0 10px;
-  
-    
+
+
     .menu-button{
         display: block;
         width: 100%;
@@ -91,10 +91,10 @@ mat-icon{
         color: white;
     }
     .menu-button:hover{
-        background-color: #2c3344;
+        background-color: #6e7da0;
     }
     .menu-button:focus{
-        background-color: #2c3344;
+        background-color: #6e7da0;
     }
 }
 
@@ -104,7 +104,7 @@ mat-icon{
     background-color: #dae0e6;
 }
 .outButton{
-    margin-top: 350px;
+    margin-top: 320px;
     width: 150px;
     height: 35px;
     margin-left: 45px;

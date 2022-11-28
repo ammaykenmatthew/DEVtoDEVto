@@ -1,0 +1,40 @@
+<h1 mat-dialog-title>Ask a Question</h1>
+<div mat-dialog-content>
+    <form [formGroup]="postForm">
+      <label for=""><h1>Title</h1></label>
+  <p style="color: #878A8C; font-size: 15px;">Be specific and imagine you're asking a question to another person.</p>
+  <mat-form-field appearance="outline">
+    <mat-label>Post Title</mat-label>
+    <input formControlName="title"  matInput placeholder="e.g. Error for accepting data in MySQL" />
+  </mat-form-field>
+
+  <label for=""><h1>Description</h1></label>
+  <p style="color: #878A8C; font-size: 15px;">Describe what you tried, what you expected to happen, and what actually resulted. </p>
+    <mat-form-field appearance="fill" >
+          <mat-label></mat-label>
+              <textarea style="height: 150px;" formControlName="description" matInput placeholder="..." class="form-control" formControlName="description"></textarea>
+    </mat-form-field>
+
+  <!-- <label for=""><h1>Tags</h1></label>
+    <mat-form-field class="example-chip-list" appearance="fill">
+      <mat-label>Tags</mat-label>
+      <mat-chip-list #chipList aria-label="Fruit selection">
+        <mat-chip *ngFor="let fruit of fruits" (removed)="remove(fruit)">
+          {{fruit.name}}
+          <button matChipRemove>
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip>
+        <input placeholder="Add tags..."
+               [matChipInputFor]="chipList"
+               [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+               [matChipInputAddOnBlur]="addOnBlur"
+               (matChipInputTokenEnd)="add($event)">
+      </mat-chip-list>
+    </mat-form-field> -->
+    </form>
+</div>
+<div mat-dialog-action [align]="'end'">
+  <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+  <button style="margin-left:8px;" mat-raised-button color="primary" mat-dialog-close (click)="SavePost()">Post</button>
+</div>

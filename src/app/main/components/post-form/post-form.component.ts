@@ -4,6 +4,7 @@ import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {MatChipInputEvent} from '@angular/material/chips';
 import { AuthService } from 'src/app/services/auth.service';
 import { MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 export interface Fruit {
   name: string;
@@ -17,6 +18,8 @@ declare var window:any;
   styleUrls: ['./post-form.component.scss']
 })
 export class PostFormComponent implements OnInit {
+
+  durationInSeconds = 2;
   addOnBlur = true;
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
   fruits: Fruit[] = [{name: 'Laravel'}, {name: 'Php'}, {name: 'Angular'}];
@@ -47,6 +50,8 @@ export class PostFormComponent implements OnInit {
     private formBuilder: FormBuilder,
     private _apiService: AuthService,
     private dialogRef: MatDialogRef<PostFormComponent>,
+    public snackbar: MatSnackBar,
+
   ) { }
 
   ngOnInit(): void {
@@ -67,10 +72,15 @@ export class PostFormComponent implements OnInit {
     let user_id = fullData.id;
     if(this.postForm.valid){
       this._apiService.request('createPosts/'+user_id, '', this.postForm.value, 'post').subscribe((res:any)=>{
-        alert("Post Successfull...")
         this.postForm.reset();
         this.dialogRef.close('post');
         console.log(res)
+
+        const message = 'Your post has been added sucessfully!';
+        this.snackbar.open(message , '' , {
+          duration: this.durationInSeconds * 1000,
+        });
+
       }), (error: any)=>{
         alert("Error posting data...");
         console.log("Error posting data", error);

@@ -1,4 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand&family=Rubik:wght@400;500&display=swap');
+
+//font-family: 'Poppins', sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
 * {
   margin: 0;
   padding: 0;
@@ -7,6 +10,7 @@
   min-height: 100vh;
 }
 
+
 .bg-image {
   background-image: url("https://img.freepik.com/premium-photo/modern-building-office-blue-sky-background_35761-198.jpg");
   background-size: cover;
@@ -14,16 +18,16 @@
 }
 
 .login-heading {
-    font-family: 'Rubik', sans-serif; // or 'Rubik'
-    font-weight: 500;
-    font-size: 48px;
-    padding-bottom: 20px;
+  font-size: 48px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  padding-bottom: 20px;
 }
 
 .btn-login {
   font-size: 0.9rem;
   letter-spacing: 0.05rem;
   padding: 0.75rem 1rem;
-  background-color: #039415;
+  background-color: #0a95ff;
   color: #fffffe;
 }

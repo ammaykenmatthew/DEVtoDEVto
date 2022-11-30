@@ -1,0 +1,28 @@
+<div class="row post" *ngFor="let post of posts$">
+<div class="container h-100">
+    <button type="button" class="back" (click)="goBack()"><span class='material-icons'>arrow_back</span>Back</button>
+  <div class="row h-100 justify-content-center align-items-center">
+    <div class="col-md-9">
+      <div class="row post">
+        <div class="col-md-1">
+          <app-vote-button></app-vote-button>
+        </div>
+        <div class="col-md-10">
+          <span>
+            <span>
+              <a >Posted by {{post.program_fld}} | {{post.fname_fld}} {{post.mname_fld}} {{post.lname_fld}} </a>
+            </span>
+            <span>at {{post.created_at|date:'medium'}}</span>
+          </span>
+          <hr />
+          <h4 style="color: black;" class="post-title">{{post.title}}</h4>
+          <hr />
+          <div>
+            <p class="post-text">{{post.description}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

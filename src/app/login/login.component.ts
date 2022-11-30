@@ -79,9 +79,6 @@ export class LoginComponent implements OnInit {
           this.userData.mname_fld = res.user.mname_fld;
           this.userData.lname_fld = res.user.lname_fld;
 
-          console.log(this.userData.fname_fld)
-
-
           if(res.user.role === "admin"){
             this.route.navigate(['/admin'],{replaceUrl:true});
           }

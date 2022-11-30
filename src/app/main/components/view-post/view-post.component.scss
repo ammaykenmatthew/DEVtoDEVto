@@ -1,0 +1,74 @@
+//Rubik, Quicksand
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&family=Rubik:wght@400;500&display=swap');
+
+//font-family: 'Roboto Mono', monospace;
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500&display=swap');
+
+//font-family: 'Poppins', sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+
+.post-title {
+  font-size: 28px;
+  font-family: 'Rubik', sans-serif;
+  font-weight:500 ;
+  opacity: 1;
+}
+
+.username{
+    color: gray;
+}
+
+.post-text{
+    color: black;
+    margin-top: 10px;
+    line-height: 1.6;
+    font-size: var(--reg-font-size);
+    font-family: 'Poppins', sans-serif;
+    text-align: justify;
+    word-break: break-all;
+    white-space: pre-line;
+    padding: 0 .5em .5em;
+
+
+}
+
+.post{
+    --post-line-color: #ccc;
+    border: 1px solid #ccc;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    background-color: rgba(255,255,255,0.8);
+    color: #878A8C;
+    position: relative;
+    border-radius: 4px;
+    padding:5px;
+}
+
+.comment{
+    --post-line-color: #ccc;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    overflow: hidden;
+    background-color: rgba(255,255,255,0.8);
+    color: #878A8C;
+    position: relative;
+    border-radius: 4px;
+    padding:5px;
+}
+.back{
+
+  width: 130px;
+  height: 35px;
+
+  color: white;
+  font-family: 'Rubik', sans-serif;
+  font-weight: 500;
+  background: #0a95ff;
+  border-radius: 10px;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  padding-left: 30px;
+}

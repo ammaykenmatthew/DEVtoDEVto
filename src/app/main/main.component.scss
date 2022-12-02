@@ -6,7 +6,7 @@
     text-decoration: none;
 }
 mat-icon{
-    color: rgb(0, 0, 0);
+    color: #1e293b;
     font-family: 'Material Icons';
     vertical-align: middle;
 }
@@ -51,6 +51,7 @@ mat-icon{
     z-index: 1;
     height: 50px;
     box-shadow: -1px 5px 12px -4px rgba(0,0,0,0.68);
+    align-items: center;
 }
 
 .user{
@@ -67,12 +68,12 @@ mat-icon{
         height: 120px;
     }
     .name{
-        color: rgb(0, 0, 0);
+        color: #1e293b;
         margin-top: 10px;
     }
     .mail{
         margin-top: -12px;
-        color: #000000;
+        color: #1e293b;
     }
     .dept {
       font-size: 13px;
@@ -117,18 +118,18 @@ mat-icon{
     }
 
     .menu-button:hover{
-        background-color: #fda239;
+        background-color: #039415;
 
     }
     .menu-button:focus{
-        background-color: #fda239;
-
+        background-color: #039415;
+        //#fda239
     }
 }
 
 .content-container{
 
-    min-height: 95vh;
+
     background-color: #dae0e6;
 }
 .outButton{
@@ -139,7 +140,7 @@ mat-icon{
     color: white;
     font-family: 'Rubik', sans-serif;
     font-weight: 500;
-    background: #f56060;
+    background: #f33030;
     border-radius: 12px;
     border: none;
     display: inline-flex;

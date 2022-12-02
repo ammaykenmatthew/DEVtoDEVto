@@ -1,4 +1,11 @@
+//Rubik, Quicksand
 @import url('https://fonts.googleapis.com/css2?family=Quicksand&family=Rubik:wght@400;500&display=swap');
+
+//font-family: 'Roboto Mono', monospace;
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500&display=swap');
+
+//font-family: 'Poppins', sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 .post{
   --post-line-color: #ccc;
@@ -17,6 +24,8 @@
   border-radius: 2px solid;
   color: #0a95ff;
   opacity: 1;
+  display: inline-flex;
+  align-items: center;
 }
 button.login{
   background-color: #0a95ff;
@@ -43,7 +52,7 @@ button.login{
   font-family: 'Rubik', sans-serif;
   font-weight: 500 ;
   opacity: 1;
-  color: black;
+  color: #1e293b;
 }
 
 

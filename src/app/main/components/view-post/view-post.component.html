@@ -1,5 +1,5 @@
 <div class="row post" *ngFor="let post of posts$">
-<div class="container h-100">
+  <div class="container h-100">
     <button type="button" class="back" (click)="goBack()"><span class='material-icons'>arrow_back</span>Back</button>
   <div class="row h-100 justify-content-center align-items-center">
     <div class="col-md-9">
@@ -20,9 +20,50 @@
           <div>
             <p class="post-text">{{post.description}}</p>
           </div>
+          <hr/>
+          <p>Comment as {{post.fname_fld}} {{post.mname_fld}} {{post.lname_fld}} </p>
+
+          <div class="post-comment">
+
+            <form [formGroup]="commentForm" (ngSubmit)="postComment()"> <!--(ngSubmit)="postComment()">-->
+              <div class="form-group">
+                <textarea style="height: 180px;" class="form-control" [formControlName]="'content'" placeholder="Your Thoughts?"></textarea>
+              </div>
+              <button type="submit"
+              style="position: relative;
+              font-size: 15px;
+              margin-top: 5px;
+              margin-bottom: 5px;
+              color: white;
+              background-color: #0a95ff;
+              width: 130px;
+              height: 35px;
+              border-radius: 12px;"
+              class="login float-right">Comment</button>
+            </form>
+          </div>
+        </div>
+            <hr/>
+            <h4 style="font-size: 15px;">Comments</h4>
+            <!--Display Comments-->
+            <div class="comment" *ngFor="let comment of comments">
+              <span>
+                <span>
+                  <a >{{comment.program_fld}} | {{comment.fname_fld}} {{comment.mname_fld}} {{comment.lname_fld}} </a>
+                </span>
+                <span> at {{comment.created_at|date:'medium'}}</span>
+              </span>
+              <hr/>
+              <div>
+                <p style="background-color: rgb(240, 240, 240);">{{comment.content}}</p>
+              </div>
+
+            </div>
+
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-</div>
+
+

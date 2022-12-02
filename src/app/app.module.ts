@@ -5,12 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModules } from './modules/material.module';
+import { FormsModule } from '@angular/forms';
 
 import { AdminComponent } from './admin/admin.component';
 import { MainComponent } from './main/main.component';
 import { LoginComponent } from './login/login.component';
 
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { SearchComponent } from './search/search.component';
 
 
 
@@ -22,6 +24,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     MainComponent,
     LoginComponent,
     AdminComponent,
+    SearchComponent,
 
   ],
   imports: [
@@ -29,6 +32,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModules, //global material modules
+    FormsModule,
 
 
   ],

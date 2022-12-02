@@ -7,6 +7,8 @@ import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
 import { Users } from '../services/data.schema';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+import { LogoutFormComponent } from './components/logout-form/logout-form.component';
 
 
 
@@ -39,9 +41,8 @@ export class MainComponent{
     public _apiService: AuthService,
     private route: Router,
     public token: UserService,
-    public snackbar: MatSnackBar
-
-
+    public snackbar: MatSnackBar,
+    public dialog: MatDialog,
   ) {
     //localStorage.clear();
   // let retrievedData = localStorage.getItem('userdata');
@@ -73,12 +74,24 @@ export class MainComponent{
   // }
 
   logoutUsers(){
-    this._apiService.request('logout', '', '', 'post').subscribe((res:any)=>{
-      this.token = res;
-      localStorage.removeItem('token');
-      this.route.navigate(['/login']);
-      console.log("Logged out successfully")
-    });
+      this.dialog.open(LogoutFormComponent, {
+          width: '20%',
+          height: '20%'
+      });
+
+  }
+
+  searchText: string = '';
+  onSearchTextEntered(searchValue: string){
+    this.searchText = searchValue;
+    console.log(this.searchText)
   }
 
 }
+
+// this._apiService.request('logout', '', '', 'post').subscribe((res:any)=>{
+//   this.token = res;
+//   localStorage.removeItem('token');
+//   this.route.navigate(['/login']);
+//   console.log("Logged out successfully")
+// });

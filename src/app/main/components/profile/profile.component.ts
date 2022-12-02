@@ -10,6 +10,7 @@ import { Component, OnInit } from '@angular/core';
 export class ProfileComponent implements OnInit {
 
   userData:any;
+  studnum_fld:any;
   email_add:any;
   fname_fld:any;
   mname_fld:any;
@@ -24,6 +25,7 @@ export class ProfileComponent implements OnInit {
     console.log(JSON.parse(retrievedData));
     let fullData:any = JSON.parse(retrievedData);
 
+    this.studnum_fld = fullData.studnum_fld;
     this.email_add = fullData.email_add;
     this.fname_fld = fullData.fname_fld;
     this.mname_fld = fullData.mname_fld;

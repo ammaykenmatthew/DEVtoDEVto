@@ -14,6 +14,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatChipsModule} from '@angular/material/chips';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatSortModule} from '@angular/material/sort';
+import {MatTableModule} from '@angular/material/table';
 
 //Includes all modules
 const MatModules = [
@@ -30,6 +33,9 @@ const MatModules = [
     MatSnackBarModule,
     MatDialogModule,
     MatChipsModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatTableModule,
 ];
 
 @NgModule({

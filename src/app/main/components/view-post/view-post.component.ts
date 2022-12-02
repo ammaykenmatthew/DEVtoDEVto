@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
-import { Posts } from 'src/app/services/data.schema';
+import { Comments, Posts } from 'src/app/services/data.schema';
 import { throwError } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import {Location} from '@angular/common';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-view-post',
@@ -15,16 +17,23 @@ export class ViewPostComponent implements OnInit {
 
   postId: any;
   posts$: Array<any> = [];
+  comments: Array<any> = [];
+
+  commentForm!: FormGroup;
+  comments$$: Array<Comments> = [];
+
+  durationInSeconds = 2;
 
   constructor(
     private _apiService: AuthService,
     private postService: UserService,
     private activateRoute: ActivatedRoute,
     private _location: Location,
+    private formBuilder: FormBuilder,
+    public snackbar: MatSnackBar,
 
     )
-    {
-
+  {
     let id:any = this.activateRoute.snapshot.params['id'];
      this._apiService.request('showOnePostby/'+id, '', this.posts$, 'get').subscribe((res:any)=>{
      this.posts$ = res;
@@ -33,14 +42,59 @@ export class ViewPostComponent implements OnInit {
       console.log ("Error", error);
      });
 
-     }
+  }
 
   ngOnInit(): void {
+    this.commentForm = this.formBuilder.group({
+      content: ['', Validators.required],
+    });
+
+    this.viewComment();
 
   }
 
   goBack(){
     this._location.back();
   }
+
+  postComment(){
+    let retrievedData = localStorage.getItem('userdata') as unknown as string;
+    let fullData:any = JSON.parse(retrievedData);
+
+    let user_id = fullData.id;
+    let post_id:any = this.activateRoute.snapshot.params['id'];
+
+  if(this.commentForm.valid){
+    this._apiService.request('storeComment/'+user_id +'/'+ post_id, '', this.commentForm.value, 'post').subscribe((res:any)=>{
+
+      this.comments$$ = res;
+      this.commentForm.reset();
+      this.viewComment();
+      console.log(this.commentForm.value);
+
+      const message = 'Commented sucessfully!';
+        this.snackbar.open(message , '' , {
+          duration: this.durationInSeconds * 1000,
+        });
+    }), (error: any)=>{
+      alert("Error posting data...");
+      console.log("Error posting data", error);
+    }
+  }
+
+  }
+
+  viewComment(){
+    let post_id:any = this.activateRoute.snapshot.params['id'];
+    this._apiService.request('showAllwithComments/'+post_id , '',  this.comments , 'get').subscribe((res:any)=>{
+    this.comments = res;
+    console.log(this.comments)
+    }), (error: any)=>{
+      alert("Error posting data...");
+      console.log("Error posting data", error);
+    }
+
+  }
+
 
 }

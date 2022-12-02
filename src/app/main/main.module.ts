@@ -14,6 +14,8 @@ import { PostTileComponent } from './components/post-tile/post-tile.component';
 import { VoteButtonComponent } from './components/vote-button/vote-button.component';
 import { PostFormComponent } from './components/post-form/post-form.component';
 import { ViewPostComponent } from './components/view-post/view-post.component';
+import { LogoutFormComponent } from './components/logout-form/logout-form.component';
+
 // import { MainRoutingModule } from "./main-routing.module";
 // import { QuestionsComponent } from './components/questions/questions.component';
 // import { BookmarksComponent } from './components/bookmarks/bookmarks.component';
@@ -29,6 +31,8 @@ import { ViewPostComponent } from './components/view-post/view-post.component';
         VoteButtonComponent,
         PostFormComponent,
         ViewPostComponent,
+        LogoutFormComponent,
+
 
     ],
     imports: [

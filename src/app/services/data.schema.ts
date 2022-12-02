@@ -26,3 +26,11 @@ export interface Posts{
       created_at: string,
 
 }
+
+export interface Comments{
+      id: number,
+      user_id: number,
+      post_id: number,
+      content: string,
+      created_at: string,
+}

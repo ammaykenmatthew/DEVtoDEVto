@@ -20,7 +20,7 @@
 }
 
 .post-text{
-    color: black;
+    color: #1e293b;
     margin-top: 10px;
     line-height: 1.6;
     font-size: var(--reg-font-size);
@@ -51,17 +51,23 @@
     border: 1px solid #ccc;
     margin-bottom: 10px;
     overflow: hidden;
-    background-color: rgba(255,255,255,0.8);
-    color: #878A8C;
+    color: black;
     position: relative;
     border-radius: 4px;
     padding:5px;
-}
-.back{
 
+}
+.comment p{
+  font-size: var(--reg-font-size);
+  text-align: justify;
+    word-break: break-all;
+    white-space: pre-line;
+    padding: 0 .5em .5em;
+}
+
+.back{
   width: 130px;
   height: 35px;
-
   color: white;
   font-family: 'Rubik', sans-serif;
   font-weight: 500;

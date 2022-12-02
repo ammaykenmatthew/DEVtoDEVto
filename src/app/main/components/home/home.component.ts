@@ -48,6 +48,7 @@ export class HomeComponent implements OnInit {
   //   this.postForm.show();
   // }
 
+
   openDialog(){
     this.dialog.open(PostFormComponent, {
         width: '30%'

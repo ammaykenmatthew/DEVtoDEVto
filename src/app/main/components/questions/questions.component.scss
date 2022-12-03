@@ -13,6 +13,7 @@
 
 }
 
+
 .page{
   color: #ffffff;
   padding: 0 1rem;
@@ -37,13 +38,22 @@
 }
 table {
   width: 100%;
+  table-layout: fixed;
+
+  td{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
 }
 
 .mat-form-field {
   font-size: 14px;
-  width: 100%;
+  width: 18rem;
 }
 .container{
-  max-width: 1200px;
+  max-width: 125rem;
   margin: 0 auto;
 }
+

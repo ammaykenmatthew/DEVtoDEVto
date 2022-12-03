@@ -44,6 +44,7 @@
     position: relative;
     border-radius: 4px;
     padding:5px;
+
 }
 
 .comment{
@@ -56,13 +57,15 @@
     border-radius: 4px;
     padding:5px;
 
+
 }
 .comment p{
-  font-size: var(--reg-font-size);
-  text-align: justify;
+    font-size: var(--reg-font-size);
+    text-align: justify;
     word-break: break-all;
     white-space: pre-line;
     padding: 0 .5em .5em;
+    color: black;
 }
 
 .back{

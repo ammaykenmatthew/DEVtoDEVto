@@ -21,7 +21,7 @@
             <p class="post-text">{{post.description}}</p>
           </div>
           <hr/>
-          <p>Comment as {{post.fname_fld}} {{post.mname_fld}} {{post.lname_fld}} </p>
+          <p>Comment as {{fname_fld}} {{mname_fld}} {{lname_fld}} </p>
 
           <div class="post-comment">
 
@@ -29,22 +29,30 @@
               <div class="form-group">
                 <textarea style="height: 180px;" class="form-control" [formControlName]="'content'" placeholder="Your Thoughts?"></textarea>
               </div>
+
+
+              <div class="row button d-flex flex-row justify-content-end ">
               <button type="submit"
               style="position: relative;
               font-size: 15px;
               margin-top: 5px;
               margin-bottom: 5px;
+              margin-right: 10px;
               color: white;
               background-color: #0a95ff;
               width: 130px;
               height: 35px;
+              border: none;
               border-radius: 12px;"
+
               class="login float-right">Comment</button>
-            </form>
+            </div>
+          </form>
+          <!-- Yung comment button dapat nakapaloob sa form para gumana -->
           </div>
         </div>
             <hr/>
-            <h4 style="font-size: 15px;">Comments</h4>
+            <h4 style="font-size: 20px; color: black;">Comments</h4>
             <!--Display Comments-->
             <div class="comment" *ngFor="let comment of comments">
               <span>

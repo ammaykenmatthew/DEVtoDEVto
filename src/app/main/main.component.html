@@ -1,12 +1,10 @@
-<mat-sidenav-container class="sidenav-container">
+<mat-sidenav-container class="sidenav-container" >
 
   <mat-sidenav #drawer class="sidenav" fixedInViewport
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="(isHandset$ | async) === false">
-      <mat-toolbar>
-        <span>Menu</span>
-    </mat-toolbar>
+
     <div class="user">
       <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="">
       <p class="name">{{fname_fld}} {{mname_fld}} {{lname_fld}} </p>
@@ -39,15 +37,16 @@
     </button>
     </div>
     <hr />
+    <div class="logout">
     <button class="outButton" type="button" (click)="logoutUsers()"><mat-icon>logout</mat-icon>Sign Out</button>
-
+    </div>
   </mat-sidenav>
 
 
   <mat-sidenav-content >
 
     <mat-toolbar>
-      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
+      <button style="position: relative;" type="button" aria-label="Toggle sidenav"  mat-icon-button (click)="drawer.toggle()">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <span>Student Panel</span>
@@ -56,7 +55,7 @@
 
     <div class="content-container">
       <router-outlet></router-outlet>
-  </div>
+    </div>
 
   </mat-sidenav-content>
 </mat-sidenav-container>

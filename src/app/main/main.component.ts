@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , OnDestroy, ChangeDetectorRef} from '@angular/core';
 import { BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import {map, shareReplay } from 'rxjs/operators';
@@ -9,6 +9,7 @@ import { Users } from '../services/data.schema';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { LogoutFormComponent } from './components/logout-form/logout-form.component';
+import {MediaMatcher} from '@angular/cdk/layout';
 
 
 
@@ -19,6 +20,7 @@ import { LogoutFormComponent } from './components/logout-form/logout-form.compon
 })
 export class MainComponent{
 
+  mobileQuery: MediaQueryList;
   durationInSeconds = 2;
 
   users$: Array<Users> = [];
@@ -36,6 +38,9 @@ export class MainComponent{
     map(result=> result.matches),
     shareReplay()
   );
+
+  private _mobileQueryListener: () => void;
+
   constructor(
     private breakpointObserver: BreakpointObserver,
     public _apiService: AuthService,
@@ -43,11 +48,15 @@ export class MainComponent{
     public token: UserService,
     public snackbar: MatSnackBar,
     public dialog: MatDialog,
+    changeDetectorRef: ChangeDetectorRef,
+    media: MediaMatcher,
   ) {
     //localStorage.clear();
   // let retrievedData = localStorage.getItem('userdata');
   //   console.log(retrievedData);
-
+  this.mobileQuery = media.matchMedia('(max-width: 600px)');
+  this._mobileQueryListener = () => changeDetectorRef.detectChanges();
+  this.mobileQuery.addListener(this._mobileQueryListener);
   }
 
   ngOnInit(){
@@ -66,6 +75,8 @@ export class MainComponent{
     this.snackbar.open(message , '' , {
       duration: this.durationInSeconds * 1000,
     });
+
+
    }
 
   // logoutUser(){

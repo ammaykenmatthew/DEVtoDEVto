@@ -10,6 +10,7 @@ mat-icon{
     font-family: 'Material Icons';
     vertical-align: middle;
 }
+// THE ORIGINAL CODE
 .sidenav-container {
     height: 100%;
 
@@ -109,7 +110,7 @@ mat-icon{
     }
     .menu-button:hover span{
       margin-left: 15px;
-      color: rgb(255, 255, 255);
+
 
     }
     .menu-button:focus span{
@@ -118,25 +119,27 @@ mat-icon{
     }
 
     .menu-button:hover{
-        background-color: #039415;
+        background-color: #fda239;
 
     }
     .menu-button:focus{
-        background-color: #039415;
+        background-color: #fda239;
         //#fda239
     }
 }
 
 .content-container{
-
-
     background-color: #dae0e6;
 }
-.outButton{
-    margin-top: 280px;
+.logout{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  button{
     width: 150px;
     height: 35px;
-    margin-left: 45px;
+
     color: white;
     font-family: 'Rubik', sans-serif;
     font-weight: 500;
@@ -146,7 +149,11 @@ mat-icon{
     display: inline-flex;
     align-items: center;
     padding-left: 30px;
-    position: relative;
+    bottom: 1.5em;
+    position: absolute;
+    cursor: pointer;
+}
+
 }
 
 

@@ -3,6 +3,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { PostFormComponent } from '../post-form/post-form.component';
 
@@ -21,6 +22,7 @@ export class QuestionsComponent implements OnInit {
   constructor(
     public _apiService: AuthService,
     private dialog: MatDialog,
+    private route: Router,
 
   ) { }
 
@@ -48,7 +50,11 @@ export class QuestionsComponent implements OnInit {
   }
   editQuestions(row: any){
     this.dialog.open(PostFormComponent,{
-      width: '30%',
+
+      width: '98vh',
+      height: '70vh',
+      maxWidth: '100vw',
+      maxHeight: '100vh',
       data:row
     });
   }
@@ -61,5 +67,11 @@ export class QuestionsComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
+
+
+  viewPost(id: number): void{
+      this.route.navigateByUrl('main/view-post/' + id);
+  }
+
 
 }

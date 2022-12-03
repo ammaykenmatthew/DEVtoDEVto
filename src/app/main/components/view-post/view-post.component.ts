@@ -24,6 +24,10 @@ export class ViewPostComponent implements OnInit {
 
   durationInSeconds = 2;
 
+  fname_fld:any;
+  mname_fld:any;
+  lname_fld:any;
+
   constructor(
     private _apiService: AuthService,
     private postService: UserService,
@@ -34,6 +38,8 @@ export class ViewPostComponent implements OnInit {
 
     )
   {
+
+
     let id:any = this.activateRoute.snapshot.params['id'];
      this._apiService.request('showOnePostby/'+id, '', this.posts$, 'get').subscribe((res:any)=>{
      this.posts$ = res;
@@ -50,6 +56,15 @@ export class ViewPostComponent implements OnInit {
     });
 
     this.viewComment();
+
+    let retrievedData = localStorage.getItem('userdata') as unknown as string;
+    let fullData:any = JSON.parse(retrievedData);
+
+    this.fname_fld = fullData.fname_fld;
+    this.mname_fld = fullData.mname_fld;
+    this.lname_fld = fullData.lname_fld;
+
+
 
   }
 

@@ -26,29 +26,29 @@ export class PostFormComponent implements OnInit {
 
   durationInSeconds = 2;
 
-  addOnBlur = true;
-  readonly separatorKeysCodes = [ENTER, COMMA] as const;
-  fruits: Fruit[] = [{name: 'Laravel'}, {name: 'Php'}, {name: 'Angular'}];
+  // addOnBlur = true;
+  // readonly separatorKeysCodes = [ENTER, COMMA] as const;
+  // fruits: Fruit[] = [{name: 'Laravel'}, {name: 'Php'}, {name: 'Angular'}];
 
-  add(event: MatChipInputEvent): void {
-    const value = (event.value || '').trim();
+  // add(event: MatChipInputEvent): void {
+  //   const value = (event.value || '').trim();
 
-    // Add our fruit
-    if (value) {
-      this.fruits.push({name: value});
-    }
+  //   // Add our fruit
+  //   if (value) {
+  //     this.fruits.push({name: value});
+  //   }
 
-    // Clear the input value
-    event.chipInput!.clear();
-  }
+  //   // Clear the input value
+  //   event.chipInput!.clear();
+  // }
 
-  remove(fruit: Fruit): void {
-    const index = this.fruits.indexOf(fruit);
+  // remove(fruit: Fruit): void {
+  //   const index = this.fruits.indexOf(fruit);
 
-    if (index >= 0) {
-      this.fruits.splice(index, 1);
-    }
-  }
+  //   if (index >= 0) {
+  //     this.fruits.splice(index, 1);
+  //   }
+  // }
 
   postForm !: FormGroup;
   actionBtn: string = "Save";
@@ -78,7 +78,7 @@ export class PostFormComponent implements OnInit {
   }
 
 
-
+  //*Save post per user id using localstorage and dialog
   SavePost(){
 
     let retrievedData = localStorage.getItem('userdata') as unknown as string;
@@ -91,8 +91,8 @@ export class PostFormComponent implements OnInit {
         this.post = res;
         this.postForm.reset();
         this.dialogRef.close('post');
+        window.location.reload(); // Use to reload the page location
         console.log(res)
-
 
         const message = 'Your post has been added sucessfully!';
         this.snackbar.open(message , '' , {
@@ -118,15 +118,16 @@ export class PostFormComponent implements OnInit {
     let user_id = fullData.id;
 
     let post_id:any = this.activateRoute.snapshot.params['id'];
-    this._apiService.request('updatePosts/'+this.editData.id, '', this.postForm.value, 'put').subscribe((res:any)=>{
+    this._apiService.request('updatePosts/'+this.editData.id, '', this.postForm.value, 'put').subscribe({next:(res:any)=>{
     this.post = res;
     alert("Updated Sucessfully");
     this.postForm.reset();
     this.dialogRef.close('update');
-  }), (error: any)=>{
+  }, error:(error: any)=>{
     alert("Error posting data...");
     console.log("Error posting data", error);
   }
+  });
 
   }
 }

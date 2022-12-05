@@ -3,43 +3,38 @@
   <div class="row g-0">
     <div class="d-none d-md-flex col-md-4 col-lg-6 bg-image"></div>
     <div class="col-md-8 col-lg-6">
-      <div class="login d-flex align-items-center py-5">
+
         <div class="container">
           <div class="row">
-            <div class="col-md-9 col-lg-8 mx-auto">
-              <h3 class="login-heading mb-4">Welcome back!</h3>
+            <div class="col-md-9 col-lg-5 mx-auto">
+              <div class="logo d-flex flex-row justify-content-between p-2">
+              <span >
+                <img src="https://scontent.fmnl17-3.fna.fbcdn.net/v/t39.30808-6/240106146_248069380662964_6342464811613766475_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeH9R6gzQ9TWvgyZNK_1WHvy1t9W9m8YTdTW31b2bxhN1OnoA8ZjRNGLCnNGELzaox37iXK43tH-7fgdE5dwYz-V&_nc_ohc=GDfoJ3NIJu8AX-va-Dp&_nc_ht=scontent.fmnl17-3.fna&oh=00_AfCEMZZ56Oyygq60Dnk0y1SfnHAOAm3X1Iwk6hs3WFMtbw&oe=63918C3D"/>
+                <img src="https://scontent.fmnl17-3.fna.fbcdn.net/v/t39.30808-6/240106146_248069380662964_6342464811613766475_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeH9R6gzQ9TWvgyZNK_1WHvy1t9W9m8YTdTW31b2bxhN1OnoA8ZjRNGLCnNGELzaox37iXK43tH-7fgdE5dwYz-V&_nc_ohc=GDfoJ3NIJu8AX-va-Dp&_nc_ht=scontent.fmnl17-3.fna&oh=00_AfCEMZZ56Oyygq60Dnk0y1SfnHAOAm3X1Iwk6hs3WFMtbw&oe=63918C3D"/>
+              </span>
+              </div>
+              <div class="forms-container">
+                <div class="singin-signup">
 
-              <!-- Sign In Form -->
-              <form [formGroup]="frmGroup" (ngSubmit)="onSubmit($event)" ngNativeValidate>
-                <div class="form-floating mb-3">
-                  <input type="email" class="form-control"  placeholder="name@example.com" matInput formControlName="email_add" id="email_add">
-                  <!-- <div *ngIf="submitted && f.email_add.errors" class="invalid-feedback">
-                    <div *ngIf="f.email_add.errors.required">Email is required</div>
-                    <div *ngIf="f.email_add.errors.email">Email must be a valid email address</div>
-                 </div> -->
-                  <label for="floatingInput">Email address</label>
+                <form [formGroup]="frmGroup" (ngSubmit)="onSubmit($event)" class="sign-in-form">
+                    <h2 class="title">Welcome Back!</h2>
+                    <div class="input-field">
+                      <i><mat-icon>person</mat-icon></i>
+                      <input type="email" class="form-control"  placeholder="Email" matInput formControlName="email_add" id="email_add"/>
+                    </div>
+                    <div class="input-field">
+                      <i><mat-icon>lock</mat-icon></i>
+                      <input type="password" class="form-control"  placeholder="Password"  matInput formControlName="pword_fld"  id="pword_fld" />
+                    </div>
+                    <input type="submit" value="Login" class="btn solid" />
+                </form>
+
                 </div>
-                <div class="form-floating mb-3">
-                  <input type="password" class="form-control"  placeholder="Password"  matInput formControlName="pword_fld"  id="pword_fld">
-                  <!-- <div *ngIf="submitted && f.pword_fld.errors" class="invalid-feedback">
-                    <div *ngIf="f.pword_fld.errors.required">Password is required</div>
-                 </div> -->
-                  <label for="floatingPassword">Password</label>
-                </div>
-
-
-                <div class="d-grid">
-                  <button class="btn btn-lg btn-login text-uppercase fw-bold mb-2" type="submit">LOGIN</button>
-                  <div class="text-center">
-                    <!-- <a class="small" href="#">Forgot password?</a> -->
-                  </div>
-                </div>
-
-              </form>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+
     </div>
   </div>
 </div>

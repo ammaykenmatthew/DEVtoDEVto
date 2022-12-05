@@ -1,0 +1,80 @@
+<h1 mat-dialog-title>Student Question</h1>
+<div mat-dialog-content>
+  <div class="row post" *ngFor="let post of posts$">
+    <div class="container h-100">
+    <div class="row h-100 justify-content-center align-items-center">
+      <div class="col-md-9">
+        <div class="row post">
+          <div class="col-md-1">
+
+          </div>
+          <div class="col-md-10">
+            <span>
+              <span>
+                <a >Posted by {{post.program_fld}} | {{post.fname_fld}} {{post.mname_fld}} {{post.lname_fld}} </a>
+              </span>
+              <span>at {{post.created_at|date:'medium'}}</span>
+            </span>
+            <hr />
+            <h4 style="color: black;" class="post-title">{{post.title}}</h4>
+            <hr />
+            <div>
+              <p class="post-text">{{post.description}}</p>
+            </div>
+            <hr/>
+            <p>Comment as {{fname_fld}} {{mname_fld}} {{lname_fld}} </p>
+
+            <div class="post-comment">
+
+              <form [formGroup]="commentForm" (ngSubmit)="postComment()"> <!--(ngSubmit)="postComment()">-->
+                <div class="form-group">
+                  <textarea style="height: 180px;" class="form-control" [formControlName]="'content'" placeholder="Your Thoughts?"></textarea>
+                </div>
+
+
+                <div class="row button d-flex flex-row justify-content-end ">
+                <button type="submit"
+                style="position: relative;
+                font-size: 15px;
+                margin-top: 5px;
+                margin-bottom: 5px;
+                margin-right: 10px;
+                color: white;
+                background-color: #0a95ff;
+                width: 130px;
+                height: 35px;
+                border: none;
+                border-radius: 12px;"
+
+                class="login float-right">Comment</button>
+              </div>
+            </form>
+            <!-- Yung comment button dapat nakapaloob sa form para gumana -->
+            </div>
+          </div>
+              <hr/>
+              <h4 style="font-size: 20px; color: black;">Comments</h4>
+              <!--Display Comments-->
+              <div class="comment" *ngFor="let comment of comments">
+                <span>
+                  <span>
+                    <a >{{comment.program_fld}} | {{comment.fname_fld}} {{comment.mname_fld}} {{comment.lname_fld}} </a>
+                  </span>
+                  <span> at {{comment.created_at|date:'medium'}}</span>
+                </span>
+                <hr/>
+                <div>
+                  <p style="background-color: rgb(240, 240, 240);">{{comment.content}}</p>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+</div>

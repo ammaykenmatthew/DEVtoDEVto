@@ -11,7 +11,8 @@ import { AdminComponent } from './admin/admin.component';
 import { MainComponent } from './main/main.component';
 import { LoginComponent } from './login/login.component';
 
-import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+
+import { DatePipe, HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { SearchComponent } from './search/search.component';
 
 
@@ -35,12 +36,11 @@ import { SearchComponent } from './search/search.component';
     FormsModule,
 
 
+
   ],
   providers: [
-    {
-    provide: LocationStrategy, useClass: HashLocationStrategy
-    }
-],
+    DatePipe,
+    {provide: LocationStrategy, useClass: HashLocationStrategy, }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

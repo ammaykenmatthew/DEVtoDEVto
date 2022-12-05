@@ -5,12 +5,13 @@
   <div class="page__content shadow p-3 position-relative">
     <div class="container">
       <div style="margin-top: 10px;">
+        <h3>Search Question:</h3>
+        <mat-form-field appearance="outline">
 
-        <mat-form-field appearance="standard">
-          <span>Search Question:</span>
-          <input matInput (keyup)="applyFilter($event)" placeholder="Ex. what" #input>
+          <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Where is .." #input>
         </mat-form-field>
 
+        <div class="table-z">
         <div class="mat-elevation-z8">
           <table mat-table [dataSource]="dataSource" matSort>
 
@@ -65,7 +66,9 @@
 
           <mat-paginator [pageSizeOptions]="[10, 25, 100]" aria-label="Select page of users"></mat-paginator>
         </div>
+        </div>
       </div>
+
     </div>
 
   </div>

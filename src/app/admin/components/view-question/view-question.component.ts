@@ -1,20 +1,17 @@
-import { Component,Inject, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/services/auth.service';
-import { Comments, Posts } from 'src/app/services/data.schema';
-import { throwError } from 'rxjs';
-import { ActivatedRoute, Router } from '@angular/router';
-import { UserService } from 'src/app/services/user.service';
-import {Location} from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatDialogRef , MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { ActivatedRoute } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
+import { Comments } from 'src/app/services/data.schema';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
-  selector: 'app-view-post',
-  templateUrl: './view-post.component.html',
-  styleUrls: ['./view-post.component.scss']
+  selector: 'app-view-question',
+  templateUrl: './view-question.component.html',
+  styleUrls: ['./view-question.component.scss']
 })
-export class ViewPostComponent implements OnInit {
+export class ViewQuestionComponent implements OnInit {
 
   postId: any;
   posts$: Array<any> = [];
@@ -40,11 +37,9 @@ export class ViewPostComponent implements OnInit {
     )
   {
 
-
     let id:any = this.activateRoute.snapshot.params['id'];
      this._apiService.request('showOnePostby/'+id, '', this.posts$, 'get').subscribe((res:any)=>{
      this.posts$ = res;
-
       console.log(this.posts$);
      }, (error: any)=>{
       console.log ("Error", error);
@@ -66,15 +61,7 @@ export class ViewPostComponent implements OnInit {
     this.mname_fld = fullData.mname_fld;
     this.lname_fld = fullData.lname_fld;
 
-    // if(this.editData){
-    //   this.postForm.controls['title'].setValue(this.editData.title);
-    //   this.postForm.controls['description'].setValue(this.editData.description);
-    // }
 
-  }
-
-  goBack(){
-    this._location.back();
   }
 
   postComment(){
@@ -115,6 +102,5 @@ export class ViewPostComponent implements OnInit {
     }
 
   }
-
 
 }

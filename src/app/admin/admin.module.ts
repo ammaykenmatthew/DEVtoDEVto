@@ -7,6 +7,7 @@ import { AdminRoutingModule } from "./admin-routing.module";
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { StudentpostComponent } from './components/studentpost/studentpost.component';
 import { FiltersComponent } from './components/filters/filters.component';
+import { ViewQuestionComponent } from './components/view-question/view-question.component';
 
 
 @NgModule({
@@ -14,6 +15,7 @@ import { FiltersComponent } from './components/filters/filters.component';
     DashboardComponent,
     StudentpostComponent,
     FiltersComponent,
+    ViewQuestionComponent,
 
   ],
     imports: [

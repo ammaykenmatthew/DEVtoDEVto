@@ -44,12 +44,19 @@ mat-icon{
     z-index: 1;
     height: 50px;
     box-shadow: -1px 5px 12px -4px rgba(0,0,0,0.68);
+
+
+}
+.mat-toolbar .p{
+    display: inline-block;
+    align-items: center;
 }
 
 .user{
     text-align: center;
     font-weight: 800;
     margin-bottom: 50px;
+    margin-top: 50px;
     img{
         margin-top: 16px;
         width: 120px;
@@ -99,25 +106,32 @@ mat-icon{
 }
 
 .content-container{
-    padding: 20px;
-    min-height: 95vh;
+
+    height: 95vh;
     background-color: #dae0e6;
 }
-.outButton{
-    margin-top: 320px;
+.logout{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  button{
     width: 150px;
     height: 35px;
-    margin-left: 45px;
+
     color: white;
     font-family: 'Rubik', sans-serif;
     font-weight: 500;
-    background: #F44242;
+    background: #f33030;
     border-radius: 12px;
     border: none;
     display: inline-flex;
     align-items: center;
     padding-left: 30px;
-    position: relative;
+    bottom: 1.5em;
+    position: absolute;
+    cursor: pointer;
+}
 }
 
 // mat-sidenav{

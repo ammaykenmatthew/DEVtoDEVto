@@ -11,8 +11,8 @@ body, input{
   font-family: 'Poppins', sans-serif;
 }
 .bg-image {
-  background-image: url("https://img.freepik.com/premium-photo/modern-building-office-blue-sky-background_35761-198.jpg");
-  background-size: cover;
+  position: relative;
+  background-repeat: no-repeat;
   background-position: center;
 }
 

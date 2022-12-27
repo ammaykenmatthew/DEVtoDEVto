@@ -52,7 +52,7 @@ export class HomeComponent implements OnInit {
   openDialog(){
     this.dialog.open(PostFormComponent, {
         width: '98vh',
-        height: '70vh',
+        height: '90vh',
         maxWidth: '100vw',
         maxHeight: '100vh',
 

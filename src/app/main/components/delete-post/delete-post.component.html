@@ -1,0 +1,11 @@
+<h2 mat-dialog-title>Delete</h2>
+
+<div mat-dialog-content>
+  <label style="color: #1e293b; font-style: 'Rubik', sans-serif;">Are you sure you want to delete this post?</label>
+</div>
+
+<hr />
+<div mat-dialog-action [align]="'end'">
+  <button style="margin-right:8px;" mat-raised-button color="warn" mat-dialog-close (click)="deleteData()">Yes</button>
+  <button mat-raised-button mat-dialog-close>Close</button>
+</div>

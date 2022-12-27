@@ -23,6 +23,7 @@ export interface Posts{
       user_id: number,
       title: string,
       description: string,
+      photo:string,
       created_at: string,
 
 }

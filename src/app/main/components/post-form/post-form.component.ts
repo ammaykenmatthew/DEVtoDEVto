@@ -7,7 +7,7 @@ import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 
-export interface Fruit {
+export interface Tags {
   name: string;
 }
 
@@ -24,34 +24,42 @@ export class PostFormComponent implements OnInit {
   // posts$: Array<any> = [];
   post: any;
 
+  imageSrc!: string;
+  fileChange = false;
+
+  files:any =[];
   durationInSeconds = 2;
 
-  // addOnBlur = true;
-  // readonly separatorKeysCodes = [ENTER, COMMA] as const;
-  // fruits: Fruit[] = [{name: 'Laravel'}, {name: 'Php'}, {name: 'Angular'}];
+  addOnBlur = true;
+  readonly separatorKeysCodes = [ENTER, COMMA] as const;
+  tags: Tags[] = [];
 
-  // add(event: MatChipInputEvent): void {
-  //   const value = (event.value || '').trim();
+  //tags.toString();
+  //tags = str.
+  //let array = str.split(',');
+  //str.split
+  add(event: MatChipInputEvent): void {
+    const value = (event.value || '').trim();
 
-  //   // Add our fruit
-  //   if (value) {
-  //     this.fruits.push({name: value});
-  //   }
+    // Add our tag
+    if (value) {
+      this.tags.push({name: value});
+    }
 
-  //   // Clear the input value
-  //   event.chipInput!.clear();
-  // }
+    // Clear the input value
+    event.chipInput!.clear();
+  }
 
-  // remove(fruit: Fruit): void {
-  //   const index = this.fruits.indexOf(fruit);
+  remove(tags: Tags): void {
+    const index = this.tags.indexOf(tags);
 
-  //   if (index >= 0) {
-  //     this.fruits.splice(index, 1);
-  //   }
-  // }
+    if (index >= 0) {
+      this.tags.splice(index, 1);
+    }
+  }
 
   postForm !: FormGroup;
-  actionBtn: string = "Save";
+  actionBtn: string = "Post";
 
   constructor(
     private formBuilder: FormBuilder,
@@ -68,21 +76,60 @@ export class PostFormComponent implements OnInit {
 
       title: ['', Validators.required],
       description: ['', Validators.required],
+      photo: ['', [Validators.required]],
+      tags: ['', []],
+      fileSource: ['', [Validators.required]],
+
 
     });
     if(this.editData){
       this.actionBtn = "Update";
       this.postForm.controls['title'].setValue(this.editData.title);
       this.postForm.controls['description'].setValue(this.editData.description);
+      //photo update
+      this.postForm.controls['photo'].setValue('');
+      this.imageSrc = this.editData.photo;
+      this.postForm.controls['fileSource'].setValue(this.imageSrc);
+      this.fileChange = false;
+      //tags
+      let array = this.editData.tags.split(',');
+      array.forEach((element:any) => {
+        this.tags.push({name:element});
+      });
+
     }
   }
+  get f() {
+    return this.postForm.controls;
+  }
 
+  onFileChanged(event:any){
+    const reader = new FileReader();
+    if(event.target.files && event.target.files.length){
+      const [photo] = event.target.files;
+      reader.readAsDataURL(photo);
+      reader.onload = () => {
+        this.imageSrc = reader.result as string;
+        this.fileChange = true;
+        this.postForm.patchValue({fileSource: reader.result});
+        console.log(this.postForm.get('photo'));
+      };
+
+    }
+    this.files = event.target.files;
+    //console.log(this.files);
+  }
 
   //*Save post per user id using localstorage and dialog
   SavePost(){
 
     let retrievedData = localStorage.getItem('userdata') as unknown as string;
     let fullData:any = JSON.parse(retrievedData);
+    let arr:any= [];
+    this.tags.forEach(element => {
+      arr.push(element.name);
+    });
+    this.postForm.patchValue({tags: arr.toString()});
 
     let user_id = fullData.id;
     if(!this.editData){
@@ -111,18 +158,26 @@ export class PostFormComponent implements OnInit {
 
   }
 
+
   updatePost(){
+    console.log(this.postForm.value)
     let retrievedData = localStorage.getItem('userdata') as unknown as string;
     let fullData:any = JSON.parse(retrievedData);
 
     let user_id = fullData.id;
 
     let post_id:any = this.activateRoute.snapshot.params['id'];
-    this._apiService.request('updatePosts/'+this.editData.id, '', this.postForm.value, 'put').subscribe({next:(res:any)=>{
+    this._apiService.request('updatePost/', this.editData.id ,this.postForm.value, 'put').subscribe({next:(res:any)=>{
     this.post = res;
-    alert("Updated Sucessfully");
+    console.log(this.editData)
     this.postForm.reset();
     this.dialogRef.close('update');
+    window.location.reload();
+
+    const message = 'Your post has been updated sucessfully!';
+    this.snackbar.open(message , '' , {
+      duration: this.durationInSeconds * 1000,
+    });
   }, error:(error: any)=>{
     alert("Error posting data...");
     console.log("Error posting data", error);

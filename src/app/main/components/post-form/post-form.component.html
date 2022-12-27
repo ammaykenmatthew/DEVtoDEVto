@@ -16,26 +16,49 @@
               <textarea style="height: 180px;" formControlName="description" matInput placeholder="..." class="form-control" formControlName="description"></textarea>
     </mat-form-field>
 
-  <!-- <label for=""><h1>Tags</h1></label>
+  <label for=""><h1>Upload an Image</h1></label>
+  <p style="color: #878A8C; font-size: 15px;">Upload an example screenshot of the error.</p>
+    <div class="form-control">
+      <input
+          accept="image/*"
+          formControlName="photo"
+          id="photo"
+          type="file"
+          class="form-control"
+          (change)="onFileChanged($event)">
+    <!-- <div *ngIf="f['files'].touched && f['files'].invalid" class="alert alert-danger"></div>
+      <div *ngIf="files.errors?.['required']">File is required.</div> -->
+    </div>
+  <br>
+
+  <img [src]="imageSrc" *ngIf="imageSrc && fileChange" style="height: auto; width:auto;" class="responsive" >
+  <img [src]="'http://localhost:8000/'+imageSrc" *ngIf="imageSrc && !fileChange" style="height: auto; width: auto;" class="responsive" >
+  <br>
+
+
+  <label for=""><h1>Tags</h1></label>
+  <p style="color: #878A8C; font-size: 15px;">Add up to 3 tags to describe what your question is about. </p>
     <mat-form-field class="example-chip-list" appearance="fill">
       <mat-label>Tags</mat-label>
       <mat-chip-list #chipList aria-label="Fruit selection">
-        <mat-chip *ngFor="let fruit of fruits" (removed)="remove(fruit)">
-          {{fruit.name}}
+        <mat-chip *ngFor="let tag of tags" (removed)="remove(tag)">
+          {{tag.name}}
           <button matChipRemove>
             <mat-icon>cancel</mat-icon>
           </button>
         </mat-chip>
         <input placeholder="Add tags..."
+
                [matChipInputFor]="chipList"
                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
                [matChipInputAddOnBlur]="addOnBlur"
                (matChipInputTokenEnd)="add($event)">
       </mat-chip-list>
-    </mat-form-field> -->
+    </mat-form-field>
     </form>
+    <br>
 </div>
-<div mat-dialog-action [align]="'end'">
+<div mat-dialog-action [align]="'end'" style="margin-top: 6rem;">
   <button mat-raised-button color="warn" mat-dialog-close>Close</button>
   <button style="margin-left:8px;" mat-raised-button color="primary" mat-dialog-close (click)="SavePost()">{{actionBtn}}</button>
 </div>

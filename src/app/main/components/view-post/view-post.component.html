@@ -19,7 +19,10 @@
           <hr />
           <div>
             <p class="post-text">{{post.description}}</p>
+
+           <img [src]="'http://127.0.0.1:8000/'+post.photo" style="height: auto; width:auto;" class="responsive" >
           </div>
+
           <hr/>
           <p>Comment as {{fname_fld}} {{mname_fld}} {{lname_fld}} </p>
 

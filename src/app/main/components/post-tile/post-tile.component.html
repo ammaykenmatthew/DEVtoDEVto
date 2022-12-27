@@ -13,6 +13,12 @@
           <a>{{post.title}}</a>
       </div>
       <hr />
+      <mat-chip-list aria-label="Fish selection">
+        <mat-chip *ngFor="let tags of posts$"  color="primary" selected>
+          {{tags}}
+        </mat-chip>
+      </mat-chip-list>
+      <hr />
       <span>
           <a >
               <fa-icon [icon]="faComments"></fa-icon>

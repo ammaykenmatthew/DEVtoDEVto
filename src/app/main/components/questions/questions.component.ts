@@ -5,6 +5,7 @@ import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { DeletePostComponent } from '../delete-post/delete-post.component';
 import { PostFormComponent } from '../post-form/post-form.component';
 
 @Component({
@@ -23,6 +24,7 @@ export class QuestionsComponent implements OnInit {
     public _apiService: AuthService,
     private dialog: MatDialog,
     private route: Router,
+
 
   ) { }
 
@@ -52,10 +54,19 @@ export class QuestionsComponent implements OnInit {
     this.dialog.open(PostFormComponent,{
 
       width: '98vh',
-      height: '70vh',
+      height: '90vh',
       maxWidth: '100vw',
       maxHeight: '100vh',
       data:row
+    });
+  }
+  deleteQuestions(id: any){
+    this.dialog.open(DeletePostComponent,{
+      data: { id: id },
+      width: '20%',
+      height: '20%',
+      //responsive not
+
     });
   }
 
@@ -72,6 +83,7 @@ export class QuestionsComponent implements OnInit {
   viewPost(id: number): void{
       this.route.navigateByUrl('main/view-post/' + id);
   }
+
 
 
 }

@@ -5,18 +5,58 @@
                   <span>Top
                     <br>
                     <br> Questions</span>
+                    <div class="total align-self-end">
+                      {{total_post}} questions
+                    </div>
                 </div>
                 <div class="add p-2 align-self-start">
                   <button type="button" color="primary" (click)="openDialog()"> + Ask a Question</button>
                 </div>
-            </div>
 
+
+            </div>
+            <!--POST BODY-->
             <div class="reddit-body">
                 <div class="container">
                   <div class="row d-flex justify-content-center">
 
                     <div class="col-md-8">
-                      <app-post-tile></app-post-tile>
+                      <div class="row post" *ngFor="let post of posts$ | filter:searchKey: 'title' ">
+
+                        <div class="col-md-1">
+                            <app-vote-button></app-vote-button>
+                        </div>
+                        <div class="col-md-11">
+                            <span>
+                                <span class="subreddit-text"></span>
+                                <span><a>Posted by {{post.program_fld}} | {{post.fname_fld}} {{post.mname_fld}} {{post.lname_fld}}  </a></span>
+                                <span> - {{post.created_at|date:'MMM d, y h a'}}</span>
+                                <!-- post.created_at|dateAsAgo //shows Just Now  -->
+                            </span>
+                            <hr />
+                            <div class="post-title">
+                                <a>{{post.title}}</a>
+                            </div>
+                            <hr />
+                            <mat-chip-list aria-label="Fish selection">
+                              <mat-chip   color="" >
+                                {{post.tags}}
+                              </mat-chip>
+                            </mat-chip-list>
+                            <hr />
+                            <span>
+                                <a >
+
+                                    <fa-icon [icon]="faComments"></fa-icon>
+                                    Comments ({{post.commentcount}})
+                                </a>
+                                <button class="login" (click)="goToPost(post.id)">
+                                    Read Post
+                                </button>
+                            </span>
+                        </div>
+                      </div>
+
                     </div>
 
                   </div>

@@ -10,6 +10,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { LogoutFormComponent } from './components/logout-form/logout-form.component';
 import {MediaMatcher} from '@angular/cdk/layout';
+import {faSearch} from '@fortawesome/free-solid-svg-icons';
 
 
 
@@ -19,6 +20,10 @@ import {MediaMatcher} from '@angular/cdk/layout';
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent{
+
+  public searchTerm: string = '';
+  date_today = new Date();
+  faSearch = faSearch;
 
   mobileQuery: MediaQueryList;
   durationInSeconds = 2;
@@ -86,16 +91,19 @@ export class MainComponent{
 
   logoutUsers(){
       this.dialog.open(LogoutFormComponent, {
-          width: '20%',
-          height: '20%'
+          width: '20vw',
+          height: '20vh',
+          maxWidth: '20vw',
+          maxHeight: '20vh',
       });
 
   }
 
-  searchText: string = '';
-  onSearchTextEntered(searchValue: string){
-    this.searchText = searchValue;
-    console.log(this.searchText)
+
+  search(event:any){
+    this.searchTerm = (event.target as HTMLInputElement).value;
+    // console.log(this.searchTerm);
+    this._apiService.search.next(this.searchTerm);
   }
 
 }

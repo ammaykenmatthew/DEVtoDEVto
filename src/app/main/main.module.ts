@@ -16,6 +16,9 @@ import { PostFormComponent } from './components/post-form/post-form.component';
 import { ViewPostComponent } from './components/view-post/view-post.component';
 import { LogoutFormComponent } from './components/logout-form/logout-form.component';
 import { DeletePostComponent } from './components/delete-post/delete-post.component';
+import { SearchPipe } from "../shared/filter.pipe";
+import { DateAsAgoPipe } from "../shared/date-as-ago.pipe";
+
 
 // import { MainRoutingModule } from "./main-routing.module";
 // import { QuestionsComponent } from './components/questions/questions.component';
@@ -34,7 +37,8 @@ import { DeletePostComponent } from './components/delete-post/delete-post.compon
         ViewPostComponent,
         LogoutFormComponent,
         DeletePostComponent,
-
+        SearchPipe,
+        DateAsAgoPipe,
 
     ],
     imports: [
@@ -43,7 +47,9 @@ import { DeletePostComponent } from './components/delete-post/delete-post.compon
         ReactiveFormsModule,
         MaterialModules,
         MainRoutingModule, // lagi meron ditong import ng MainRoutingModule
-        FontAwesomeModule
+        FontAwesomeModule,
+
+
     ],
 })
 export class MainModule {}

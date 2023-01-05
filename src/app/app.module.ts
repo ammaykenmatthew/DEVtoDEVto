@@ -14,9 +14,8 @@ import { LoginComponent } from './login/login.component';
 
 import { DatePipe, HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { SearchComponent } from './search/search.component';
-
-
-
+import { SearchPipe } from './shared/filter.pipe';
+import { DateAsAgoPipe } from './shared/date-as-ago.pipe';
 
 
 @NgModule({
@@ -27,6 +26,8 @@ import { SearchComponent } from './search/search.component';
     AdminComponent,
     SearchComponent,
 
+
+
   ],
   imports: [
     BrowserModule,
@@ -34,8 +35,6 @@ import { SearchComponent } from './search/search.component';
     BrowserAnimationsModule,
     MaterialModules, //global material modules
     FormsModule,
-
-
 
   ],
   providers: [

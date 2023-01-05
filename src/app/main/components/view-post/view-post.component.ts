@@ -104,6 +104,7 @@ export class ViewPostComponent implements OnInit {
 
   }
 
+  /*View Comments per post  */
   viewComment(){
     let post_id:any = this.activateRoute.snapshot.params['id'];
     this._apiService.request('showAllwithComments/'+post_id , '',  this.comments , 'get').subscribe((res:any)=>{

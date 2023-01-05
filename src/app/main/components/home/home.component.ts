@@ -2,7 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { PostFormComponent } from '../post-form/post-form.component';
-
+import { Router } from '@angular/router';
+import {faArrowUp, faArrowDown, faComments, faSearch} from '@fortawesome/free-solid-svg-icons';
+import { AuthService } from 'src/app/services/auth.service';
+import { Posts } from 'src/app/services/data.schema';
+import {ThemePalette} from '@angular/material/core';
+import { SearchPipe } from 'src/app/shared/filter.pipe';
 
 @Component({
   selector: 'app-home',
@@ -13,17 +18,39 @@ export class HomeComponent implements OnInit {
 
   durationInSeconds = 2;
 
+  //*Search KEY
+  searchKey:string = "";
+
   email_add:any;
   fname_fld:any;
   mname_fld:any;
   lname_fld:any;
 
+  posts$: Array<any> = [];
+
+  faArrowUp = faArrowUp;
+  faArrowDown = faArrowDown;
+  faComments = faComments;
+  faSearch = faSearch;
+
+  // fname_fld:any;
+
 
   constructor(
     public snackbar: MatSnackBar,
     private dialog: MatDialog,
+    private _apiService: AuthService,
+    private route: Router
     ){
+      this._apiService.request('showAll', '', this.posts$, 'get').subscribe((res:any)=>{
+        this.posts$ = res;
 
+        // let data = res.tags.toString();
+        // let legit = data.split(',');
+
+        console.log(res);
+
+      });
 
   }
 
@@ -41,12 +68,20 @@ export class HomeComponent implements OnInit {
     // this.snackbar.open(message , '' , {
     //   duration: this.durationInSeconds * 1000,
     // });
+    this._apiService.search.subscribe((val:any)=>{
+      this.searchKey = val;
 
+    this.getTotalPost();
+    });
   }
 
   // openModal(){
   //   this.postForm.show();
   // }
+  goToPost(id: number): void{
+
+    this.route.navigateByUrl('main/view-post/' + id);
+  }
 
 
   openDialog(){
@@ -57,6 +92,19 @@ export class HomeComponent implements OnInit {
         maxHeight: '100vh',
 
     });
+  }
+
+  total_post: any = [];
+
+  getTotalPost(){
+    this._apiService.request('countAll', '', '', 'get').subscribe((res:any)=>{
+
+      this.total_post = res.post_total;
+
+      // console.log(this.total_post);
+    },(error: any)=>{
+      console.log ("Error", error);
+     });
   }
 
 

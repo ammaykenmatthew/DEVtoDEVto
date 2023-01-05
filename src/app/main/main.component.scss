@@ -51,8 +51,32 @@ mat-icon{
     top: 0;
     z-index: 1;
     height: 50px;
-    box-shadow: -1px 5px 12px -4px rgba(0,0,0,0.68);
+    box-shadow: 2px 2px 5px rgb(0 0 0 / 10%);
     align-items: center;
+}
+//Search
+.mat-toolbar {
+  .box{
+    width: 600px;
+    height: 25px;
+    background-color: white;
+  //  border-radius: 30px;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+  }
+  .box mat-icon{
+    font-size: 24px;
+    color: #777;
+  }
+  .box input{
+    flex: 1;
+    height: 30px;
+    border: none;
+    outline: none;
+    font-size: 15px;
+    padding-left: 7px;
+  }
 }
 
 .user{
@@ -124,8 +148,10 @@ mat-icon{
     }
     .menu-button:focus{
         background-color: #fda239;
+
         //#fda239
     }
+
 }
 
 .content-container{

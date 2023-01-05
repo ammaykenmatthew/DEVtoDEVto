@@ -57,9 +57,12 @@
             <hr/>
             <h4 style="font-size: 20px; color: black;">Comments</h4>
             <!--Display Comments-->
-            <div class="comment" *ngFor="let comment of comments">
+            <div class="row comment" *ngFor="let comment of comments">
+
               <span>
+
                 <span>
+
                   <a >{{comment.program_fld}} | {{comment.fname_fld}} {{comment.mname_fld}} {{comment.lname_fld}} </a>
                 </span>
                 <span> at {{comment.created_at|date:'medium'}}</span>

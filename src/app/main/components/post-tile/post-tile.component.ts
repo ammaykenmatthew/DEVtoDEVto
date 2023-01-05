@@ -6,6 +6,7 @@ import { Posts } from 'src/app/services/data.schema';
 import {ThemePalette} from '@angular/material/core';
 
 
+
 @Component({
   selector: 'app-post-tile',
   templateUrl: './post-tile.component.html',
@@ -14,6 +15,7 @@ import {ThemePalette} from '@angular/material/core';
 export class PostTileComponent implements OnInit {
 
   //tags
+
   posts$: Array<any> = [];
 
   faArrowUp = faArrowUp;
@@ -30,16 +32,19 @@ export class PostTileComponent implements OnInit {
       this._apiService.request('showAll', '', this.posts$, 'get').subscribe((res:any)=>{
         this.posts$ = res;
 
+        // let data = res.tags.toString();
+        // let legit = data.split(',');
+
         console.log(res);
+
+
       });
    }
 
   ngOnInit(): void {
 
-    // let array = this.editData.tags.split(',');
-    //   array.forEach((element:any) => {
-    //     this.tags.push({name:element});
-    //   });
+
+
   }
 
 

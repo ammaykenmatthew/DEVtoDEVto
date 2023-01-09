@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild} from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import {MatPaginator} from '@angular/material/paginator';
 import { PostFormComponent } from '../post-form/post-form.component';
 import { Router } from '@angular/router';
 import {faArrowUp, faArrowDown, faComments, faSearch} from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from 'src/app/services/auth.service';
-import { Posts } from 'src/app/services/data.schema';
-import {ThemePalette} from '@angular/material/core';
+
 import { SearchPipe } from 'src/app/shared/filter.pipe';
 
 @Component({
@@ -15,6 +15,14 @@ import { SearchPipe } from 'src/app/shared/filter.pipe';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+
+  title= 'pagination';
+  page: number = 1;
+  count: number = 0;
+  tableSize: number = 10;
+  tableSizes: any = [5, 10, 15, 20];
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   durationInSeconds = 2;
 
@@ -26,7 +34,7 @@ export class HomeComponent implements OnInit {
   mname_fld:any;
   lname_fld:any;
 
-  posts$: Array<any> = [];
+  posts$: Array<any> = []; //why array? try not array
 
   faArrowUp = faArrowUp;
   faArrowDown = faArrowDown;
@@ -42,17 +50,11 @@ export class HomeComponent implements OnInit {
     private _apiService: AuthService,
     private route: Router
     ){
-      this._apiService.request('showAll', '', this.posts$, 'get').subscribe((res:any)=>{
-        this.posts$ = res;
 
-        // let data = res.tags.toString();
-        // let legit = data.split(',');
-
-        console.log(res);
-
-      });
 
   }
+
+
 
   ngOnInit(): void {
     let retrievedData = localStorage.getItem('userdata') as unknown as string;
@@ -70,8 +72,20 @@ export class HomeComponent implements OnInit {
     // });
     this._apiService.search.subscribe((val:any)=>{
       this.searchKey = val;
+    });
 
+    //instances//
     this.getTotalPost();
+    this.getAllData();
+  }
+
+  showLoader = false;
+  getAllData(){
+    this.showLoader = true;
+    this._apiService.request('showAll', '', this.posts$, 'get').subscribe((res:any)=>{
+      this.posts$ = res;
+      this.showLoader = false;
+      console.log(res);
     });
   }
 
@@ -79,7 +93,6 @@ export class HomeComponent implements OnInit {
   //   this.postForm.show();
   // }
   goToPost(id: number): void{
-
     this.route.navigateByUrl('main/view-post/' + id);
   }
 
@@ -90,7 +103,6 @@ export class HomeComponent implements OnInit {
         height: '90vh',
         maxWidth: '100vw',
         maxHeight: '100vh',
-
     });
   }
 
@@ -98,14 +110,24 @@ export class HomeComponent implements OnInit {
 
   getTotalPost(){
     this._apiService.request('countAll', '', '', 'get').subscribe((res:any)=>{
-
       this.total_post = res.post_total;
-
       // console.log(this.total_post);
     },(error: any)=>{
       console.log ("Error", error);
      });
   }
 
+/*Pagination */
+  onTableDataChange(event: any){
+    this.page = event;
+    this.getAllData();
+  }
+
+  onTableSizeChange(event: any): void {
+    this.tableSize = event.target.value;
+    this.page= 1;
+    this.getAllData();
+  }
+/*Pagination */
 
 }

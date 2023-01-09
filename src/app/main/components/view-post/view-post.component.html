@@ -1,18 +1,38 @@
-<div class="row post" *ngFor="let post of posts$">
+<div class="post" *ngFor="let post of posts$">
   <div class="container h-100">
-    <button type="button" class="back" (click)="goBack()"><span class='material-icons'>arrow_back</span>Back</button>
+     <!--Loader-->
+     <div *ngIf="showLoader" class="loader text-center">
+      <div class="bar1"></div>
+      <div class="bar2"></div>
+      <div class="bar3"></div>
+      <div class="bar4"></div>
+      <div class="bar5"></div>
+      <div class="bar6"></div>
+      <div class="bar7"></div>
+      <div class="bar8"></div>
+      <div class="bar9"></div>
+      <div class="bar10"></div>
+      <div class="bar11"></div>
+      <div class="bar12"></div>
+   </div>
+   <!--Loader-->
+    <div class="back">
+    <button type="button" (click)="goBack()"><span class='material-icons'>arrow_back</span>Back</button>
+    </div>
+
   <div class="row h-100 justify-content-center align-items-center">
+
     <div class="col-md-9">
       <div class="row post">
         <div class="col-md-1">
-          <app-vote-button></app-vote-button>
+          <!-- vote button -->
         </div>
         <div class="col-md-10">
           <span>
             <span>
               <a >Posted by {{post.program_fld}} | {{post.fname_fld}} {{post.mname_fld}} {{post.lname_fld}} </a>
             </span>
-            <span>at {{post.created_at|date:'medium'}}</span>
+            <span>at {{post.created_at|date:'MMM d, y h a'}}</span>
           </span>
           <hr />
           <h4 style="color: black;" class="post-title">{{post.title}}</h4>
@@ -57,23 +77,42 @@
             <hr/>
             <h4 style="font-size: 20px; color: black;">Comments</h4>
             <!--Display Comments-->
-            <div class="row comment" *ngFor="let comment of comments">
-
+            <div class="comment" *ngFor="let comment of comments">
+              <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="" style="height: 30px; width: 30px; margin-right: 3px;">
               <span>
-
                 <span>
-
-                  <a >{{comment.program_fld}} | {{comment.fname_fld}} {{comment.mname_fld}} {{comment.lname_fld}} </a>
+                  <a >{{comment.comments.program_fld}} | {{comment.comments.fname_fld}} {{comment.comments.mname_fld}} {{comment.comments.lname_fld}} </a>
                 </span>
-                <span> at {{comment.created_at|date:'medium'}}</span>
+                <span> at {{comment.comments.created_at|date:'MMM d, y h a'}}</span>
               </span>
-              <hr/>
+
               <div>
-                <p style="background-color: rgb(240, 240, 240);">{{comment.content}}</p>
+                <p style="background-color: #f5f5f5;">{{comment.comments.content}}</p>
               </div>
+              <hr>
+
+              <div class="commentReply" *ngFor="let rep of comment.reply">
+                <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="" style="height: 30px; width: 30px; margin-right: 3px;">
+                <span>
+                  <a > {{rep.program_fld}} | {{rep.fname_fld}} {{rep.mname_fld}} {{rep.lname_fld}} </a>
+                </span>
+                <span> at {{rep.created_at|date:'MMM d, y h a'}}</span>
+                <div>
+                  <p style="background-color: #f5f5f5;">{{rep.replyContent}}</p>
+                </div>
+              </div>
+              <hr>
+
+              <form [formGroup]="replyForm" (ngSubmit)="replyComment(comment)">
+              <div class="reply" >
+                <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="" style="height: 30px; width: 30px; margin-right: 3px;">
+                <input type="text" name="" class="form-control" [formControlName]="'replyContent'" placeholder="Write a reply..">
+                <button type="submit" >Submit</button>
+              </div>
+            </form>
 
             </div>
-
+            <!-- Outside Comment Div -->
           </div>
         </div>
       </div>

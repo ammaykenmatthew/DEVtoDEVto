@@ -8,6 +8,7 @@ import {Location} from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialogRef , MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { faComment } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-view-post',
@@ -16,11 +17,15 @@ import { MatDialogRef , MAT_DIALOG_DATA} from '@angular/material/dialog';
 })
 export class ViewPostComponent implements OnInit {
 
+  isShowDiv = false;
+  faComment = faComment;
+
   postId: any;
   posts$: Array<any> = [];
   comments: Array<any> = [];
 
   commentForm!: FormGroup;
+  replyForm!: FormGroup;
   comments$$: Array<Comments> = [];
 
   durationInSeconds = 2;
@@ -38,23 +43,15 @@ export class ViewPostComponent implements OnInit {
     public snackbar: MatSnackBar,
 
     )
-  {
-
-
-    let id:any = this.activateRoute.snapshot.params['id'];
-     this._apiService.request('showOnePostby/'+id, '', this.posts$, 'get').subscribe((res:any)=>{
-     this.posts$ = res;
-
-      console.log(this.posts$);
-     }, (error: any)=>{
-      console.log ("Error", error);
-     });
-
-  }
+  { }
 
   ngOnInit(): void {
     this.commentForm = this.formBuilder.group({
       content: ['', Validators.required],
+    });
+
+    this.replyForm = this.formBuilder.group({
+      replyContent: ['', Validators.required],
     });
 
     this.viewComment();
@@ -70,7 +67,21 @@ export class ViewPostComponent implements OnInit {
     //   this.postForm.controls['title'].setValue(this.editData.title);
     //   this.postForm.controls['description'].setValue(this.editData.description);
     // }
+    this.showOnePost();
+  }
 
+  showLoader = false;
+  showOnePost(){
+    this.showLoader = true;
+    let id:any = this.activateRoute.snapshot.params['id'];
+     this._apiService.request('showOnePostby/'+id, '', this.posts$, 'get').subscribe((res:any)=>{
+     this.posts$ = res;
+     this.showLoader = false;
+
+      console.log(this.posts$);
+     }, (error: any)=>{
+      console.log ("Error", error);
+     });
   }
 
   goBack(){
@@ -90,7 +101,64 @@ export class ViewPostComponent implements OnInit {
       this.comments$$ = res;
       this.commentForm.reset();
       this.viewComment();
-      console.log(this.commentForm.value);
+
+      const message = 'Commented sucessfully!';
+        this.snackbar.open(message , '' , {
+          duration: this.durationInSeconds * 1000,
+        });
+    }), (error: any)=>{
+      alert("Error posting data...");
+      console.log("Error posting data", error);
+    }
+  }
+
+  }
+  dateCreated:any;
+
+  /*View Comments per post  */
+  viewComment(){
+    let post_id:any = this.activateRoute.snapshot.params['id'];
+    this._apiService.request('showAllwithComments/'+post_id , '',  '', 'get').subscribe((res:any)=>{
+    this.comments = res;
+
+    console.log(this.comments)
+
+    }), (error: any)=>{
+      alert("Error posting data...");
+      console.log("Error posting data", error);
+    }
+
+  }
+
+  total_comment: any = [];
+
+  getTotalPost(){
+    this._apiService.request('countAll', '', '', 'get').subscribe((res:any)=>{
+
+      this.total_comment = res.post_total;
+
+      // console.log(this.total_post);
+    },(error: any)=>{
+      console.log ("Error", error);
+     });
+  }
+
+
+  replyComment(comment:any){
+    let retrievedData = localStorage.getItem('userdata') as unknown as string;
+    let fullData:any = JSON.parse(retrievedData);
+
+    let user_id = fullData.id;
+
+
+  if(this.replyForm.valid){
+    this._apiService.request('createReply/'+user_id +'/'+ comment.comments.id, '', this.replyForm.value, 'post').subscribe((res:any)=>{
+
+      this.comments$$ = res;
+      this.replyForm.reset();
+      this.viewComment();
+
+      console.log(this.replyForm.value)
 
       const message = 'Commented sucessfully!';
         this.snackbar.open(message , '' , {
@@ -104,18 +172,11 @@ export class ViewPostComponent implements OnInit {
 
   }
 
-  /*View Comments per post  */
-  viewComment(){
-    let post_id:any = this.activateRoute.snapshot.params['id'];
-    this._apiService.request('showAllwithComments/'+post_id , '',  this.comments , 'get').subscribe((res:any)=>{
-    this.comments = res;
-    console.log(this.comments)
-    }), (error: any)=>{
-      alert("Error posting data...");
-      console.log("Error posting data", error);
-    }
 
-  }
+  // toggleReply(){
+  //   this.isShowDiv = true;
+  //   return this.isShowDiv;
+  // }
 
 
 }

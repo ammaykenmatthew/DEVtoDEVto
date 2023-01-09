@@ -8,20 +8,48 @@
                     <div class="total align-self-end">
                       {{total_post}} questions
                     </div>
+
                 </div>
+
                 <div class="add p-2 align-self-start">
                   <button type="button" color="primary" (click)="openDialog()"> + Ask a Question</button>
+
                 </div>
+
+
+
 
 
             </div>
+            <!--Loader-->
+            <div *ngIf="showLoader" class="loader text-center">
+              <div class="bar1"></div>
+              <div class="bar2"></div>
+              <div class="bar3"></div>
+              <div class="bar4"></div>
+              <div class="bar5"></div>
+              <div class="bar6"></div>
+              <div class="bar7"></div>
+              <div class="bar8"></div>
+              <div class="bar9"></div>
+              <div class="bar10"></div>
+              <div class="bar11"></div>
+              <div class="bar12"></div>
+           </div>
+           <!--Loader-->
+
             <!--POST BODY-->
             <div class="reddit-body">
+
                 <div class="container">
                   <div class="row d-flex justify-content-center">
 
                     <div class="col-md-8">
-                      <div class="row post" *ngFor="let post of posts$ | filter:searchKey: 'title' ">
+                      <div class="row post" *ngFor="let post of posts$ | filter:searchKey: 'title' | paginate: {
+                        itemsPerPage: tableSize,
+                        currentPage: page,
+                        totalItems: count}; let i = index
+                        ">
 
                         <div class="col-md-1">
                             <app-vote-button></app-vote-button>
@@ -55,6 +83,23 @@
                                 </button>
                             </span>
                         </div>
+                      </div>
+                      <br>
+                      <div class="pager float-start">
+                        <pagination-controls
+                        previousLabel = "Prev"
+                        nextLabel="Next"
+                        (pageChange)="onTableDataChange($event)"
+                        >
+                        </pagination-controls>
+                      </div>
+                      <div class="pager1 float-right">
+                        <select (change)="onTableSizeChange($event)">
+                          <option *ngFor="let size of tableSizes">
+                            {{size}}
+                          </option>
+
+                        </select>
                       </div>
 
                     </div>

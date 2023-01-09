@@ -7,6 +7,8 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { DeletePostComponent } from '../delete-post/delete-post.component';
 import { PostFormComponent } from '../post-form/post-form.component';
+import Swal from 'sweetalert2';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-questions',
@@ -14,6 +16,9 @@ import { PostFormComponent } from '../post-form/post-form.component';
   styleUrls: ['./questions.component.scss']
 })
 export class QuestionsComponent implements OnInit {
+
+  durationInSeconds = 2;
+
   displayedColumns: string[] = ['id', 'title', 'description', 'created_at', 'action'];
   dataSource!: MatTableDataSource<any>;
 
@@ -24,6 +29,7 @@ export class QuestionsComponent implements OnInit {
     public _apiService: AuthService,
     private dialog: MatDialog,
     private route: Router,
+    public snackbar: MatSnackBar,
 
 
   ) { }
@@ -61,13 +67,30 @@ export class QuestionsComponent implements OnInit {
     });
   }
   deleteQuestions(id: any){
-    this.dialog.open(DeletePostComponent,{
-      data: { id: id },
-      width: '20%',
-      height: '20%',
-      //responsive not
+    Swal.fire({
+      title: 'Delete Post?',
+      text: 'Are you sure you want to delete this post?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'Cancel'
+    }).then((result) => {
+      if (result.value) {
+        this._apiService.request('deletePost/'+id, '', '', 'delete').subscribe((res:any ) =>{
 
-    });
+          window.location.reload();
+          const message = 'Deleted Succesfully!';
+            this.snackbar.open(message , '' , {
+              duration: this.durationInSeconds * 1000,
+            });
+
+        },(error: any)=>{
+          console.log ("Error", error);
+         });
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+
+      }
+    })
   }
 
   applyFilter(event: Event) {

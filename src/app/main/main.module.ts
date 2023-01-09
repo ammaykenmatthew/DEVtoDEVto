@@ -18,7 +18,7 @@ import { LogoutFormComponent } from './components/logout-form/logout-form.compon
 import { DeletePostComponent } from './components/delete-post/delete-post.component';
 import { SearchPipe } from "../shared/filter.pipe";
 import { DateAsAgoPipe } from "../shared/date-as-ago.pipe";
-
+import { NgxPaginationModule } from 'ngx-pagination';
 
 // import { MainRoutingModule } from "./main-routing.module";
 // import { QuestionsComponent } from './components/questions/questions.component';
@@ -48,7 +48,7 @@ import { DateAsAgoPipe } from "../shared/date-as-ago.pipe";
         MaterialModules,
         MainRoutingModule, // lagi meron ditong import ng MainRoutingModule
         FontAwesomeModule,
-
+        NgxPaginationModule
 
     ],
 })

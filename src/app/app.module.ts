@@ -16,6 +16,8 @@ import { DatePipe, HashLocationStrategy, LocationStrategy } from '@angular/commo
 import { SearchComponent } from './search/search.component';
 import { SearchPipe } from './shared/filter.pipe';
 import { DateAsAgoPipe } from './shared/date-as-ago.pipe';
+import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
+import { faComment, faHouse } from '@fortawesome/free-solid-svg-icons';
 
 
 @NgModule({
@@ -26,8 +28,6 @@ import { DateAsAgoPipe } from './shared/date-as-ago.pipe';
     AdminComponent,
     SearchComponent,
 
-
-
   ],
   imports: [
     BrowserModule,
@@ -36,10 +36,13 @@ import { DateAsAgoPipe } from './shared/date-as-ago.pipe';
     MaterialModules, //global material modules
     FormsModule,
 
+
   ],
   providers: [
     DatePipe,
     {provide: LocationStrategy, useClass: HashLocationStrategy, }],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+
+}

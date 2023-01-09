@@ -17,7 +17,7 @@ import {MatChipsModule} from '@angular/material/chips';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
 import {MatTableModule} from '@angular/material/table';
-
+import {MatMenuModule} from '@angular/material/menu';
 //Includes all modules
 const MatModules = [
     MatToolbarModule,
@@ -36,6 +36,7 @@ const MatModules = [
     MatPaginatorModule,
     MatSortModule,
     MatTableModule,
+    MatMenuModule,
 ];
 
 @NgModule({

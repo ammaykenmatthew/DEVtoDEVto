@@ -107,6 +107,36 @@ button.login{
   color: #1e293b;
 }
 
+
+
+
+// Votes Function
+.votebox {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  font-size: 1em;
+}
+
+.votesection{
+  margin:0px;
+  background-color: #ffffff;
+}
+.upvote,.downvote {
+  cursor: pointer;
+  border-radius: 2px solid;
+}
+.upvote:hover {
+  color: green;
+}
+.downvote:hover {
+  color: red;
+}
+
+.votecount{
+  font-weight: bold;
+}
+
 /*Display Total Questions*/
 .total{
   font-size: 20px;
@@ -224,5 +254,20 @@ mat-chip {
 
 
 .pager1{
-  margin-left: 45rem;
+  margin-left: 3rem;
+  margin-top: 2.8rem;
+
+  label{
+    font-family: 'Rubik', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+  }
+  .selek {
+    background-color: #fda239;
+    width: 50px;
+    border-color: #878A8C;
+    margin-left: 5px;
+    color: #1e293b;
+    font-family: 'Rubik', sans-serif;
+  }
 }

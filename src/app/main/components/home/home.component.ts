@@ -16,6 +16,8 @@ import { SearchPipe } from 'src/app/shared/filter.pipe';
 })
 export class HomeComponent implements OnInit {
 
+
+
   title= 'pagination';
   page: number = 1;
   count: number = 0;
@@ -79,11 +81,27 @@ export class HomeComponent implements OnInit {
     this.getAllData();
   }
 
+
+  returnTags(tags:any){
+    let temp:any = [];
+    let array = tags.split(',');
+      array.forEach((element:any) => {
+        temp.push({name:element});
+
+      });
+
+      return temp;
+  }
+
   showLoader = false;
   getAllData(){
     this.showLoader = true;
     this._apiService.request('showAll', '', this.posts$, 'get').subscribe((res:any)=>{
+
       this.posts$ = res;
+      this.posts$.forEach(element => {
+        element.tags= this.returnTags(element.tags);
+      });
       this.showLoader = false;
       console.log(res);
     });
@@ -93,6 +111,7 @@ export class HomeComponent implements OnInit {
   //   this.postForm.show();
   // }
   goToPost(id: number): void{
+
     this.route.navigateByUrl('main/view-post/' + id);
   }
 

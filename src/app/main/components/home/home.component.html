@@ -11,13 +11,26 @@
 
                 </div>
 
-                <div class="add p-2 align-self-start">
+                <div class="add p-2 justify-content-start">
+
                   <button type="button" color="primary" (click)="openDialog()"> + Ask a Question</button>
 
+
+              <div class="pager1 ">
+                <div class ="d-flex ">
+                  <div class="d-flex fd-column ">
+                    <label class="flex--item fs-caption">Show </label>
+                    <select class="selek"  (change)="onTableSizeChange($event)">
+                      <option *ngFor="let size of tableSizes">
+                        {{size}}
+                      </option>
+                  </select>
+                  </div>
                 </div>
+              </div>
 
 
-
+                </div>
 
 
             </div>
@@ -52,14 +65,38 @@
                         ">
 
                         <div class="col-md-1">
-                            <app-vote-button></app-vote-button>
+                          <div class="d-flex flex-column votebox">
+                            <div class="p-2">
+                                <fa-icon  class="upvote" [icon]="faArrowUp"></fa-icon>
+                            </div>
+                            <div class="p-2 votecount">4</div>
+                            <div class="p-2">
+                                <fa-icon class="downvote" [icon]="faArrowDown">
+
+                                </fa-icon>
+                            </div>
+                        </div>
                         </div>
                         <div class="col-md-11">
                             <span>
                                 <span class="subreddit-text"></span>
-                                <span><a>Posted by {{post.program_fld}} | {{post.fname_fld}} {{post.mname_fld}} {{post.lname_fld}}  </a></span>
+                                <span><a>Posted by {{post.program_fld}} | {{post.fname_fld}} {{post.mname_fld}} {{post.lname_fld}}  </a>
+                                  <span>
+                                    <button mat-icon-button [matMenuTriggerFor]="menu" style="float: right;">
+                                      <mat-icon>more_horiz</mat-icon>
+                                    </button>
+                                    <mat-menu #menu="matMenu">
+                                      <button mat-menu-item>
+                                        <mat-icon>bookmarks</mat-icon>
+                                        <span style="font-family: 'Poppins', sans-serif;">Save this post</span>
+                                      </button>
+                                    </mat-menu>
+                                  </span></span>
                                 <span> - {{post.created_at|date:'MMM d, y h a'}}</span>
                                 <!-- post.created_at|dateAsAgo //shows Just Now  -->
+
+
+
                             </span>
                             <hr />
                             <div class="post-title">
@@ -67,8 +104,8 @@
                             </div>
                             <hr />
                             <mat-chip-list aria-label="Fish selection">
-                              <mat-chip   color="" >
-                                {{post.tags}}
+                              <mat-chip color="" *ngFor="let item of post.tags">
+                                {{item.name}}
                               </mat-chip>
                             </mat-chip-list>
                             <hr />
@@ -83,6 +120,7 @@
                                 </button>
                             </span>
                         </div>
+
                       </div>
                       <br>
                       <div class="pager float-start">
@@ -93,14 +131,7 @@
                         >
                         </pagination-controls>
                       </div>
-                      <div class="pager1 float-right">
-                        <select (change)="onTableSizeChange($event)">
-                          <option *ngFor="let size of tableSizes">
-                            {{size}}
-                          </option>
 
-                        </select>
-                      </div>
 
                     </div>
 

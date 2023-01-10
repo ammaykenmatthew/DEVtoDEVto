@@ -1,6 +1,6 @@
 <mat-sidenav-container class="sidenav-container" >
 
-  <mat-sidenav #drawer class="sidenav" fixedInViewport
+  <mat-sidenav #drawer  class="sidenav" fixedInViewport
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="(isHandset$ | async) === false">
@@ -15,7 +15,7 @@
 
     <div class="menu">
       <div class="menu-head">
-        <span>Catalog</span>
+
       </div>
     </div>
     <div class="menu-item">
@@ -23,14 +23,18 @@
       <mat-icon>home</mat-icon>
       <span>Home</span>
     </button>
-    <button mat-button class="menu-button" routerLink="questions" routerLinkActive="is-active">
+    <button mat-button class="menu-button" routerLink="all-questions">
+      <mat-icon>supervised_user_circle</mat-icon>
+      <span>Questions</span>
+    </button>
+    <button mat-button class="menu-button" routerLink="my-questions" routerLinkActive="is-active">
       <mat-icon>question_answer</mat-icon>
       <span>My Questions</span>
     </button>
-    <!-- <button mat-button class="menu-button" routerLink="bookmarks">
+    <button mat-button class="menu-button" routerLink="bookmarks">
       <mat-icon>bookmark</mat-icon>
       <span>Bookmarks</span>
-    </button> -->
+    </button>
     <button mat-button class="menu-button" routerLink="profile" routerLinkActive="is-active">
       <mat-icon>account_circle</mat-icon>
       <span>Profile</span>

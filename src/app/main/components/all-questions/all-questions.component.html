@@ -2,7 +2,7 @@
   <div class="row h-100 justify-content-center align-items-center">
             <div class="page-header d-flex flex-row justify-content-between">
                 <div class="text d-flex flex-row justify-content-start">
-                  <span>Top
+                  <span>All
                     <br>
                     <br> Questions</span>
                     <div class="total align-self-end">
@@ -65,22 +65,16 @@
                         ">
 
                         <div class="vote col-md-1">
-                          <div class="votebox d-flex flex-column ">
-                            <div class="p-2" *ngIf="post.votes_value == 0 || !post.votes_value">
-                                <fa-icon class="upvote" [icon]="faArrowUp" ></fa-icon>
+                          <div class="d-flex flex-column votebox">
+                            <div class="p-2">
+                                <fa-icon  class="upvote" [icon]="faArrowUp"></fa-icon>
                             </div>
-                            <div class="p-2" *ngIf="post.votes_value == 1">
-                              <fa-icon  class="upvote done" [icon]="faArrowUp" (click)="upVotes()"></fa-icon>
-                          </div>
                             <div class="p-2 votecount">4</div>
-                            <div class="p-2" *ngIf="post.votes_value == 0">
-                                <fa-icon class="downvote done" [icon]="faArrowDown">
+                            <div class="p-2">
+                                <fa-icon class="downvote" [icon]="faArrowDown">
+
                                 </fa-icon>
                             </div>
-                            <div class="p-2" *ngIf="post.votes_value == 1 || !post.votes_value">
-                              <fa-icon class="downvote" [icon]="faArrowDown">
-                              </fa-icon>
-                          </div>
                         </div>
                         </div>
                         <div class="col-md-11">
@@ -100,6 +94,8 @@
                                   </span></span>
                                 <span> - {{post.created_at|date:'MMM d, y h a'}}</span>
                                 <!-- post.created_at|dateAsAgo //shows Just Now  -->
+
+
 
                             </span>
                             <hr />

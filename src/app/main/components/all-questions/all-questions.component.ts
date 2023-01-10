@@ -3,18 +3,18 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import {MatPaginator} from '@angular/material/paginator';
 import { PostFormComponent } from '../post-form/post-form.component';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import {faArrowUp, faArrowDown, faComments, faSearch} from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from 'src/app/services/auth.service';
 
 import { SearchPipe } from 'src/app/shared/filter.pipe';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  selector: 'app-all-questions',
+  templateUrl: './all-questions.component.html',
+  styleUrls: ['./all-questions.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class AllQuestionsComponent implements OnInit {
 
 
 
@@ -50,10 +50,13 @@ export class HomeComponent implements OnInit {
     public snackbar: MatSnackBar,
     private dialog: MatDialog,
     private _apiService: AuthService,
-    private route: Router,
-    private activateRoute: ActivatedRoute,
-    )
-    {}
+    private route: Router
+    ){
+
+
+  }
+
+
 
   ngOnInit(): void {
     let retrievedData = localStorage.getItem('userdata') as unknown as string;
@@ -76,23 +79,9 @@ export class HomeComponent implements OnInit {
     //instances//
     this.getTotalPost();
     this.getAllData();
+    this.onTableDataChange(event); //fix fix
   }
 
-
-  votes:any;
-  upVotes(){
-    let retrievedData = localStorage.getItem('userdata') as unknown as string;
-    let fullData:any = JSON.parse(retrievedData);
-
-    let user_id = fullData.id;
-
-    let post_id:any = this.activateRoute.snapshot.params['id'];
-
-    this._apiService.request('addVotes/'+user_id +'/'+post_id.id, '', this.votes, 'post').subscribe((res:any)=>{
-      this.votes = res;
-      console.log(this.votes);
-    });
-  }
 
   returnTags(tags:any){
     let temp:any = [];

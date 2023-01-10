@@ -87,7 +87,7 @@ export class MainComponent{
     this.program_fld = fullData.program_fld;
     this.dept_fld = fullData.dept_fld;
 
-    this.welcomeAlert();
+    // this.welcomeAlert();
 
 
   }

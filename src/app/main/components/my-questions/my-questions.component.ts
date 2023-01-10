@@ -3,19 +3,19 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import {MatPaginator} from '@angular/material/paginator';
 import { PostFormComponent } from '../post-form/post-form.component';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import {faArrowUp, faArrowDown, faComments, faSearch} from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from 'src/app/services/auth.service';
 
 import { SearchPipe } from 'src/app/shared/filter.pipe';
+import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  selector: 'app-my-questions',
+  templateUrl: './my-questions.component.html',
+  styleUrls: ['./my-questions.component.scss']
 })
-export class HomeComponent implements OnInit {
-
+export class MyQuestionsComponent implements OnInit {
 
 
   title= 'pagination';
@@ -30,6 +30,7 @@ export class HomeComponent implements OnInit {
 
   //*Search KEY
   searchKey:string = "";
+  public searchTerm: string = '';
 
   email_add:any;
   fname_fld:any;
@@ -50,10 +51,8 @@ export class HomeComponent implements OnInit {
     public snackbar: MatSnackBar,
     private dialog: MatDialog,
     private _apiService: AuthService,
-    private route: Router,
-    private activateRoute: ActivatedRoute,
-    )
-    {}
+    private route: Router
+    ){ }
 
   ngOnInit(): void {
     let retrievedData = localStorage.getItem('userdata') as unknown as string;
@@ -74,25 +73,10 @@ export class HomeComponent implements OnInit {
     });
 
     //instances//
-    this.getTotalPost();
-    this.getAllData();
+
+    this.getAllPosts();
   }
 
-
-  votes:any;
-  upVotes(){
-    let retrievedData = localStorage.getItem('userdata') as unknown as string;
-    let fullData:any = JSON.parse(retrievedData);
-
-    let user_id = fullData.id;
-
-    let post_id:any = this.activateRoute.snapshot.params['id'];
-
-    this._apiService.request('addVotes/'+user_id +'/'+post_id.id, '', this.votes, 'post').subscribe((res:any)=>{
-      this.votes = res;
-      console.log(this.votes);
-    });
-  }
 
   returnTags(tags:any){
     let temp:any = [];
@@ -105,18 +89,69 @@ export class HomeComponent implements OnInit {
       return temp;
   }
 
-  showLoader = false;
-  getAllData(){
-    this.showLoader = true;
-    this._apiService.request('showAll', '', this.posts$, 'get').subscribe((res:any)=>{
+  search(event:any){
+    this.searchTerm = (event.target as HTMLInputElement).value;
+    // console.log(this.searchTerm);
+    this._apiService.search.next(this.searchTerm);
+  }
 
+  getAllPosts(){
+    let retrievedData = localStorage.getItem('userdata') as unknown as string;
+    let fullData:any = JSON.parse(retrievedData);
+
+    let user_id = fullData.id;
+
+    this._apiService.request('showUserPostby/'+user_id, '', '', 'get').subscribe((res:any)=>{
       this.posts$ = res;
       this.posts$.forEach(element => {
         element.tags= this.returnTags(element.tags);
       });
-      this.showLoader = false;
       console.log(res);
+
+    }), (error: any)=>{
+      alert("Error posting data...");
+      console.log("Error posting data", error);
+    }
+  }
+
+  editQuestions(row: any){
+    this.dialog.open(PostFormComponent,{
+
+      width: '98vh',
+      height: '90vh',
+      maxWidth: '100vw',
+      maxHeight: '100vh',
+      data:row
     });
+  }
+
+  deletedData:any;
+  deleteQuestions(id: any){
+    Swal.fire({
+      title: 'Delete Post?',
+      text: 'Are you sure you want to delete this post?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'Cancel'
+    }).then((result) => {
+      if (result.value) {
+        this._apiService.request('deletePost/'+id, '', '', 'delete').subscribe((res:any ) =>{
+
+          this.deletedData = res;
+          window.location.reload();
+          const message = 'Deleted Succesfully!';
+            this.snackbar.open(message , '' , {
+              duration: this.durationInSeconds * 1000,
+            });
+
+        },(error: any)=>{
+          console.log ("Error", error);
+         });
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+
+      }
+    })
   }
 
   // openModal(){
@@ -137,28 +172,6 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  total_post: any = [];
 
-  getTotalPost(){
-    this._apiService.request('countAll', '', '', 'get').subscribe((res:any)=>{
-      this.total_post = res.post_total;
-      // console.log(this.total_post);
-    },(error: any)=>{
-      console.log ("Error", error);
-     });
-  }
-
-/*Pagination */
-  onTableDataChange(event: any){
-    this.page = event;
-    this.getAllData();
-  }
-
-  onTableSizeChange(event: any): void {
-    this.tableSize = event.target.value;
-    this.page= 1;
-    this.getAllData();
-  }
-/*Pagination */
 
 }

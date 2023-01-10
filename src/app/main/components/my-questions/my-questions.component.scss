@@ -1,0 +1,139 @@
+//Rubik, Quicksand
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&family=Rubik:wght@400;500&display=swap');
+
+//font-family: 'Roboto Mono', monospace;
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500&display=swap');
+
+//font-family: 'Poppins', sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+.body{
+  margin: 0;
+  min-height: 100%;
+
+}
+
+.page{
+  color: #ffffff;
+  background: #ffffff;
+  .page-box{
+    min-height: 80px;
+    background: #1e293b;
+    margin: 1;
+    font-size: 36px;
+  }
+
+
+}
+
+.page-content{
+  min-height: 82vh;
+  margin: 0 -1rem;
+  background: #ffffff;
+  color: black;
+  font-size: 2rem;
+
+  .mat-form-field {
+    font-size: 14px;
+    width: 18rem;
+
+  }
+  .search{
+    margin-left: 2rem;
+    margin-top: 20px;
+    p{
+      font-size: 22px;
+      font-family: 'Roboto', sans-serif;
+    }
+  }
+  // .example-card {
+  //   max-width: 400px;
+  //   background-color: #dae0e6;
+  // }
+  // .q-content{
+  //   margin-left: 2rem;
+  // }
+
+}
+
+@media only screen and (max-width: 758px) {
+
+  .mat-form-field{
+    font-size: 14px;
+    width: 100%;
+  }
+  .vote{
+    display: none;
+  }
+}
+
+//POST
+.post{
+  --post-line-color: #ccc;
+  border: 1px solid #ccc;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  overflow: hidden;
+  background-color: rgba(255,255,255,0.8);
+  color: #878A8C;
+  margin-left: 5px;
+  border-radius: 4px;
+  padding:5px;
+}
+
+.btnCommments{
+  border-radius: 2px solid;
+  color: #0a95ff;
+  opacity: 1;
+  display: inline-flex;
+  align-items: center;
+}
+button.login{
+  background-color: #0a95ff;
+  color: #ffffff;
+  margin-left:1rem;
+  border-radius: 5px;
+  border-style: none;
+  font-family: 'Rubik', sans-serif;
+  width: 100px;
+  height: 25px;
+}
+.button:hover{
+  background-color:#1f45ad;
+  transition: 0.3s;
+}
+
+.btnCommments:hover{
+  opacity: 0.65;
+  cursor: pointer;
+}
+
+.post-title{
+  font-size: 20px;
+  font-family: 'Rubik', sans-serif;
+  font-weight: 500 ;
+  opacity: 1;
+  color: #1e293b;
+}
+
+
+/*Display about view Questions*/
+.subreddit-text{
+  font-weight: bold;
+}
+
+.post-text{
+  margin-top: 10px;
+  display: -webkit-box;
+  overflow : hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+mat-chip {
+  max-width: 200px;
+}
+
+
+
+

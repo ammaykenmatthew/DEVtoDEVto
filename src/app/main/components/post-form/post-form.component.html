@@ -1,4 +1,4 @@
-<h1 mat-dialog-title>Ask a Question</h1>
+<h1 mat-dialog-title>{{titleForm}} a Question</h1>
 
 <div mat-dialog-content>
     <form [formGroup]="postForm">
@@ -25,9 +25,17 @@
           id="photo"
           type="file"
           class="form-control"
-          (change)="onFileChanged($event)">
-    <!-- <div *ngIf="f['files'].touched && f['files'].invalid" class="alert alert-danger"></div>
-      <div *ngIf="files.errors?.['required']">File is required.</div> -->
+          (change)="onFileChanged($event)"
+          />
+    <!-- <div *ngIf="f['files'].touched && f['files'].invalid" class="alert alert-danger"></div>-->
+      <!-- <div *ngIf="files.errors['required']">File is required.</div> -->
+
+      <!-- <p
+        style="color: red; font-size: .8em; margin-top: .5em;"
+        [hidden]="postForm.controls.photo.valid ||(postForm.controls.photo.pristine && !submitted)">
+
+        Selecting a file is required.
+      </p> -->
     </div>
   <br>
 
@@ -60,6 +68,6 @@
 </div>
 <div mat-dialog-action [align]="'end'" style="margin-top: 6rem;">
   <button mat-raised-button color="warn" mat-dialog-close>Close</button>
-  <button style="margin-left:8px;" mat-raised-button color="primary" mat-dialog-close (click)="SavePost()">{{actionBtn}}</button>
+  <button style="margin-left:8px;" [disabled]="postForm.invalid" mat-raised-button color="primary" mat-dialog-close (click)="SavePost()">{{actionBtn}}</button>
 </div>
 

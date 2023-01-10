@@ -19,6 +19,8 @@ import { DeletePostComponent } from './components/delete-post/delete-post.compon
 import { SearchPipe } from "../shared/filter.pipe";
 import { DateAsAgoPipe } from "../shared/date-as-ago.pipe";
 import { NgxPaginationModule } from 'ngx-pagination';
+import { MyQuestionsComponent } from './components/my-questions/my-questions.component';
+import { AllQuestionsComponent } from './components/all-questions/all-questions.component';
 
 // import { MainRoutingModule } from "./main-routing.module";
 // import { QuestionsComponent } from './components/questions/questions.component';
@@ -39,6 +41,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
         DeletePostComponent,
         SearchPipe,
         DateAsAgoPipe,
+        MyQuestionsComponent,
+        AllQuestionsComponent,
 
     ],
     imports: [

@@ -60,6 +60,8 @@ export class PostFormComponent implements OnInit {
 
   postForm !: FormGroup;
   actionBtn: string = "Post";
+  titleForm: string = "Ask";
+  public submitted = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -69,19 +71,19 @@ export class PostFormComponent implements OnInit {
     private activateRoute: ActivatedRoute,
     @Inject(MAT_DIALOG_DATA) public editData: any,
 
-  ) { }
+  ) {
+
+   }
 
   ngOnInit(): void {
     this.postForm = this.formBuilder.group({
-
       title: ['', Validators.required],
       description: ['', Validators.required],
       photo: ['', [Validators.required]],
       tags: ['', []],
       fileSource: ['', [Validators.required]],
-
-
     });
+
     if(this.editData){
       this.actionBtn = "Update";
       this.postForm.controls['title'].setValue(this.editData.title);
@@ -99,6 +101,7 @@ export class PostFormComponent implements OnInit {
 
     }
   }
+
   get f() {
     return this.postForm.controls;
   }

@@ -71,25 +71,30 @@ export class HomeComponent implements OnInit {
     // });
     this._apiService.search.subscribe((val:any)=>{
       this.searchKey = val;
+
     });
 
     //instances//
     this.getTotalPost();
     this.getAllData();
+
   }
 
 
   votes:any;
-  upVotes(){
-    let retrievedData = localStorage.getItem('userdata') as unknown as string;
-    let fullData:any = JSON.parse(retrievedData);
+  upVotes(user_id:any, post_id:any){
 
-    let user_id = fullData.id;
-
-    let post_id:any = this.activateRoute.snapshot.params['id'];
-
-    this._apiService.request('addVotes/'+user_id +'/'+post_id.id, '', this.votes, 'post').subscribe((res:any)=>{
+    this._apiService.request('addVotes/'+user_id +'/'+post_id ,'', this.posts$, 'post').subscribe((res:any)=>{
       this.votes = res;
+      this.getAllData();
+      console.log(this.votes);
+    });
+  }
+
+  downVotes(user_id:any, post_id:any){
+    this._apiService.request('minusVotes/'+user_id +'/'+post_id ,'', this.posts$, 'post').subscribe((res:any)=>{
+      this.votes = res;
+      this.getAllData();
       console.log(this.votes);
     });
   }

@@ -75,6 +75,7 @@ export class MainComponent{
   //   this.route.navigate(['/login']);
   // }
 
+
   welcomeUsers(){
     let retrievedData = localStorage.getItem('userdata') as unknown as string;
     console.log(JSON.parse(retrievedData));
@@ -128,6 +129,9 @@ export class MainComponent{
     this.searchTerm = (event.target as HTMLInputElement).value;
     // console.log(this.searchTerm);
     this._apiService.search.next(this.searchTerm);
+    // this._apiService.request('searchItem/'+this.searchTerm, '', '', 'get').subscribe((res:any)=>{
+
+    // });
   }
 
 }

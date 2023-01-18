@@ -10,65 +10,49 @@
       </mat-form-field>
       </div>
 
-      <div class="q-content">
+
         <!--POST BODY-->
-        <div class="reddit-body">
-          <div class="container">
-            <div class="row d-flex justify-content-center">
-
-              <div class="col-md-8">
-                <div class="row post" *ngFor="let post of posts$ | filter:searchKey: 'title'">
-                  <div class="col-md-11">
-                      <span style="font-size: 14px;">
-                          <span class="subreddit-text"></span>
-                          <span><a>Posted by {{post.program_fld}} | {{post.fname_fld}} {{post.mname_fld}} {{post.lname_fld}}</a></span>
-                          <span> - {{post.created_at|date:'MMM d, y h a'}}</span>
-                          <!-- post.created_at|dateAsAgo //shows Just Now  -->
-                      </span>
-                      <hr />
-                      <div class="post-title">
-                          <a>{{post.title}}</a>
-                      </div>
-                      <hr />
-                      <mat-chip-list aria-label="Fish selection">
-                        <mat-chip color="" *ngFor="let item of post.tags">
-                          {{item.name}}
-                        </mat-chip>
-                      </mat-chip-list>
-                      <hr />
-                      <span style="font-size: 14px; " >
-                          <!-- <a style="color: black;" >
-                             No. of Comments ({{post.commentcount}})
-                          </a> -->
-                          <button mat-button color="primary" (click)="goToPost(post.id)"><mat-icon>visibility</mat-icon>  View</button>
-                          <button mat-button color="accent" (click)="editQuestions(post)" > <mat-icon>edit</mat-icon> Update</button>
-                          <button mat-button color="warn" (click)="deleteQuestions(post.id)" > <mat-icon>delete</mat-icon>Delete</button>
-                      </span>
-                  </div>
-
-                </div>
-                <br>
-
-              </div>
-
-            </div>
-          </div>
-        </div>
-</div>
- <!-- <mat-card class="example-card">
-          <mat-card-header>
-            <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-            <mat-card-title>Shiba Inu</mat-card-title>
+          <div class="content" *ngFor="let post of posts$ | filter:searchKey: 'title'">
+            <mat-card class="example-card">
+            <mat-card-header >
+              <span style="font-size: 14px;">
+                <span class="subreddit-text"></span>
+                <span><a>Posted by {{post.program_fld}} | {{post.fname_fld}} {{post.mname_fld}} {{post.lname_fld}}</a></span>
+                <span> - {{post.created_at|date:'MMM d, y h a'}}</span>
+                <!-- post.created_at|dateAsAgo //shows Just Now  -->
+            </span>
           </mat-card-header>
-          <mat-card-content>
-            <p>This card has divider and indeterminate progress as footer</p>
-            <p>lorem impsum</p>
+
+              <mat-card-title  style=" font-family: 'IBM Plex Sans', sans-serif;">
+                  <a>{{post.title}}</a>
+              </mat-card-title>
+
+              <mat-card-subtitle >
+                <mat-chip-list aria-label="Fish selection">
+                  <mat-chip color="" *ngFor="let item of post.tags">
+                    {{item.name}}
+                  </mat-chip>
+                </mat-chip-list>
+              </mat-card-subtitle>
+
+
+            <mat-card-content >
+              <p>{{post.description}}</p>
+            </mat-card-content>
+
             <mat-divider></mat-divider>
-          </mat-card-content>
-          <mat-card-actions align="end">
-            <button mat-button color="primary">Update</button>
-            <button mat-button color="warn">Delete</button>
+            <mat-card-actions align="start" >
+              <button mat-button color="primary" (click)="goToPost(post.id)"><mat-icon>visibility</mat-icon>  View</button>
+              <button mat-button color="accent" (click)="editQuestions(post)" > <mat-icon>edit</mat-icon> Update</button>
+              <button mat-button color="warn" (click)="deleteQuestions(post.id)" > <mat-icon>delete</mat-icon>Delete</button>
+            </mat-card-actions>
+            </mat-card>
 
-          </mat-card-actions>
+        </div>
 
-        </mat-card> -->
+
+
+
+
+</div>
+

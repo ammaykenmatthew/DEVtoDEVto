@@ -83,7 +83,9 @@ export class ViewPostComponent implements OnInit {
   showOnePost(){
     this.showLoader = true;
     let id:any = this.activateRoute.snapshot.params['id'];
+    console.log(id);
      this._apiService.request('showOnePostby/'+id, '', this.posts$, 'get').subscribe((res:any)=>{
+      console.log(res)
      this.posts$ = res;
      this.showLoader = false;
 

@@ -21,7 +21,7 @@
 <!--Loader-->
     <div class="search">
       <p>Search Bookmarks:</p>
-      <mat-form-field appearance="outline">
+      <mat-form-field appearance="outline" class="field">
         <input matInput  placeholder="Ex. Where is .." #input>
       </mat-form-field>
       </div>
@@ -46,7 +46,7 @@
           <mat-card-header >
             <!-- routerLink="main/view-post/{{book.id}}" -->
             <mat-card-title  style=" font-family: 'IBM Plex Sans', sans-serif;">
-              <a (click)="goToPost(book?.id)" >{{book?.title}}</a>
+              <a (click)="goToPost(book.id)" >{{book.title}}</a>
 
             </mat-card-title>
             <mat-card-subtitle >{{book?.tags}}</mat-card-subtitle>

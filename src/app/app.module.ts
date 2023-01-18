@@ -18,6 +18,8 @@ import { SearchPipe } from './shared/filter.pipe';
 import { DateAsAgoPipe } from './shared/date-as-ago.pipe';
 import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { faComment, faHouse } from '@fortawesome/free-solid-svg-icons';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 
 @NgModule({
@@ -35,6 +37,13 @@ import { faComment, faHouse } from '@fortawesome/free-solid-svg-icons';
     BrowserAnimationsModule,
     MaterialModules, //global material modules
     FormsModule,
+    ServiceWorkerModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    }),
 
 
   ],

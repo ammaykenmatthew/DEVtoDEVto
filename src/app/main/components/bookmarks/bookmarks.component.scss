@@ -37,11 +37,7 @@
       font-size: 22px;
       font-family: 'Roboto', sans-serif;
     }
-    .mat-form-field {
-      font-size: 14px;
-      width: 18rem;
 
-    }
   }
   h1{
     margin-left: 20px;
@@ -49,12 +45,20 @@
 
 }
 
+.mat-form-field {
+  font-size: 14px;
+  width: 18rem;
+
+}
+
 @media only screen and (max-width: 758px) {
 
   .search{
-    .mat-form-field{
-      font-size: 14px;
-      width: 100%;
+    margin-left: none;
+    .mat-form-field {
+
+      width: 97%;
+
     }
   }
 

@@ -80,11 +80,11 @@
 }
 
 @media only screen and (max-width: 758px) {
-
+  .search{
   .mat-form-field{
     font-size: 14px;
-    width: 100%;
-  }
+    width: 97%;
+  }}
   .vote{
     display: none;
   }

@@ -20,9 +20,32 @@
                         <hr/>
                         <h4 style="color: #1e293b; font-family: 'Roboto', sans-serif;">{{email_add}}</h4>
                         <h4 style="color: #1e293b; font-family: 'Roboto', sans-serif;">{{dept_fld}} / {{program_fld}}</h4>
+                        <hr/>
+                        <!-- CREDIT SCORE INTERFACE -->
+                      <div class="respect">
+                        <h4 style="color: #1e293b; font-family: 'Poppins', sans-serif; font-size: 20px;">Total Credit Score:</h4>
+                        <h4 style="color: orange; font-family: 'IBM Plex Sans', sans-serif; font-size: 25px;">45,500</h4>
+
+                      </div>
+                      <!-- end respect div -->
 
                       </div>
                     </div>
+                  </div>
+                </div>
+                <br>
+                <div class="card2">
+                  <div class="card-body2">
+                    <div class="d-flex flex-column align-items-center text-center">
+                      <h4>Your badges:</h4>
+                    <mat-chip-list aria-label="Fish selection">
+                      <mat-chip class="top-chip">Top Developer</mat-chip>
+                      <br>
+                      <mat-chip class="dev-chip"> Developer</mat-chip>
+                      <br>
+                      <mat-chip class="new-chip">New Developer</mat-chip>
+                    </mat-chip-list>
+                  </div>
                   </div>
                 </div>
 
@@ -77,8 +100,6 @@
                         {{program_fld}}
                       </div>
                     </div>
-                    <hr>
-
 
                     <!-- <div class="row">
                       <div class="col-sm-12">
@@ -87,30 +108,39 @@
                     </div> -->
                   </div>
                 </div>
+                <!-- Pwede dagdagan ng extra badges dipende sa trip. -->
+                <!-- Pwede taasan yung credit score na required.  -->
 
-                <div class="goals">
-                  <mat-card>
-                    <mat-card-content>
-                      <div class="cardcontent">
-                        <img src="assets/images/post-vc.png" class="img-post" >
-                        <h2 class="example-h2">Poster</h2>
-                        <p>Create post atleast 10 times</p>
+                <div class="card3">
+                  <div class="card-body3">
 
-                      </div>
-                    </mat-card-content>
-                    <section class="example-section">
-                      <mat-progress-bar
-                          class="example-margin"
-                          [color]="color"
-                          [mode]="mode"
-                          [value]="value"
-                          [bufferValue]="bufferValue">
-                      </mat-progress-bar>
-                    </section>
-                  </mat-card>
+                      <h4>Gather required Credit Score to get badges:</h4>
+                      <table>
+                        <tr>
+                          <th>Requirement</th>
+                          <th>Badge</th>
+
+                        </tr>
+                        <tr>
+                          <td>Gain 35 Credit Score</td>
+                          <td><mat-chip class="top-chip">Top Developer</mat-chip></td>
+                        </tr>
+                        <tr>
+                          <td>Gain 20 Credit Score</td>
+                          <td> <mat-chip class="dev-chip"> Developer</mat-chip></td>
+                        </tr>
+                        <tr>
+                          <td>Gain 10 Credit Score</td>
+                          <td><mat-chip class="new-chip">New Developer</mat-chip></td>
+
+                        </tr>
+                      </table>
+                  </div>
                 </div>
-
+                <!-- End Div card3 -->
               </div>
+
+
             </div>
 
           </div>

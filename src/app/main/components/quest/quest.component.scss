@@ -1,0 +1,29 @@
+.goals{
+  mat-card{
+    max-width: 400px;
+    background-color: #f5f5f5;
+    margin-left: 3rem;
+    mat-card-content{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    .cardcontent{
+      .img-post{
+        margin-left: 5.2rem;
+        height: 50px;
+
+      }
+      h2{
+        margin-left: 4rem;
+        font-size: 28px;
+        font-family: 'Poppins', sans-serif;
+        color: orange;
+      }
+      p{
+        font-size: 17px;
+        font-family: 'Poppins', sans-serif;
+      }
+    }
+  }
+}
+}

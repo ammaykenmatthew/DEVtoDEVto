@@ -39,8 +39,8 @@ export class BookmarksComponent implements OnInit {
    this.showBookmarks();
   }
 
-  goToPost(id: number): void{
-    this.route.navigateByUrl('main/view-post/' + id);
+  goToPost(id: any): void{
+    this.route.navigateByUrl('main/view-post/'+id);
   }
 
   showLoader = false;

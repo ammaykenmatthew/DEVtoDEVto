@@ -158,7 +158,6 @@ export class MyQuestionsComponent implements OnInit {
   //   this.postForm.show();
   // }
   goToPost(id: number): void{
-
     this.route.navigateByUrl('main/view-post/' + id);
   }
 

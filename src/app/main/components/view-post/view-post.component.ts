@@ -8,7 +8,7 @@ import {Location} from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialogRef , MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { faComment } from '@fortawesome/free-solid-svg-icons';
+import { faComment, faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-view-post',
@@ -19,6 +19,10 @@ export class ViewPostComponent implements OnInit {
 
   isShowDiv = false;
   faComment = faComment;
+  faArrowUp = faArrowUp;
+  faArrowDown = faArrowDown;
+
+  visible:boolean = false;
 
   postId: any;
   posts$: Array<any> = [];
@@ -68,6 +72,11 @@ export class ViewPostComponent implements OnInit {
     //   this.postForm.controls['description'].setValue(this.editData.description);
     // }
     this.showOnePost();
+  }
+
+  onClick(){
+
+    this.visible = !this.visible;
   }
 
   showLoader = false;

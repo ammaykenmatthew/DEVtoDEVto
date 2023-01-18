@@ -51,10 +51,7 @@ export class AllQuestionsComponent implements OnInit {
     private dialog: MatDialog,
     private _apiService: AuthService,
     private route: Router
-    ){
-
-
-  }
+    ){}
 
 
 
@@ -94,10 +91,34 @@ export class AllQuestionsComponent implements OnInit {
       return temp;
   }
 
+  bookMarks:any
+  setBookmark(post_id:any){
+    let retrievedData = localStorage.getItem('userdata') as unknown as string;
+    let fullData:any = JSON.parse(retrievedData);
+
+    let id = fullData.id;
+
+    this._apiService.request('setBookmarks' ,'', {id:id , post_id:post_id}, 'post').subscribe((res:any)=>{
+
+      this.bookMarks = res;
+
+      const message = 'Bookmark added sucessfully!';
+      this.snackbar.open(message , '' , {
+        duration: this.durationInSeconds * 1000,
+      });
+      console.log(this.bookMarks);
+    });
+  }
+
   showLoader = false;
   getAllData(){
+    let retrievedData = localStorage.getItem('userdata') as unknown as string;
+    let fullData:any = JSON.parse(retrievedData);
+
+    let id = fullData.id;
+
     this.showLoader = true;
-    this._apiService.request('showAll', '', this.posts$, 'get').subscribe((res:any)=>{
+    this._apiService.request('showAllGlobal', '', this.posts$, 'get').subscribe((res:any)=>{
 
       this.posts$ = res;
       this.posts$.forEach(element => {

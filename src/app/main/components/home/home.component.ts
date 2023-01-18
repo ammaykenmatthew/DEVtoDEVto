@@ -77,14 +77,37 @@ export class HomeComponent implements OnInit {
     //instances//
     this.getTotalPost();
     this.getAllData();
-
+    // this.onTableSizeChange(this.getAllData);
   }
 
+  bookMarks:any
+  setBookmark(post_id:any){
+    let retrievedData = localStorage.getItem('userdata') as unknown as string;
+    let fullData:any = JSON.parse(retrievedData);
+
+    let id = fullData.id;
+
+    this._apiService.request('setBookmarks' ,'', {id:id , post_id:post_id}, 'post').subscribe((res:any)=>{
+
+      this.bookMarks = res;
+
+      const message = 'Bookmark added sucessfully!';
+      this.snackbar.open(message , '' , {
+        duration: this.durationInSeconds * 1000,
+      });
+      console.log(this.bookMarks);
+    });
+  }
 
   votes:any;
   upVotes(user_id:any, post_id:any){
 
-    this._apiService.request('addVotes/'+user_id +'/'+post_id ,'', this.posts$, 'post').subscribe((res:any)=>{
+    let retrievedData = localStorage.getItem('userdata') as unknown as string;
+    let fullData:any = JSON.parse(retrievedData);
+
+    let id = fullData.id;
+
+    this._apiService.request('addVotes/'+id +'/'+post_id ,'', this.posts$, 'post').subscribe((res:any)=>{
       this.votes = res;
       this.getAllData();
       console.log(this.votes);
@@ -92,7 +115,12 @@ export class HomeComponent implements OnInit {
   }
 
   downVotes(user_id:any, post_id:any){
-    this._apiService.request('minusVotes/'+user_id +'/'+post_id ,'', this.posts$, 'post').subscribe((res:any)=>{
+    let retrievedData = localStorage.getItem('userdata') as unknown as string;
+    let fullData:any = JSON.parse(retrievedData);
+
+    let id = fullData.id;
+
+    this._apiService.request('minusVotes/'+id +'/'+post_id ,'', this.posts$, 'post').subscribe((res:any)=>{
       this.votes = res;
       this.getAllData();
       console.log(this.votes);
@@ -112,14 +140,26 @@ export class HomeComponent implements OnInit {
 
   showLoader = false;
   getAllData(){
+    let retrievedData = localStorage.getItem('userdata') as unknown as string;
+    let fullData:any = JSON.parse(retrievedData);
+
+    let id = fullData.id;
+
     this.showLoader = true;
-    this._apiService.request('showAll', '', this.posts$, 'get').subscribe((res:any)=>{
+    this._apiService.request('showAll/'+id, '', this.posts$, 'get').subscribe((res:any)=>{
 
       this.posts$ = res;
       this.posts$.forEach(element => {
         element.tags= this.returnTags(element.tags);
       });
+
+      this.posts$ = this.posts$.filter((value, index, self) =>
+      index === self.findIndex((t) => (
+        t.id=== value.id
+      ))
+      )
       this.showLoader = false;
+
       console.log(res);
     });
   }

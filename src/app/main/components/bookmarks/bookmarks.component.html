@@ -3,49 +3,67 @@
     <mat-icon>bookmarks</mat-icon> Bookmarks
   </div>
   <div class="page-content">
-    <h1>Your Bookmarks</h1>
-    <div class="bookmarks">
+    <!--Loader-->
+<div *ngIf="showLoader" class="loader text-center">
+  <div class="bar1"></div>
+  <div class="bar2"></div>
+  <div class="bar3"></div>
+  <div class="bar4"></div>
+  <div class="bar5"></div>
+  <div class="bar6"></div>
+  <div class="bar7"></div>
+  <div class="bar8"></div>
+  <div class="bar9"></div>
+  <div class="bar10"></div>
+  <div class="bar11"></div>
+  <div class="bar12"></div>
+</div>
+<!--Loader-->
+    <div class="search">
+      <p>Search Bookmarks:</p>
+      <mat-form-field appearance="outline">
+        <input matInput  placeholder="Ex. Where is .." #input>
+      </mat-form-field>
+      </div>
+    <div class="bookmarks" *ngFor="let book of bookmarks?.bookmarks">
+
        <mat-card class="example-card">
-          <mat-card-header>
-            <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-            <mat-card-title>Shiba Inu</mat-card-title>
+        <span style="margin-left: 150px;">
+          <button mat-icon-button [matMenuTriggerFor]="menu" style="float: right;">
+            <mat-icon>more_horiz</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item>
+              <mat-icon>delete_outline</mat-icon>
+              <span style="font-family: 'Poppins', sans-serif;" (click)="remove(book.id)">Remove from bookmarks</span>
+            </button>
+          </mat-menu>
+        </span>
+        <div class="image">
+          <img [src]="'http://127.0.0.1:8000/'+book?.photo" style="height: 110px; width:110px;"  >
+        </div>
+        <div class="content">
+          <mat-card-header >
+            <!-- routerLink="main/view-post/{{book.id}}" -->
+            <mat-card-title  style=" font-family: 'IBM Plex Sans', sans-serif;">
+              <a (click)="goToPost(book?.id)" >{{book?.title}}</a>
+
+            </mat-card-title>
+            <mat-card-subtitle >{{book?.tags}}</mat-card-subtitle>
+
           </mat-card-header>
-          <mat-card-content>
-            <p>This card has divider and indeterminate progress as footer</p>
-            <p>lorem impsum</p>
-            <mat-divider></mat-divider>
+          <mat-card-content >
+            <p>{{book?.description}}</p>
           </mat-card-content>
-          <mat-card-actions align="end">
-            <button mat-button color="primary">View</button>
-            <button mat-button color="warn">Remove</button>
+        </div>
+          <mat-divider></mat-divider>
+          <mat-card-actions align="start" >
+            <button mat-stroked-button color="primary" style="margin-left: 5px;">View</button>
 
           </mat-card-actions>
 
         </mat-card>
-        <br>
       </div>
-
-        <div class="goals">
-        <mat-card>
-          <mat-card-content>
-            <div class="cardcontent">
-              <img src="assets/images/post-vc.png" class="img-post" >
-              <h2 class="example-h2">Poster</h2>
-              <p>Create post atleast 10 times</p>
-
-            </div>
-          </mat-card-content>
-          <section class="example-section">
-            <mat-progress-bar
-                class="example-margin"
-                [color]="color"
-                [mode]="mode"
-                [value]="value"
-                [bufferValue]="bufferValue">
-            </mat-progress-bar>
-          </section>
-        </mat-card>
-      </div>
-
+      <br>
   </div>
 </div>

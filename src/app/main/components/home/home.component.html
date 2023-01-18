@@ -1,5 +1,6 @@
 <div class="container h-100">
-  <div class="row h-100 justify-content-center align-items-center">
+  <div class="row h-100 justify-content-center  align-items-center">
+  <!-- <div class="row h-100 justify-content-center align-items-center"> -->
             <div class="page-header d-flex flex-row justify-content-between">
                 <div class="text d-flex flex-row justify-content-start">
                   <span>Top
@@ -55,7 +56,8 @@
             <div class="reddit-body">
 
                 <div class="container">
-                  <div class="row d-flex justify-content-center">
+                  <!-- <div class="row d-flex justify-content-center"> -->
+                    <div class="row d-flex justify-content-center">
 
                     <div class="col-md-8">
                       <div class="row post" *ngFor="let post of posts$ | filter:searchKey: 'title' | paginate: {
@@ -69,27 +71,29 @@
                             <!-- <div class="p-2" *ngIf="post.votes_value == 0 && !post.votes_value">
                                 <fa-icon class="upvote" [icon]="faArrowUp" (click)="upVotes(post.user_id, post.id)"></fa-icon>
                             </div> -->
-                            <div class="p-2" *ngIf=" post.votes_value == null || (post.votes_value != 1 && post.votes_value != null)">
-                              <fa-icon class="upvote" [icon]="faArrowUp" (click)="upVotes(post.user_id, post.id)"></fa-icon>
+                            <div class="p-2" *ngIf=" post.votestatus1?.votes_status ">
+                              <fa-icon class="upvote done" [icon]="faArrowUp" (click)="upVotes(post.user_id, post.id)"></fa-icon>
                           </div>
-                            <div class="p-2" *ngIf="post.votes_value == 1">
-                              <fa-icon  class="upvote done" [icon]="faArrowUp" (click)="upVotes(post.user_id, post.id)"></fa-icon>
+                          <div class="p-2" *ngIf=" !post.votestatus1?.votes_status ">
+                            <fa-icon class="upvote" [icon]="faArrowUp" (click)="upVotes(post.user_id, post.id)"></fa-icon>
                           </div>
+
                             <div class="p-2 votecount">{{post.upvote}}</div>
                             <br>
                             <div class="p-2 votecount">{{post.downvote}}</div>
-                            <div class="p-2" *ngIf="post.votes_value == 0">
+                            <div class="p-2" *ngIf="post.votestatus0?.votes_status ">
                                 <fa-icon class="downvote doneDown" [icon]="faArrowDown" (click)="downVotes(post.user_id, post.id)">
                                 </fa-icon>
                             </div>
+                            <div class="p-2" *ngIf="!post.votestatus0?.votes_status ">
+                              <fa-icon class="downvote " [icon]="faArrowDown" (click)="downVotes(post.user_id, post.id)">
+                              </fa-icon>
+                          </div>
                             <!-- <div class="p-2" *ngIf="post.votes_value == 1 && !post.votes_value">
                               <fa-icon class="downvote " [icon]="faArrowDown" (click)="downVotes(post.user_id, post.id)">
                               </fa-icon>
                           </div> -->
-                          <div class="p-2" *ngIf="post.votes_value == null || (post.votes_value != 0 && post.votes_value != null)" >
-                            <fa-icon class="downvote " [icon]="faArrowDown" (click)="downVotes(post.user_id, post.id)">
-                            </fa-icon>
-                        </div>
+
                         </div>
                         </div>
                         <div class="col-md-11">
@@ -97,13 +101,13 @@
                                 <span class="subreddit-text"></span>
                                 <span><a>Posted by {{post.program_fld}} | {{post.fname_fld}} {{post.mname_fld}} {{post.lname_fld}}  </a>
                                   <span>
-                                    <button mat-icon-button [matMenuTriggerFor]="menu" style="float: right;">
+                                    <button mat-icon-button [matMenuTriggerFor]="menu"   style="float: right;">
                                       <mat-icon>more_horiz</mat-icon>
                                     </button>
                                     <mat-menu #menu="matMenu">
                                       <button mat-menu-item>
-                                        <mat-icon>bookmarks</mat-icon>
-                                        <span style="font-family: 'Poppins', sans-serif;">Save this post</span>
+                                        <mat-icon>bookmark_border</mat-icon>
+                                        <span style="font-family: 'Poppins', sans-serif;" (click)="setBookmark(post.id)">Save this post</span>
                                       </button>
                                     </mat-menu>
                                   </span></span>
@@ -128,9 +132,8 @@
                             <hr />
                             <span>
                                 <a >
-
                                     <fa-icon [icon]="faComments"></fa-icon>
-                                    Comments ({{post.commentcount}})
+                                    ({{post.commentcount}}) Comments
                                 </a>
                                 <button class="login" (click)="goToPost(post.id)">
                                     Read Post
@@ -151,6 +154,20 @@
 
 
                     </div>
+                    <!-- <div class="col-md-3">
+
+                    <div class="sidebar-view-subreddit">
+                      <div style="color: black; font-weight: bold">Browse Subreddits</div>
+                      <hr />
+                      <span >
+                          <span class="subreddit-text"><a >Programming</a></span>
+                          <hr />
+                      </span>
+                      <div style="text-align: center">
+                          <a style="font-weight: bold" routerLink="/subreddits">View All</a>
+                      </div>
+                  </div>
+                    </div> -->
 
                   </div>
                 </div>

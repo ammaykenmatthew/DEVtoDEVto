@@ -7,6 +7,9 @@
 //font-family: 'Poppins', sans-serif;
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
+//font-family: 'IBM Plex Sans', sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@500&display=swap');
+
 .page{
 
     &__content{
@@ -24,7 +27,8 @@
     margin-top: 1vh;
     height: 130px;
     width: 92vh;
-    background-color: #ffffff;
+    border: 1px solid #ccc;
+    background-color: #fff;
     color: #1e293b;
     span{
       font-family: 'Rubik', sans-serif;

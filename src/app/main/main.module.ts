@@ -21,6 +21,7 @@ import { DateAsAgoPipe } from "../shared/date-as-ago.pipe";
 import { NgxPaginationModule } from 'ngx-pagination';
 import { MyQuestionsComponent } from './components/my-questions/my-questions.component';
 import { AllQuestionsComponent } from './components/all-questions/all-questions.component';
+import { QuestComponent } from './components/quest/quest.component';
 
 // import { MainRoutingModule } from "./main-routing.module";
 // import { QuestionsComponent } from './components/questions/questions.component';
@@ -43,6 +44,7 @@ import { AllQuestionsComponent } from './components/all-questions/all-questions.
         DateAsAgoPipe,
         MyQuestionsComponent,
         AllQuestionsComponent,
+        QuestComponent,
 
     ],
     imports: [

@@ -88,7 +88,7 @@
                                     <mat-menu #menu="matMenu">
                                       <button mat-menu-item>
                                         <mat-icon>bookmarks</mat-icon>
-                                        <span style="font-family: 'Poppins', sans-serif;">Save this post</span>
+                                        <span style="font-family: 'Poppins', sans-serif;" (click)="setBookmark(post.id)">Save this post</span>
                                       </button>
                                     </mat-menu>
                                   </span></span>
@@ -117,7 +117,7 @@
                                 <a >
 
                                     <fa-icon [icon]="faComments"></fa-icon>
-                                    Comments ({{post.commentcount}})
+                                    ({{post.commentcount}})  Comments
                                 </a>
                                 <button class="login" (click)="goToPost(post.id)">
                                     Read Post

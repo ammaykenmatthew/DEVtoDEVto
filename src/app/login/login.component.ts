@@ -44,6 +44,9 @@ export class LoginComponent implements OnInit {
    })
 
 
+   hide = true;
+   isLoading = false;
+
   token:any;
           // , `/${dt}`,
   onSubmit(e:any): void{
@@ -58,9 +61,11 @@ export class LoginComponent implements OnInit {
       token: '',
     }
     // this.submitted = true;
+    this.isLoading = true;
     if(this.frmGroup.valid){
       this._apiService.request('login', '', user, 'post').subscribe((res:any)=>{
         console.log(res);
+
         if (res !=null){
           alert("Login Successfully...")
           this.token =  res.token;
@@ -89,6 +94,7 @@ export class LoginComponent implements OnInit {
         }
       }), (error: any)=>{
         console.log ("Error", error);
+        this.isLoading = false;
       }
     } else {
       if (!this.frmGroup.valid){

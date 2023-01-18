@@ -7,6 +7,9 @@
 //font-family: 'Poppins', sans-serif;
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
+//font-family: 'IBM Plex Sans', sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@500&display=swap');
+
 .page{
 
     &__content{
@@ -21,10 +24,12 @@
 
 }
 .page-header{
+    // margin-left: 13px;
     margin-top: 1vh;
     height: 130px;
     width: 92vh;
-    background-color: #ffffff;
+    border: 1px solid #ccc;
+    background-color: #fff;
     color: #1e293b;
     span{
       font-family: 'Rubik', sans-serif;
@@ -78,6 +83,7 @@
   opacity: 1;
   display: inline-flex;
   align-items: center;
+
 }
 button.login{
   background-color: #0a95ff;
@@ -287,4 +293,24 @@ mat-chip {
     color: #1e293b;
     font-family: 'Rubik', sans-serif;
   }
+}
+
+.sidebar-view-subreddit {
+  width: 312px;
+  height: 242px;
+  --post-line-color: #ccc;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+  overflow: hidden;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #878A8C;
+  position: relative;
+  border-radius: 4px;
+  padding: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.sidebar-view-subreddit {
+  height: 280px;
 }

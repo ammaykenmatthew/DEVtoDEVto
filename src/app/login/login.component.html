@@ -1,5 +1,57 @@
 
-<div class="container-fluid ps-md-0">
+<div class="main-div" >
+  <div class="container">
+      <div class="img-container">
+          <img src="assets/images/dev2dev.png" class="img"/>
+          </div>
+      <div class="text-container">
+        <h1><strong> GC Dev2Dev</strong></h1>
+        <p>Gordon College - College of Computer Studies</p>
+        <p class="text">V1.0</p>
+          </div>
+          <br>
+  <form class="form-fld" (ngSubmit)="onSubmit($event)"  [formGroup]="frmGroup" ngNativeValidate  >
+      <mat-form-field   appearance="outline"
+      class="full-width">
+      <mat-icon matPrefix>email</mat-icon>
+          <mat-label > Email</mat-label>
+          <input type="text" #name matInput formControlName="email_add" id="email"  required/>
+      </mat-form-field>
+
+      <mat-form-field  appearance="outline"  class="full-width">
+          <mat-icon  matPrefix>lock</mat-icon>
+          <mat-label> Password</mat-label>
+          <input [type]="hide ? 'password' : 'text'" matInput formControlName="pword_fld" id="password" required />
+          <span mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" >
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </span>
+      </mat-form-field>
+
+      <button  mat-raised-button   type="submit" [disabled]="frmGroup.invalid"  class="button">
+          Login
+      </button>
+      <mat-spinner *ngIf="isLoading" class="spinner" [diameter]="50"></mat-spinner>
+      <div class="bottom-p">
+      <p>By clicking the login button, you recognize the authority of
+        Gordon College to process your personal and sensitive information,
+         pursuant to the Gordon College General Privacy Notice and applicable laws.</p>
+      </div>
+  </form>
+
+  <!-- <div class="img">
+  <img src="assets/Logo_NCNHS.png"/>
+  <h1>ECHOES</h1>
+  <p>Electronic Cabalan High school Online Enrollment System:</p>
+  <p>An Enrollment System of New Cabalan National High School</p>
+  </div>
+  <div class="vertical"> </div> -->
+<router-outlet> </router-outlet>
+</div>
+  </div>
+
+
+
+<!-- <div class="container-fluid ps-md-0">
   <div class="row g-0">
     <div class="d-none d-md-flex col-md-4 col-lg-6 bg-image" style="background-image: url(assets/images/collab.png);"></div>
     <div class="col-md-8 col-lg-6">
@@ -9,7 +61,7 @@
             <div class="col-md-9 col-lg-5 mx-auto">
               <div class="logo d-flex flex-row justify-content-between p-2">
               <span >
-                <!-- <img src="https://scontent.fmnl17-3.fna.fbcdn.net/v/t39.30808-6/240106146_248069380662964_6342464811613766475_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeH9R6gzQ9TWvgyZNK_1WHvy1t9W9m8YTdTW31b2bxhN1OnoA8ZjRNGLCnNGELzaox37iXK43tH-7fgdE5dwYz-V&_nc_ohc=GDfoJ3NIJu8AX-va-Dp&_nc_ht=scontent.fmnl17-3.fna&oh=00_AfCEMZZ56Oyygq60Dnk0y1SfnHAOAm3X1Iwk6hs3WFMtbw&oe=63918C3D"/> -->
+
                 <img src="assets/images/logo.png"/>
               </span>
               </div>
@@ -37,4 +89,4 @@
 
     </div>
   </div>
-</div>
+</div> -->

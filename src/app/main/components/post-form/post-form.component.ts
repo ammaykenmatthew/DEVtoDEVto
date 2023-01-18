@@ -94,10 +94,9 @@ export class PostFormComponent implements OnInit {
       this.postForm.controls['fileSource'].setValue(this.imageSrc);
       this.fileChange = false;
       //tags
-      let array = this.editData.tags.split(',');
-      array.forEach((element:any) => {
-        this.tags.push({name:element});
-      });
+      console.log(this.editData)
+      this.tags = this.editData.tags;
+
 
     }
   }
@@ -160,7 +159,6 @@ export class PostFormComponent implements OnInit {
   }
 
   }
-
 
   updatePost(){
     console.log(this.postForm.value)

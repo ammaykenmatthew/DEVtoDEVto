@@ -111,9 +111,9 @@
               <span  style="display: flex;
               align-items: center; color: #0a95ff;">
                 <mat-icon> comment</mat-icon>
-                <a (click)="onClick()">View Replies</a>
+                <a (click)="onClick(comment)">View Replies</a>
               </span>
-            <ng-container *ngIf="visible"> <!--Reply Content-->
+            <ng-container *ngIf="comment?.visible"> <!--Reply Content-->
               <div class="commentReply" *ngFor="let rep of comment.reply">
                 <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="" style="height: 35px; width: 35px; margin-right: 3px; margin-top: 5px;">
                 <span>

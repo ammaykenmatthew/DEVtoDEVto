@@ -74,9 +74,12 @@ export class ViewPostComponent implements OnInit {
     this.showOnePost();
   }
 
-  onClick(){
-
-    this.visible = !this.visible;
+  onClick(comment:any){
+    if (comment.visible == true) {
+      delete comment.visible //toggle replies, hide
+    }else {
+      comment.visible = true //add this key value pair, open replies
+    }
   }
 
   showLoader = false;

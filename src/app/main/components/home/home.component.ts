@@ -139,7 +139,8 @@ export class HomeComponent implements OnInit {
   }
 
   showLoader = false;
-  getAllData(){
+  getAllData(limit : number = 5){
+
     let retrievedData = localStorage.getItem('userdata') as unknown as string;
     let fullData:any = JSON.parse(retrievedData);
 
@@ -158,6 +159,18 @@ export class HomeComponent implements OnInit {
         t.id=== value.id
       ))
       )
+
+      let temp : any= []
+      let ctr = 0;
+      //limit
+      this.posts$.forEach(element => {
+        if (ctr < limit) {
+         temp.push(element)
+        }
+        ctr++;
+      });
+
+      this.posts$ = temp;
       this.showLoader = false;
 
       console.log(res);
@@ -200,9 +213,8 @@ export class HomeComponent implements OnInit {
   }
 
   onTableSizeChange(event: any): void {
-    this.tableSize = event.target.value;
-    this.page= 1;
-    this.getAllData();
+
+    this.getAllData(event.target.value);
   }
 /*Pagination */
 

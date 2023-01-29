@@ -1,0 +1,90 @@
+<div class="container">
+  <div class="header">
+    <mat-icon>supervised_user_circle</mat-icon>
+    <span>Register User</span>
+    <hr/>
+  </div>
+  <br>
+  <div class="body">
+
+    <h4>FORM</h4>
+
+    <form  [formGroup]="frmGroup" ngNativeValidate>
+      <mat-form-field class="studentNumber" appearance="outline">
+          <mat-label> Student Number</mat-label>
+          <input type="text"  matInput formControlName="studnum_fld" id="studnum_fld"  required >
+      </mat-form-field>
+
+      <mat-form-field class="name"appearance="outline">
+          <mat-label> First Name </mat-label>
+          <input type="text" matInput formControlName="fname_fld" id="fname_fld"  required  >
+      </mat-form-field>
+
+      <mat-form-field class="name" appearance="outline" >
+          <mat-label> Middle Name</mat-label>
+          <input type="text" matInput  formControlName="mname_fld" id="mname_fld"  >
+      </mat-form-field>
+
+      <mat-form-field class="name" appearance="outline">
+          <mat-label> Last Name</mat-label>
+          <input type="text" matInput  formControlName="lname_fld" id="lname_fld" >
+      </mat-form-field>
+
+      <mat-form-field class="extName" appearance="outline">
+        <mat-label> Ext. Name</mat-label>
+        <input type="text" matInput  formControlName="extname_fld" id="extname_fld" >
+    </mat-form-field>
+
+      <mat-form-field class="" appearance="outline">
+          <mat-label>Department</mat-label>
+          <input type="text" matInput  formControlName="dept_fld" id="dept_fld" >
+      </mat-form-field>
+
+      <mat-form-field class="" appearance="outline">
+        <mat-label> Program </mat-label>
+        <input type="text" matInput  formControlName="program_fld" id="program_fld" >
+    </mat-form-field>
+
+    <mat-form-field class="" appearance="outline" >
+      <mat-label  >  Picture</mat-label>
+      <mat-icon  matSuffix (click)="fileInput.click()">attach_file</mat-icon>
+      <input type="text" readonly matInput    />
+          <input type="file" accept="image/*" hidden class="file-input" multiple (change)="onFile($event)" #fileInput />
+      <mat-hint>Picture is required!</mat-hint>
+      <img [src]="selectedFile" *ngIf="selectedFile  && fileChange" style="height: 150px; width:150px">
+      <img [src]="'http://localhost:8000/'+selectedFile" *ngIf="selectedFile && !fileChange" style="height: 150px; width:150px">
+
+      </mat-form-field >
+
+      <div class="submit">
+        <button class="outButton" type="button" (click)="submitStud()">Submit</button>
+      </div>
+    </form>
+
+    <form  [formGroup]="frmGroup2" ngNativeValidate>
+      <mat-form-field class="studentNumber" appearance="outline">
+          <mat-label> Email Add</mat-label>
+          <input type="text"  matInput formControlName="email_add" id="email_add"  required >
+      </mat-form-field>
+
+      <mat-form-field class="name"appearance="outline">
+          <mat-label> Password</mat-label>
+          <input type="Password" matInput formControlName="pword_fld" id="pword_fld"  required  >
+      </mat-form-field>
+
+      <mat-form-field class="name" appearance="outline" >
+          <mat-label>Role</mat-label>
+          <input type="text" matInput  formControlName="role" id="role"  >
+      </mat-form-field>
+
+      <mat-form-field class="name" appearance="outline">
+          <mat-label> Record No.</mat-label>
+          <input type="text" matInput  formControlName="recno_fld" id="recno_fld" >
+      </mat-form-field>
+
+      <div class="submit">
+        <button class="outButton" type="button" (click)="regAccStud()">Submit</button>
+      </div>
+      </form>
+  </div>
+</div>

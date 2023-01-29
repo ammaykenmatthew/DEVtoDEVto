@@ -8,6 +8,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { StudentpostComponent } from './components/studentpost/studentpost.component';
 import { FiltersComponent } from './components/filters/filters.component';
 import { ViewQuestionComponent } from './components/view-question/view-question.component';
+import { AddStudentComponent } from './components/add-student/add-student.component';
+import { RegStudentComponent } from './components/reg-student/reg-student.component';
 
 
 @NgModule({
@@ -16,6 +18,8 @@ import { ViewQuestionComponent } from './components/view-question/view-question.
     StudentpostComponent,
     FiltersComponent,
     ViewQuestionComponent,
+    AddStudentComponent,
+    RegStudentComponent,
 
   ],
     imports: [

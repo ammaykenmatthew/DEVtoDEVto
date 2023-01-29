@@ -10,7 +10,8 @@
       <span >GC Dev2Dev</span>
     </div> -->
     <div class="user">
-      <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="">
+      <img [src]="'http://localhost:8000/'+profilepic_fld" style=" width: 130px;
+      height: 130px; margin-top: 13px; border-radius: 50%;" >
       <p class="name">{{fname_fld}} {{mname_fld}} {{lname_fld}} </p>
       <p class="mail">{{email_add}}</p>
       <h4 class="dept">{{dept_fld}}/{{program_fld}}</h4>
@@ -44,10 +45,10 @@
       <mat-icon>account_circle</mat-icon>
       <span>Profile</span>
     </button>
-    <button mat-button class="menu-button" routerLink="quest" routerLinkActive="is-active">
+    <!-- <button mat-button class="menu-button" routerLink="quest" routerLinkActive="is-active">
       <mat-icon> import_contacts</mat-icon>
       <span>Quest</span>
-    </button>
+    </button> -->
     </div>
     <hr />
     <div class="logout">

@@ -19,7 +19,7 @@
 
 .page{
   color: #ffffff;
-  background: #ffffff;
+  background: #f7f9fa;
   .page-box{
     min-height: 80px;
     background: #1e293b;
@@ -74,6 +74,15 @@
         -webkit-box-orient: vertical;
         font-family: 'IBM Plex Sans', sans-serif;
         color: #878A8C;
+    }
+    mat-card-subtitle{
+
+        .tags-chip{
+          color: #1e293b;
+          background-color: #a0d7ff;
+          font-family: 'IBM Plex Sans', sans-serif;
+          border-radius: none;
+        }
     }
   }
 

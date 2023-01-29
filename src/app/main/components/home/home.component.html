@@ -125,14 +125,14 @@
                             </div>
                             <hr />
                             <mat-chip-list aria-label="Fish selection">
-                              <mat-chip color="" *ngFor="let item of post.tags">
+                              <mat-chip class="tags-chip" *ngFor="let item of post.tags">
                                 {{item.name}}
                               </mat-chip>
                             </mat-chip-list>
                             <hr />
-                            <span>
+                            <span style="display: flex; align-items: center;">
                                 <a >
-                                    <fa-icon [icon]="faComments"></fa-icon>
+                                  <mat-icon style="font-size: 19px; "> comment</mat-icon>
                                     ({{post.commentcount}}) Comments
                                 </a>
                                 <button class="login" (click)="goToPost(post.id)">

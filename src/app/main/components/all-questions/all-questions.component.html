@@ -67,13 +67,11 @@
                         <div class="vote col-md-1">
                           <div class="d-flex flex-column votebox">
                             <div class="p-2">
-                                <fa-icon  class="upvote" [icon]="faArrowUp"></fa-icon>
+                              Votes
                             </div>
-                            <div class="p-2 votecount">4</div>
+                            <div class="p-2 votecount">{{post.votes}} </div>
                             <div class="p-2">
-                                <fa-icon class="downvote" [icon]="faArrowDown">
 
-                                </fa-icon>
                             </div>
                         </div>
                         </div>
@@ -92,7 +90,7 @@
                                       </button>
                                     </mat-menu>
                                   </span></span>
-                                <span> - {{post.created_at|date:'MMM d, y h a'}}</span>
+                                <span> - {{post.created_at|dateAsAgo}}</span>
                                 <!-- post.created_at|dateAsAgo //shows Just Now  -->
 
 
@@ -108,7 +106,7 @@
                             </div>
                             <hr />
                             <mat-chip-list aria-label="Fish selection">
-                              <mat-chip color="" *ngFor="let item of post.tags">
+                              <mat-chip class="tags-chip" *ngFor="let item of post.tags">
                                 {{item.name}}
                               </mat-chip>
                             </mat-chip-list>

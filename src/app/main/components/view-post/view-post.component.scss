@@ -7,6 +7,12 @@
 //font-family: 'Poppins', sans-serif;
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
+//font-family: 'IBM Plex Sans', sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500&display=swap');
+
+//font-family: 'Encode Sans', sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Encode+Sans&display=swap');
+
 
 .post-title {
   font-size: 28px;
@@ -24,7 +30,8 @@
     margin-top: 10px;
     line-height: 1.6;
     font-size: var(--reg-font-size);
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 400;
     text-align: justify;
     word-break: break-all;
     white-space: pre-line;
@@ -63,7 +70,10 @@
     border-radius: 4px;
     padding:5px;
 
+
 }
+
+
 .comment p{
     font-size: var(--reg-font-size);
     text-align: justify;
@@ -73,6 +83,7 @@
     margin-bottom: 4px;
     padding: 0 .5em .5em;
     color: black;
+
 }
 
 .reply{

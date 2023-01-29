@@ -8,6 +8,7 @@ import { UserService } from '../services/user.service';
 import { DatePipe } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { LogoutFormComponent } from '../main/components/logout-form/logout-form.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-admin',
@@ -47,11 +48,28 @@ export class AdminComponent {
     }
 
 
-  logoutUsers(){
-    this.dialog.open(LogoutFormComponent, {
-      width: '20%',
-      height: '20%'
-  });
+    logoutUsers(){
+      Swal.fire({
+        title: 'Confirm logout?',
+        text: 'Are you sure you want to exit application?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, log me out!',
+        cancelButtonText: 'Cancel'
+      }).then((result) => {
+        if (result.value) {
+          this._apiService.request('logout', '', '', 'post').subscribe((res:any)=>{
+            this.token = res;
+            localStorage.removeItem('token');
+            localStorage.removeItem('userdata');
+            this.route.navigate(['/login']);
+            console.log("Logged out successfully")
+        });
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+
+        }
+      })
+    }
 
 }
-}
+

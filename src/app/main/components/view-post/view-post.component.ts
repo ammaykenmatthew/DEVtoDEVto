@@ -34,9 +34,12 @@ export class ViewPostComponent implements OnInit {
 
   durationInSeconds = 2;
 
+
+  id : any
   fname_fld:any;
   mname_fld:any;
   lname_fld:any;
+  profilepic_fld:any;
 
   constructor(
     private _apiService: AuthService,
@@ -49,6 +52,8 @@ export class ViewPostComponent implements OnInit {
     )
   { }
 
+
+  totalCredits : number = 0
   ngOnInit(): void {
     this.commentForm = this.formBuilder.group({
       content: ['', Validators.required],
@@ -63,15 +68,19 @@ export class ViewPostComponent implements OnInit {
     let retrievedData = localStorage.getItem('userdata') as unknown as string;
     let fullData:any = JSON.parse(retrievedData);
 
+    this.id = fullData.id;
     this.fname_fld = fullData.fname_fld;
     this.mname_fld = fullData.mname_fld;
     this.lname_fld = fullData.lname_fld;
+    this.profilepic_fld = fullData.profilepic_fld;
 
     // if(this.editData){
     //   this.postForm.controls['title'].setValue(this.editData.title);
     //   this.postForm.controls['description'].setValue(this.editData.description);
     // }
     this.showOnePost();
+
+
   }
 
   onClick(comment:any){

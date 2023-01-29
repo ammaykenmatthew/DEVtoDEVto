@@ -17,8 +17,8 @@
  <!--Loader-->
   <div class="container h-100">
 
-    <div class="back">
-    <button type="button" (click)="goBack()"><span class='material-icons'>arrow_back</span>Back</button>
+    <div class="back ">
+      <button type="button" (click)="goBack()"><span class='material-icons'>arrow_back</span>Back</button>
     </div>
 
   <div class="row h-100 justify-content-center align-items-center">
@@ -96,26 +96,26 @@
               </div>
               </div>
               <div class="col-md-11"> <!--Comment Content-->
-              <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="" style="height: 35px; width: 35px; margin-right: 3px; margin-top: 5px;">
+                <img [src]="'http://localhost:8000/'+comment.comments.profilepic_fld"  alt="" style="height: 35px; width: 35px; margin-right: 3px; margin-top: 5px; border-radius: 50%; border: 2px solid #878A8C;">
               <span>
                 <span>
-                  <a >{{comment.comments.program_fld}} | {{comment.comments.fname_fld}} {{comment.comments.mname_fld}} {{comment.comments.lname_fld}} </a>
+                  <a>{{comment.comments.program_fld}} | {{comment.comments.fname_fld}} {{comment.comments.mname_fld}} {{comment.comments.lname_fld}} </a>
                 </span>
                 <span> at {{comment.comments.created_at|date:'MMM d, y h a'}}</span>
               </span>
 
               <div>
-                <p style="background-color: #f5f5f5;">{{comment.comments.content}}</p>
+                <p style="background-color: #f7f9fa; font-family: 'Rubik', sans-serif;">{{comment.comments.content}}</p>
               </div>
               <hr> <!--End Comment Content-->
               <span  style="display: flex;
-              align-items: center; color: #0a95ff;">
+              align-items: center; color: #fda239; cursor: pointer;">
                 <mat-icon> comment</mat-icon>
                 <a (click)="onClick(comment)">View Replies</a>
               </span>
             <ng-container *ngIf="comment?.visible"> <!--Reply Content-->
               <div class="commentReply" *ngFor="let rep of comment.reply">
-                <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="" style="height: 35px; width: 35px; margin-right: 3px; margin-top: 5px;">
+                <img [src]="'http://localhost:8000/'+rep.profilepic_fld" alt="" style="height: 35px; width: 35px; margin-right: 3px; margin-top: 5px; border-radius: 50%; border: 2px solid #878A8C;">
                 <span>
                   <a > {{rep.program_fld}} | {{rep.fname_fld}} {{rep.mname_fld}} {{rep.lname_fld}} </a>
                 </span>
@@ -129,8 +129,8 @@
 
               <!--Form for Reply Content-->
               <form [formGroup]="replyForm" (ngSubmit)="replyComment(comment)">
-              <div class="reply" >
-                <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="" style="height: 30px; width: 30px; margin-right: 3px;">
+              <div class="reply">
+                <img [src]="'http://localhost:8000/'+profilepic_fld" alt="" style=" display:flex; height: 30px; width: 30px; margin-right: 3px; border-radius: 50%; border: 2px solid #878A8C;">
                 <input type="text" name="" class="form-control" [formControlName]="'replyContent'" placeholder="Write a reply..">
                 <button type="submit" >Submit</button>
               </div>
@@ -144,5 +144,6 @@
       </div>
     </div>
   </div>
+</div>
 
 

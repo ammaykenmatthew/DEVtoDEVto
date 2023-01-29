@@ -39,12 +39,13 @@
                     <div class="d-flex flex-column align-items-center text-center">
                       <h4>Your badges:</h4>
                     <mat-chip-list aria-label="Fish selection">
-                      <mat-chip class="top-chip" *ngIf="totalCredits >= 300">Top Developer</mat-chip>
-                      <mat-chip class="top-chip" *ngIf="totalCredits >= 200">Semi Developer</mat-chip>
-                      <mat-chip class="top-chip" *ngIf="totalCredits >= 150">Developer</mat-chip>
+                      <mat-chip class="top-chip" *ngIf="totalCredits >= 300">Notable</mat-chip>
+                      <mat-chip class="top-chip" *ngIf="totalCredits >= 200">Popular</mat-chip>
+                      <mat-chip class="top-chip" *ngIf="totalCredits >= 150">Relevant</mat-chip>
                       <mat-chip class="dev-chip" *ngIf="totalCredits >= 100">Valuable</mat-chip>
                       <mat-chip class="dev-chip" *ngIf="totalCredits >= 70">Remarkable</mat-chip>
                       <mat-chip class="new-chip" *ngIf="totalCredits >= 50">Rookie</mat-chip>
+                      <mat-chip class="new-chip" *ngIf="totalCredits >= 30">Student</mat-chip>
                       <mat-chip class="new-chip" *ngIf="totalCredits < 50">Go and build stuff!</mat-chip>
                     </mat-chip-list>
                   </div>
@@ -117,6 +118,7 @@
                   <div class="card-body3">
 
                       <h4>Gather required Credit Score to get badges:</h4>
+                      <p>+10 credit score per post upvoted!</p>
                       <table>
                         <tr>
                           <th>Requirement</th>
@@ -125,17 +127,17 @@
                         </tr>
                         <tr>
                           <td>Gain 300 Credit Score</td>
-                          <td><mat-chip class="top-chip">Top Developer</mat-chip></td>
+                          <td><mat-chip class="top-chip">Notable</mat-chip></td>
 
                         </tr>
                         <tr>
                           <td>Gain 200 Credit Score</td>
-                          <td><mat-chip class="top-chip">Semi-Developer</mat-chip></td>
+                          <td><mat-chip class="top-chip">Popular</mat-chip></td>
 
                         </tr>
                         <tr>
                           <td>Gain 150 Credit Score</td>
-                          <td><mat-chip class="top-chip"> Developer</mat-chip></td>
+                          <td><mat-chip class="top-chip">Relevant</mat-chip></td>
 
                         </tr>
                         <tr>
@@ -147,10 +149,12 @@
                           <td> <mat-chip class="dev-chip">Remarkable</mat-chip></td>
                         </tr>
                         <tr>
-
                           <td>Gain 50 Credit Score</td>
                           <td><mat-chip class="new-chip">Rookie</mat-chip></td>
-
+                        </tr>
+                        <tr>
+                          <td>Gain 30 Credit Score</td>
+                          <td><mat-chip class="new-chip">Student</mat-chip></td>
                         </tr>
                       </table>
                   </div>

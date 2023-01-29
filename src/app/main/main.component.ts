@@ -37,6 +37,7 @@ export class MainComponent{
   lname_fld:any;
   program_fld:any;
   dept_fld:any;
+  profilepic_fld:any;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
   .pipe(
@@ -87,6 +88,7 @@ export class MainComponent{
     this.lname_fld = fullData.lname_fld;
     this.program_fld = fullData.program_fld;
     this.dept_fld = fullData.dept_fld;
+    this.profilepic_fld = fullData.profilepic_fld;
 
     // this.welcomeAlert();
 

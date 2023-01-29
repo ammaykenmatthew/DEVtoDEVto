@@ -31,7 +31,6 @@ export class QuestionsComponent implements OnInit {
     private route: Router,
     public snackbar: MatSnackBar,
 
-
   ) { }
 
   ngOnInit(): void {

@@ -48,19 +48,17 @@ export class ProfileComponent implements OnInit {
 
 
 
-    this._apiService.request('credits/'+this.id, '', '', 'post').subscribe((res:any)=>{
+  this._apiService.request('credits/'+this.id, '', '', 'post').subscribe((res:any)=>{
       console.log(res);
       this.totalCredits = res.credits;
   },
   (error : any) =>{
     console.log(error);
 
-  }
-
-  );
+  });
 
 
-   }
+}
 
 
 }

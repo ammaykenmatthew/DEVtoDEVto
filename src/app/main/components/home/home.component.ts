@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
   title= 'pagination';
   page: number = 1;
   count: number = 0;
-  tableSize: number = 10;
+  tableSize: number = 5;
   tableSizes: any = [5, 10, 15, 20];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -139,7 +139,8 @@ export class HomeComponent implements OnInit {
   }
 
   showLoader = false;
-  getAllData(limit : number = 5){
+  // limit : number = 5
+  getAllData(){
 
     let retrievedData = localStorage.getItem('userdata') as unknown as string;
     let fullData:any = JSON.parse(retrievedData);
@@ -154,23 +155,23 @@ export class HomeComponent implements OnInit {
         element.tags= this.returnTags(element.tags);
       });
 
-      this.posts$ = this.posts$.filter((value, index, self) =>
-      index === self.findIndex((t) => (
-        t.id=== value.id
-      ))
-      )
+      // this.posts$ = this.posts$.filter((value, index, self) =>
+      // index === self.findIndex((t) => (
+      //   t.id=== value.id
+      // ))
+      // )
 
-      let temp : any= []
-      let ctr = 0;
-      //limit
-      this.posts$.forEach(element => {
-        if (ctr < limit) {
-         temp.push(element)
-        }
-        ctr++;
-      });
+      // let temp : any= []
+      // let ctr = 0;
+      // //limit
+      // this.posts$.forEach(element => {
+      //   if (ctr < limit) {
+      //    temp.push(element)
+      //   }
+      //   ctr++;
+      // });
 
-      this.posts$ = temp;
+      // this.posts$ = temp;
       this.showLoader = false;
 
       console.log(res);
@@ -189,9 +190,9 @@ export class HomeComponent implements OnInit {
   openDialog(){
     this.dialog.open(PostFormComponent, {
         width: '98vh',
-        height: '90vh',
+
         maxWidth: '100vw',
-        maxHeight: '100vh',
+
     });
   }
 
@@ -214,7 +215,10 @@ export class HomeComponent implements OnInit {
 
   onTableSizeChange(event: any): void {
 
-    this.getAllData(event.target.value);
+    // this.getAllData(event.target.value);
+    this.tableSize = event.target.value;
+    this.page= 1;
+    this.getAllData();
   }
 /*Pagination */
 

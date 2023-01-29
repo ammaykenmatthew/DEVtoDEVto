@@ -21,7 +21,7 @@ export class AllQuestionsComponent implements OnInit {
   title= 'pagination';
   page: number = 1;
   count: number = 0;
-  tableSize: number = 10;
+  tableSize: number = 5;
   tableSizes: any = [5, 10, 15, 20];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;

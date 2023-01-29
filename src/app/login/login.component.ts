@@ -67,7 +67,7 @@ export class LoginComponent implements OnInit {
         console.log(res);
 
         if (res !=null){
-          alert("Login Successfully...")
+          // alert("Login Successfully...")
           this.token =  res.token;
           this.role =  res.user.role;
           this.userData = res.user;
@@ -93,6 +93,7 @@ export class LoginComponent implements OnInit {
           console.log("Logged In Successfully");
         }
       }), (error: any)=>{
+        alert(error);
         console.log ("Error", error);
         this.isLoading = false;
       }

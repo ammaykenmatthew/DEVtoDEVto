@@ -26,6 +26,7 @@
       </mat-form-field>
       </div>
     <div class="bookmarks" *ngFor="let book of bookmarks?.bookmarks">
+      <div *ngIf="bookmarks.length === 0" style="font-size: 30px; font-family: 'IBM Plex Sans', sans-serif;">No records found</div>
 
        <mat-card class="example-card">
         <span style="margin-left: 150px;">

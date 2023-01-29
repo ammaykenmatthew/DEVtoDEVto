@@ -95,6 +95,8 @@ mat-icon{
     text-align: center;
     font-weight: 800;
     margin-bottom: 30px;
+    margin-top: 40px;
+
     .name{
       font-size: 15px;
       font-family: 'Rubik', sans-serif;
@@ -103,6 +105,7 @@ mat-icon{
         margin-top: 16px;
         width: 120px;
         height: 120px;
+        border: 2px solid #878A8C;
     }
     .name{
         color: #1e293b;

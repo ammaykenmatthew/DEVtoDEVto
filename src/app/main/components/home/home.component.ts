@@ -55,6 +55,7 @@ export class HomeComponent implements OnInit {
     )
     {}
 
+    allTags : any[] = []
   ngOnInit(): void {
     let retrievedData = localStorage.getItem('userdata') as unknown as string;
     console.log(JSON.parse(retrievedData));
@@ -78,6 +79,22 @@ export class HomeComponent implements OnInit {
     this.getTotalPost();
     this.getAllData();
     // this.onTableSizeChange(this.getAllData);
+
+    this._apiService.request('tags' ,'', '', 'get').subscribe((res:any)=>{
+      console.log("🚀 ~ file: home.component.ts:83 ~ HomeComponent ~ this._apiService.request ~ res", res)
+      this.allTags = res
+    },
+    (error : any ) => {
+      console.log(error);
+    }
+  );
+
+
+  }
+
+  filterTag(item ?: any){
+    console.log(item);
+    this.getAllData(item.tags)
   }
 
   bookMarks:any
@@ -140,7 +157,7 @@ export class HomeComponent implements OnInit {
 
   showLoader = false;
   // limit : number = 5
-  getAllData(){
+  getAllData(tag :any =""){
 
     let retrievedData = localStorage.getItem('userdata') as unknown as string;
     let fullData:any = JSON.parse(retrievedData);
@@ -148,7 +165,8 @@ export class HomeComponent implements OnInit {
     let id = fullData.id;
 
     this.showLoader = true;
-    this._apiService.request('showAll/'+id, '', this.posts$, 'get').subscribe((res:any)=>{
+    this._apiService.request('showAll/'+id+'/'+tag, '', this.posts$, 'get').subscribe((res:any)=>{
+      console.log(res);
 
       this.posts$ = res;
       this.posts$.forEach(element => {
@@ -174,7 +192,6 @@ export class HomeComponent implements OnInit {
       // this.posts$ = temp;
       this.showLoader = false;
 
-      console.log(res);
     });
   }
 

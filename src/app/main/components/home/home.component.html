@@ -154,20 +154,24 @@
 
 
                     </div>
-                    <!-- <div class="col-md-3">
+                      <div class="col-md-3">
 
-                    <div class="sidebar-view-subreddit">
-                      <div style="color: black; font-weight: bold">Browse Subreddits</div>
-                      <hr />
-                      <span >
-                          <span class="subreddit-text"><a >Programming</a></span>
-                          <hr />
-                      </span>
-                      <div style="text-align: center">
-                          <a style="font-weight: bold" routerLink="/subreddits">View All</a>
+                      <div class="sidebar-view-subreddit">
+                        <div style="color: black; font-weight: bold">Browse Subreddits</div>
+                        <hr />
+
+                        <span>
+                            <span class="subreddit-text" (click)="filterTag({tags: ''})"><a >No Tags</a></span>
+                            <hr />
+                        </span>
+
+                        <span *ngFor="let item of allTags">
+                            <span class="subreddit-text" (click)="filterTag(item)"><a >{{item.tags}} ({{item.count}})</a></span>
+                            <hr />
+                        </span>
+
+                    </div>
                       </div>
-                  </div>
-                    </div> -->
 
                   </div>
                 </div>

@@ -99,7 +99,7 @@
                 <img [src]="'http://localhost:8000/'+comment.comments.profilepic_fld"  alt="" style="height: 35px; width: 35px; margin-right: 3px; margin-top: 5px; border-radius: 50%; border: 2px solid #878A8C;">
               <span>
                 <span>
-                  <a>{{comment.comments.program_fld}} | {{comment.comments.fname_fld}} {{comment.comments.mname_fld}} {{comment.comments.lname_fld}} </a>
+                  <a>{{comment.comments.program_fld}} | {{comment.comments.fname_fld}} {{comment.comments.mname_fld}} {{comment.comments.lname_fld}} {{comment.credit}}</a>
                 </span>
                 <span> at {{comment.comments.created_at|date:'MMM d, y h a'}}</span>
               </span>
@@ -111,7 +111,7 @@
               <span  style="display: flex;
               align-items: center; color: #fda239; cursor: pointer;">
                 <mat-icon> comment</mat-icon>
-                <a (click)="onClick(comment)">View Replies</a>
+                <a (click)="onClick(comment)">View Replies  ({{comment.reply.length}})</a>
               </span>
             <ng-container *ngIf="comment?.visible"> <!--Reply Content-->
               <div class="commentReply" *ngFor="let rep of comment.reply">

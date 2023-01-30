@@ -98,9 +98,11 @@
               <div class="col-md-11"> <!--Comment Content-->
                 <img [src]="'http://localhost:8000/'+comment.comments.profilepic_fld"  alt="" style="height: 35px; width: 35px; margin-right: 3px; margin-top: 5px; border-radius: 50%; border: 2px solid #878A8C;">
               <span>
+
                 <span>
                   <a>{{comment.comments.program_fld}} | {{comment.comments.fname_fld}} {{comment.comments.mname_fld}} {{comment.comments.lname_fld}} {{comment.credit}}</a>
                 </span>
+
                 <span> at {{comment.comments.created_at|date:'MMM d, y h a'}}</span>
               </span>
 

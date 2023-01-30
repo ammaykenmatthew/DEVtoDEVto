@@ -59,7 +59,7 @@
                   <!-- <div class="row d-flex justify-content-center"> -->
                     <div class="row d-flex justify-content-center">
 
-                    <div class="col-md-8">
+                    <div class="col-md-5">
                       <div class="row post" *ngFor="let post of posts$ | filter:searchKey: 'title' | paginate: {
                         itemsPerPage: tableSize,
                         currentPage: page,
@@ -154,21 +154,26 @@
 
 
                     </div>
-                      <div class="col-md-3">
+                      <div class="col-md-3" >
 
                       <div class="sidebar-view-subreddit">
-                        <div style="color: black; font-weight: bold">Browse Subreddits</div>
+                        <div style="color: black; font-weight: bold; font-size: 15px; font-family: 'Rubik', sans-serif;">Watched Tags</div>
                         <hr />
-
-                        <span>
-                            <span class="subreddit-text" (click)="filterTag({tags: ''})"><a >No Tags</a></span>
-                            <hr />
-                        </span>
-
-                        <span *ngFor="let item of allTags">
+                        <h4 class="subreddit-text" style="cursor: pointer;" (click)="filterTag({tags: ''})"><a >Clear Tags</a></h4>
+                        <hr />
+                        <!-- <span *ngFor="let item of allTags">
                             <span class="subreddit-text" (click)="filterTag(item)"><a >{{item.tags}} ({{item.count}})</a></span>
                             <hr />
-                        </span>
+                        </span> -->
+
+                        <mat-chip-list aria-label="Fish selection" >
+                          <mat-chip class="tags-chip" style="
+                          color: #0095ff;
+                          background-color: #a0d7ff;
+                          font-family: 'IBM Plex Sans', sans-serif; cursor: pointer;" *ngFor="let item of allTags">
+                            <span class="subreddit-text" (click)="filterTag(item)"><a >{{item.tags}} ({{item.count}})</a></span>
+                          </mat-chip>
+                        </mat-chip-list>
 
                     </div>
                       </div>

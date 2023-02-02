@@ -14,11 +14,6 @@ export class BookmarksComponent implements OnInit {
 
   durationInSeconds = 2;
 
-  color: ThemePalette = 'primary';
-  mode: ProgressBarMode = 'determinate';
-  value = 50;
-  bufferValue = 75;
-
   email_add:any;
   fname_fld:any;
   mname_fld:any;

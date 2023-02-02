@@ -10,11 +10,11 @@
       <span >GC Dev2Dev</span>
     </div> -->
     <div class="user">
-      <img [src]="'http://localhost:8000/'+profilepic_fld" style=" width: 130px;
-      height: 130px; margin-top: 13px; border-radius: 50%;" >
+      <img [src]="'http://localhost:8000/'+profilepic_fld" style=" width: 100px;
+      height: 100px; margin-top: 13px; border-radius: 50%;" >
       <p class="name">{{fname_fld}} {{mname_fld}} {{lname_fld}} </p>
       <p class="mail">{{email_add}}</p>
-      <h4 class="dept">{{dept_fld}}/{{program_fld}}</h4>
+      <small class="dept">{{dept_fld}}/{{program_fld}}</small>
       <hr />
     </div>
 
@@ -24,24 +24,24 @@
       </div>
     </div>
     <div class="menu-item">
-    <button mat-button class="menu-button" routerLink="home" routerLinkActive="is-active">
+    <button mat-button class="menu-button" routerLink="home" routerLinkActive="active">
       <mat-icon>home</mat-icon>
       <span>Home</span>
     </button>
-    <button mat-button class="menu-button" routerLink="all-questions"  routerLinkActive="is-active">
+    <button mat-button class="menu-button" routerLink="all-questions"  routerLinkActive="active">
       <mat-icon>supervised_user_circle</mat-icon>
       <span>Questions</span>
     </button>
     <hr />
-    <button mat-button class="menu-button" routerLink="my-questions" routerLinkActive="is-active">
+    <button mat-button class="menu-button" routerLink="my-questions" routerLinkActive="active">
       <mat-icon>question_answer</mat-icon>
       <span>My Questions</span>
     </button>
-    <button mat-button class="menu-button" routerLink="bookmarks">
+    <button mat-button class="menu-button" routerLink="bookmarks" routerLinkActive="active">
       <mat-icon>bookmark</mat-icon>
       <span>Bookmarks</span>
     </button>
-    <button mat-button class="menu-button" routerLink="profile" routerLinkActive="is-active">
+    <button mat-button class="menu-button" routerLink="profile" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
       <mat-icon>account_circle</mat-icon>
       <span>Profile</span>
     </button>

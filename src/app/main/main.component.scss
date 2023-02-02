@@ -161,10 +161,20 @@ mat-icon{
         background-color: #fda239;
 
     }
-    .menu-button:focus{
+    // .menu-button:focus{
+    //     background-color: #fda239;
+
+    // }
+      .active{
         background-color: #fda239;
 
-    }
+        mat-icon{
+          color: #fff;
+        }
+        span{
+          color: #fff;
+        }
+      }
 
 }
 

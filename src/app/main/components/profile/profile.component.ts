@@ -24,6 +24,7 @@ export class ProfileComponent implements OnInit {
   lname_fld:any;
   program_fld:any;
   dept_fld:any;
+  profilepic_fld:any;
 
 
   constructor(
@@ -45,6 +46,8 @@ export class ProfileComponent implements OnInit {
     this.lname_fld = fullData.lname_fld;
     this.program_fld = fullData.program_fld;
     this.dept_fld = fullData.dept_fld;
+    this.profilepic_fld = fullData.profilepic_fld;
+
 
 
 

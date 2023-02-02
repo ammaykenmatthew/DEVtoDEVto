@@ -95,6 +95,7 @@ export class MyQuestionsComponent implements OnInit {
     this._apiService.search.next(this.searchTerm);
   }
 
+  showLoader = false;
   getAllPosts(){
     let retrievedData = localStorage.getItem('userdata') as unknown as string;
     let fullData:any = JSON.parse(retrievedData);
@@ -103,10 +104,12 @@ export class MyQuestionsComponent implements OnInit {
 
     this._apiService.request('showUserPostby/'+user_id, '', '', 'get').subscribe((res:any)=>{
       this.posts$ = res;
+      this.showLoader = true;
       this.posts$.forEach(element => {
         element.tags= this.returnTags(element.tags);
       });
       console.log(res);
+      this.showLoader = false;
 
     }), (error: any)=>{
       alert("Error posting data...");

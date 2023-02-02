@@ -3,6 +3,22 @@
     <mat-icon>question_answer</mat-icon> My Questions
   </div>
   <div class="page-content">
+       <!--Loader-->
+<div *ngIf="showLoader" class="loader text-center">
+  <div class="bar1"></div>
+  <div class="bar2"></div>
+  <div class="bar3"></div>
+  <div class="bar4"></div>
+  <div class="bar5"></div>
+  <div class="bar6"></div>
+  <div class="bar7"></div>
+  <div class="bar8"></div>
+  <div class="bar9"></div>
+  <div class="bar10"></div>
+  <div class="bar11"></div>
+  <div class="bar12"></div>
+</div>
+<!--Loader-->
     <div class="search">
       <p>Search Question:</p>
       <mat-form-field appearance="outline">
@@ -14,7 +30,7 @@
         <!--POST BODY-->
           <div class="content" *ngFor="let post of posts$ | filter:searchKey: 'title'">
 
-            <div *ngIf="post.length === 0" style="font-size: 30px; font-family: 'IBM Plex Sans', sans-serif;">No records found</div>
+            <div *ngIf="posts$.length === 0" style="font-size: 30px; font-family: 'IBM Plex Sans', sans-serif;">No records found</div>
             <!-- show if theres no record existing -->
             <mat-card class="example-card">
               <span style="margin-left: 150px;">
@@ -41,7 +57,7 @@
               <div class="head">
               <span style="font-size: 14px;">
                 <a>Posted by {{post.program_fld}} | {{post.fname_fld}} {{post.mname_fld}} {{post.lname_fld}}</a>
-                <span> - {{post.created_at|date:'MMM d, y h a'}}</span>
+                <span> - {{post.created_at|date:'MMM d, y - h a'}}</span>
                 <!-- post.created_at|dateAsAgo //shows Just Now  -->
             </span>
             </div>

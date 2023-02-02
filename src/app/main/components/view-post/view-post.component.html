@@ -81,37 +81,42 @@
             <!--Display Comments-->
 
             <div class="container2">
-            <div class="row comment" *ngFor="let comment of comments">
-              <div class="vote col-md-1">
-                <div class="d-flex flex-column votebox">
-                  <div class="p-2">
-                      <fa-icon  class="upvote" [icon]="faArrowUp"></fa-icon>
-                  </div>
-                  <div class="p-2 votecount">4</div>
-                  <div class="p-2">
-                      <fa-icon class="downvote" [icon]="faArrowDown">
+            <div class="comment" *ngFor="let comment of comments">
 
-                      </fa-icon>
-                  </div>
-              </div>
-              </div>
               <div class="col-md-11"> <!--Comment Content-->
-                <img [src]="'http://localhost:8000/'+comment.comments.profilepic_fld"  alt="" style="height: 35px; width: 35px; margin-right: 3px; margin-top: 5px; border-radius: 50%; border: 2px solid #878A8C;">
+                <!-- <img [src]="'http://localhost:8000/'+comment.comments.profilepic_fld"  alt="" style="height: 35px; width: 35px; margin-right: 3px; margin-top: 5px; border-radius: 50%; border: 2px solid #878A8C;">
               <span>
 
                 <span>
-                  <a>{{comment.comments.program_fld}} | {{comment.comments.fname_fld}} {{comment.comments.mname_fld}} {{comment.comments.lname_fld}} {{comment.credit}}</a>
+                  <a>{{comment.comments.program_fld}} | {{comment.comments.fname_fld}} {{comment.comments.mname_fld}} {{comment.comments.lname_fld}}  </a> <a matTooltip="Credit Score"  matTooltipClass="toolTiptip">{{comment.credit}}</a>
                 </span>
 
-                <span> at {{comment.comments.created_at|date:'MMM d, y h a'}}</span>
+                <span> at {{comment.comments.created_at|date:'MMM d, y - h a'}}  </span>
               </span>
 
               <div>
                 <p style="background-color: #f7f9fa; font-family: 'Rubik', sans-serif;">{{comment.comments.content}}</p>
               </div>
-              <hr> <!--End Comment Content-->
+              <hr> -->
+              <div class="comment-session">
+                <div class="post-comment">
+                  <div class="list">
+                    <div class="user">
+                      <div class="user-image"><img [src]="'http://localhost:8000/'+comment.comments.profilepic_fld"  alt=""></div>
+                      <div class="user-meta">
+                        <div class="name">{{comment.comments.program_fld}} | {{comment.comments.fname_fld}} {{comment.comments.mname_fld}} {{comment.comments.lname_fld}} </div>
+                        <div class="day">{{comment.comments.created_at|date:'MMM d, y - h a'}} </div>
+                      </div>
+                    </div>
+                    <div class="comment-post">{{comment.comments.content}}</div>
+                  </div>
+                </div>
+              </div>
+
+
+               <!--End Comment Content-->
               <span  style="display: flex;
-              align-items: center; color: #fda239; cursor: pointer;">
+              align-items: center; color: #fda239; cursor: pointer; margin-left: 40px;">
                 <mat-icon> comment</mat-icon>
                 <a (click)="onClick(comment)">View Replies  ({{comment.reply.length}})</a>
               </span>

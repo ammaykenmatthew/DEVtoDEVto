@@ -26,7 +26,7 @@
       </mat-form-field>
       </div>
     <div class="bookmarks" *ngFor="let book of bookmarks?.bookmarks">
-      <div *ngIf="bookmarks.length === 0" style="font-size: 30px; font-family: 'IBM Plex Sans', sans-serif;">No records found</div>
+
 
        <mat-card class="example-card">
         <span style="margin-left: 150px;">
@@ -35,7 +35,7 @@
           </button>
           <mat-menu #menu="matMenu">
             <button mat-menu-item>
-              <mat-icon>delete_outline</mat-icon>
+              <mat-icon style="color: red;" >delete_outline</mat-icon>
               <span style="font-family: 'Poppins', sans-serif;" (click)="remove(book.id)">Remove from bookmarks</span>
             </button>
           </mat-menu>
@@ -46,8 +46,10 @@
         <div class="content">
           <mat-card-header >
             <!-- routerLink="main/view-post/{{book.id}}" -->
-            <mat-card-title  style=" font-family: 'IBM Plex Sans', sans-serif;">
-              <a (click)="goToPost(book.id)" >{{book.title}}</a>
+            <mat-card-title  style=" font-family: 'IBM Plex Sans', sans-serif; ">
+              <a style="display: -webkit-box;
+              overflow : hidden;
+              text-overflow: ellipsis; -webkit-box-orient: vertical;" >{{book?.title}}</a>
 
             </mat-card-title>
             <mat-card-subtitle >{{book?.tags}}</mat-card-subtitle>
@@ -59,7 +61,7 @@
         </div>
           <mat-divider></mat-divider>
           <mat-card-actions align="start" >
-            <button mat-stroked-button color="primary" style="margin-left: 5px;">View</button>
+            <button mat-stroked-button color="primary" style="margin-left: 5px;" (click)="goToPost(book.id)">View</button>
 
           </mat-card-actions>
 

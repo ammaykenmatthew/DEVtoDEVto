@@ -39,8 +39,8 @@
     </div>
   <br>
 
-  <img [src]="imageSrc" *ngIf="imageSrc && fileChange" style="height: auto; width:auto;" class="responsive" >
-  <img [src]="'http://localhost:8000/'+imageSrc" *ngIf="imageSrc && !fileChange" style="height: auto; width: auto;" class="responsive" >
+  <img [src]="imageSrc" *ngIf="imageSrc && fileChange" style="height: auto; width:auto;" class="responsive" loading="lazy">
+  <img [src]="'http://localhost:8000/'+imageSrc" *ngIf="imageSrc && !fileChange" style="height: auto; width: auto;" class="responsive" loading="lazy">
   <br>
 
 
@@ -68,6 +68,6 @@
 </div>
 <div mat-dialog-action [align]="'end'" style="margin-top: 6rem;">
   <button mat-raised-button color="warn" mat-dialog-close>Close</button>
-  <button style="margin-left:8px;" [disabled]="postForm.invalid" mat-raised-button color="primary" mat-dialog-close (click)="SavePost()">{{actionBtn}}</button>
+  <button style="margin-left:8px;" mat-raised-button color="primary" mat-dialog-close (click)="SavePost()">{{actionBtn}}</button>
 </div>
 

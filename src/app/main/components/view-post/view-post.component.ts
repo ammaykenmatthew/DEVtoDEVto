@@ -9,6 +9,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialogRef , MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { faComment, faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-view-post',
@@ -16,6 +17,12 @@ import { faComment, faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-i
   styleUrls: ['./view-post.component.scss']
 })
 export class ViewPostComponent implements OnInit {
+
+  image = environment.image;
+
+  selectedFile!:string;
+  files:any = [];
+  fileChange = false;
 
   isShowDiv = false;
   faComment = faComment;

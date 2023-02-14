@@ -79,9 +79,9 @@ export class PostFormComponent implements OnInit {
     this.postForm = this.formBuilder.group({
       title: ['', Validators.required],
       description: ['', Validators.required],
-      photo: ['', [Validators.required]],
+      photo: ['', ],
       tags: ['', []],
-      fileSource: ['', [Validators.required]],
+      fileSource: ['', ],
     });
 
     if(this.editData){

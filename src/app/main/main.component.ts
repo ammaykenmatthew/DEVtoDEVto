@@ -12,6 +12,7 @@ import { LogoutFormComponent } from './components/logout-form/logout-form.compon
 import {MediaMatcher} from '@angular/cdk/layout';
 import {faSearch} from '@fortawesome/free-solid-svg-icons';
 import Swal from 'sweetalert2';
+import { environment } from 'src/environments/environment.prod';
 
 
 @Component({
@@ -20,6 +21,8 @@ import Swal from 'sweetalert2';
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent{
+
+  image = environment.image;
 
   public searchTerm: string = '';
   date_today = new Date();
@@ -117,6 +120,7 @@ export class MainComponent{
         this._apiService.request('logout', '', '', 'post').subscribe((res:any)=>{
           this.token = res;
           localStorage.removeItem('token');
+          localStorage.removeItem('role');
           localStorage.removeItem('userdata');
           this.route.navigate(['/login']);
           console.log("Logged out successfully")

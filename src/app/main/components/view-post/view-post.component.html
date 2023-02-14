@@ -40,8 +40,13 @@
           <hr />
           <div>
             <p class="post-text">{{post.description}}</p>
+            <!-- <img [src]="image+post.photo" style="height: auto; width:auto;" class="responsive" > -->
+            <!-- <img [src]="'http://127.0.0.1:8000/'+post.photo" style="height: auto; width:auto;" class="responsive" > -->
 
-           <img [src]="'http://127.0.0.1:8000/'+post.photo" style="height: auto; width:auto;" class="responsive" >
+           <!-- <img [src]="'http://127.0.0.1:8000/'+post.photo" style="height: auto; width:auto;" class="responsive" > -->
+           <div  *ngIf="image+post.photo" class="imageData" style="height: auto; width:auto;" >
+            <img [src]="image+post.photo"  class="responsive" loading="lazy">
+          </div>
           </div>
 
           <hr/>
@@ -82,7 +87,7 @@
 
             <div class="container2">
             <div class="comment" *ngFor="let comment of comments">
-
+              <div *ngIf="comment === 0" style="font-size: 30px; font-family: 'IBM Plex Sans', sans-serif;"><h4>There are no comments found</h4></div>
               <div class="col-md-11"> <!--Comment Content-->
                 <!-- <img [src]="'http://localhost:8000/'+comment.comments.profilepic_fld"  alt="" style="height: 35px; width: 35px; margin-right: 3px; margin-top: 5px; border-radius: 50%; border: 2px solid #878A8C;">
               <span>

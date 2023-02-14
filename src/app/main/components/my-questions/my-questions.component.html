@@ -30,7 +30,7 @@
         <!--POST BODY-->
           <div class="content" *ngFor="let post of posts$ | filter:searchKey: 'title'">
 
-            <div *ngIf="posts$.length === 0" style="font-size: 30px; font-family: 'IBM Plex Sans', sans-serif;">No records found</div>
+            <div *ngIf="posts$.length === null" style="font-size: 30px; font-family: 'IBM Plex Sans', sans-serif;">No records found</div>
             <!-- show if theres no record existing -->
             <mat-card class="example-card">
               <span style="margin-left: 150px;">

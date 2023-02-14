@@ -6,7 +6,7 @@ import { AuthService } from '../services/auth.service';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate {
+export class AdminGuard implements CanActivate {
 
   constructor(
     private service: AuthService,
@@ -15,7 +15,7 @@ export class AuthGuard implements CanActivate {
 
   }
   canActivate() {
-    if(this.service.IsLoggedIn()){
+    if(this.service.IsLoggedInAdmin()){
       return true;
     }else{
       this.route.navigate(["login"]);
@@ -23,7 +23,4 @@ export class AuthGuard implements CanActivate {
     }
   }
 
-
-
 }
-

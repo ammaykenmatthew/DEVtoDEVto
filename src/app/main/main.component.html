@@ -10,8 +10,12 @@
       <span >GC Dev2Dev</span>
     </div> -->
     <div class="user">
-      <img [src]="'http://localhost:8000/'+profilepic_fld" style=" width: 100px;
-      height: 100px; margin-top: 13px; border-radius: 50%;" >
+      <!-- <img [src]="'http://localhost:8000/'+profilepic_fld" style=" width: 100px;
+      height: 100px; margin-top: 13px; border-radius: 50%;" > -->
+
+      <img [src]="image+profilepic_fld" style=" width: 100px;
+      height: 100px; margin-top: 13px; border-radius: 50%;" loading="lazy">
+
       <p class="name">{{fname_fld}} {{mname_fld}} {{lname_fld}} </p>
       <p class="mail">{{email_add}}</p>
       <small class="dept">{{dept_fld}}/{{program_fld}}</small>

@@ -10,6 +10,7 @@ import { FiltersComponent } from './components/filters/filters.component';
 import { ViewQuestionComponent } from './components/view-question/view-question.component';
 import { AddStudentComponent } from './components/add-student/add-student.component';
 import { RegStudentComponent } from './components/reg-student/reg-student.component';
+import { ReportsComponent } from './components/reports/reports.component';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { RegStudentComponent } from './components/reg-student/reg-student.compon
     ViewQuestionComponent,
     AddStudentComponent,
     RegStudentComponent,
+    ReportsComponent,
 
   ],
     imports: [

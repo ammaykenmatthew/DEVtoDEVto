@@ -29,7 +29,7 @@ export class DashboardComponent implements AfterViewInit {
     private dialog: MatDialog,
     private route: Router,
   ) {
-    this._apiService.request('showAll', '', this.posts$, 'get').subscribe((res:any)=>{
+    this._apiService.request('showAllGlobal', '', this.posts$, 'get').subscribe((res:any)=>{
       this.dataSource = new MatTableDataSource(res);
 
       this.dataSource.paginator = this.paginator;

@@ -22,6 +22,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { MyQuestionsComponent } from './components/my-questions/my-questions.component';
 import { AllQuestionsComponent } from './components/all-questions/all-questions.component';
 import { QuestComponent } from './components/quest/quest.component';
+import { ReportComponent } from './components/report/report.component';
 
 // import { MainRoutingModule } from "./main-routing.module";
 // import { QuestionsComponent } from './components/questions/questions.component';
@@ -45,6 +46,7 @@ import { QuestComponent } from './components/quest/quest.component';
         MyQuestionsComponent,
         AllQuestionsComponent,
         QuestComponent,
+        ReportComponent,
 
     ],
     imports: [

@@ -88,6 +88,12 @@
                                         <mat-icon>bookmarks</mat-icon>
                                         <span style="font-family: 'Poppins', sans-serif;" (click)="setBookmark(post.id)">Save this post</span>
                                       </button>
+                                         <!-- Report -->
+                                         <button mat-menu-item>
+                                          <mat-icon>flag</mat-icon>
+                                          <span style="font-family: 'Poppins', sans-serif;" (click)="reportPost(post.id)">Report</span>
+                                          </button>
+                                          <!-- Report -->
                                     </mat-menu>
                                   </span></span>
                                 <span> - {{post.created_at|dateAsAgo}}</span>

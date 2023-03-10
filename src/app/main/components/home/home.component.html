@@ -105,10 +105,20 @@
                                       <mat-icon>more_horiz</mat-icon>
                                     </button>
                                     <mat-menu #menu="matMenu">
+                                      <!-- Bookmarks -->
                                       <button mat-menu-item>
                                         <mat-icon>bookmarks</mat-icon>
                                         <span style="font-family: 'Poppins', sans-serif;" (click)="setBookmark(post.id)">Save this post</span>
                                       </button>
+                                       <!-- Bookmarks -->
+
+                                      <!-- Report -->
+                                      <button mat-menu-item>
+                                      <mat-icon>flag</mat-icon>
+                                      <span style="font-family: 'Poppins', sans-serif;" (click)="reportPost(post.id)">Report</span>
+                                      </button>
+                                      <!-- Report -->
+
                                     </mat-menu>
                                   </span></span>
                                 <span> - {{post.created_at|date:'MMM d, y h a'}}</span>

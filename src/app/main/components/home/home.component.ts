@@ -8,6 +8,7 @@ import {faArrowUp, faArrowDown, faComments, faSearch} from '@fortawesome/free-so
 import { AuthService } from 'src/app/services/auth.service';
 
 import { SearchPipe } from 'src/app/shared/filter.pipe';
+import { ReportComponent } from '../report/report.component';
 
 @Component({
   selector: 'app-home',
@@ -95,6 +96,14 @@ export class HomeComponent implements OnInit {
   filterTag(item ?: any){
     console.log(item);
     this.getAllData(item.tags)
+  }
+
+  reportPost(post_id:any){
+
+      this.dialog.open(ReportComponent,{
+        maxHeight: '40vh',
+        maxWidth: '100vw',
+    });
   }
 
   bookMarks:any

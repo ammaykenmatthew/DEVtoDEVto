@@ -1,0 +1,96 @@
+<!-- <label id="example-radio-group-label"  style="font-family: 'Poppins', sans-serif;">Report Post</label>
+<mat-radio-group
+  aria-labelledby="example-radio-group-label"
+  class="example-radio-group"
+  [(ngModel)]="reportStatement">
+  <mat-radio-button class="example-radio-button" *ngFor="let report of reports" [value]="report">
+    {{report}}
+  </mat-radio-button>
+</mat-radio-group>
+
+<div mat-dialog-action [align]="'end'" >
+  <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+  <button style="margin-left:8px;" mat-raised-button color="primary" mat-dialog-close (click)="reportPost()">Report</button>
+</div>
+
+<form [formGroup]="form" (ngSubmit)="reportPost()">
+  <label *ngFor="let rep of reports;">
+    <input formControlName="reports" type="radio" name="reports" [value]="rep.id"/>
+    {{rep.name}}
+  </label>
+
+</form> -->
+
+<!-- <div class="containter">
+  <h1>Reports</h1>
+  <form [formGroup]="form" (ngSubmit)="reportPost()">
+
+    <div class="form-group">
+        <label for="gender">Report: </label>
+      <div>
+        <input id="1stReport" type="radio" value="male" name="report" formControlName="report">
+        <label for="male">Male</label>
+      </div>
+
+      <div>
+        <input id="2ndReport" type="radio" value="female" name="report" formControlName="report">
+        <label for="male">Female</label>
+      </div>
+
+      <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Submit</button>
+
+    </div>
+  </form>
+</div> -->
+
+<div class="containter">
+      <h1>Reports</h1>
+      <form [formGroup]="form" (ngSubmit)="reportPost()">
+        <div class="form-group">
+          <div class="form-check">
+            <input class="form-check-input" type="radio"
+            value="Hate speech or graphic violence"
+            id="1"
+            formControlName="report">
+            <label class="form-check-label" for="Hate speech or graphic violence">
+              Hate speech or graphic violence
+            </label>
+          </div>
+
+          <div class="form-check">
+            <input class="form-check-input" type="radio"
+            value="Harassment or bullying"
+            id="2"
+            formControlName="report">
+            <label class="form-check-label" for="Harassment or bullying">
+              Harassment or bullying
+            </label>
+          </div>
+
+          <div class="form-check">
+            <input class="form-check-input" type="radio"
+            value="Unrelated content"
+            id="3"
+            formControlName="report" >
+            <label class="form-check-label" for="Unrelated content">
+              Unrelated content
+            </label>
+          </div>
+
+          <div class="form-check">
+            <input class="form-check-input" type="radio"
+            value="Misinformation"
+            id="4"
+            formControlName="report" >
+            <label class="form-check-label" for="Misinformation">
+              Misinformation
+            </label>
+          </div>
+
+          <div [align]="'end'" >
+            <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+            <button style="margin-left:8px;" mat-raised-button color="primary"  mat-dialog-close (click)="reportPost()">Report</button>
+          </div>
+        </div>
+      </form>
+</div>

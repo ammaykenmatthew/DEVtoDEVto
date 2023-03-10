@@ -8,6 +8,7 @@ import {faArrowUp, faArrowDown, faComments, faSearch} from '@fortawesome/free-so
 import { AuthService } from 'src/app/services/auth.service';
 
 import { SearchPipe } from 'src/app/shared/filter.pipe';
+import { ReportComponent } from '../report/report.component';
 
 @Component({
   selector: 'app-all-questions',
@@ -91,6 +92,14 @@ export class AllQuestionsComponent implements OnInit {
       return temp;
   }
 
+  reportPost(post_id:any){
+
+    this.dialog.open(ReportComponent,{
+      maxHeight: '40vh',
+      maxWidth: '100vw',
+  });
+}
+
   bookMarks:any
   setBookmark(post_id:any){
     let retrievedData = localStorage.getItem('userdata') as unknown as string;
@@ -111,6 +120,7 @@ export class AllQuestionsComponent implements OnInit {
   }
 
   showLoader = false;
+
   getAllData(){
     let retrievedData = localStorage.getItem('userdata') as unknown as string;
     let fullData:any = JSON.parse(retrievedData);

@@ -24,25 +24,25 @@
       <table mat-table [dataSource]="dataSource" matSort>
 
         <!-- ID Column -->
-        <ng-container matColumnDef="no.">
+        <ng-container matColumnDef="id">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Report No. </th>
-          <td mat-cell *matCellDef="let row"> {{row.studnum_fld}} </td>
+          <td mat-cell *matCellDef="let row"> {{row.id}} </td>
         </ng-container>
 
         <ng-container matColumnDef="user_id">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Reported By.</th>
-          <td mat-cell *matCellDef="let row"> {{row.fname_fld}} </td>
+          <td mat-cell *matCellDef="let row"> {{row.user_id}} </td>
         </ng-container>
 
         <!-- Title Column -->
         <ng-container matColumnDef="post_id">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Post ID.</th>
-          <td mat-cell *matCellDef="let row"> {{row.fname_fld}} </td>
+          <td mat-cell *matCellDef="let row"> {{row.post_id}} </td>
         </ng-container>
 
         <ng-container matColumnDef="report">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Report Description.</th>
-          <td mat-cell *matCellDef="let row"> {{row.fname_fld}} </td>
+          <td mat-cell *matCellDef="let row"> {{row.report}} </td>
         </ng-container>
 
          <!-- Date & Time Column -->

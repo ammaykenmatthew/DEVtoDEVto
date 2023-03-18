@@ -18,6 +18,8 @@ export class AuthService {
 
   public search =new BehaviorSubject<string>("");
 
+  public searchTwo =new BehaviorSubject<string>("");
+
   constructor(
     private http:HttpClient,
     private route: Router,

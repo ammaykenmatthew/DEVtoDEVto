@@ -28,8 +28,10 @@
 }
 
 .body{
-  table{
+  table {
     width: 100%;
+    table-layout: fixed;
+
     td{
       white-space: nowrap;
       overflow: hidden;
@@ -46,25 +48,15 @@
     }
 
   }
-  button{
-    width: 150px;
-    height: 35px;
 
-    color: white;
-    font-family: 'Rubik', sans-serif;
-    font-weight: 500;
-    background: #f33030;
-    border-radius: 12px;
-    border: none;
-    display: inline-flex;
-    align-items: center;
-    padding-left: 30px;
-    cursor: pointer;
-    margin-left: 50rem;
+  .mat-form-field {
+    font-size: 14px;
+    width: 40rem;
+  }
+  .container{
+    max-width: 125rem;
+    margin: 0 auto;
   }
 
-
 }
-
-
 

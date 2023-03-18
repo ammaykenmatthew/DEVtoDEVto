@@ -59,6 +59,17 @@ export class ViewPostComponent implements OnInit {
     )
   { }
 
+  //EXTRA
+
+  isEditing = false;
+  replyClick() {
+    this.isEditing = !this.isEditing;
+  }
+
+
+
+  //EXTRA
+
 
   totalCredits : number = 0
   ngOnInit(): void {

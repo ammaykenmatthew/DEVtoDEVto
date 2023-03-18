@@ -34,6 +34,10 @@ export class HomeComponent implements OnInit {
   //*Search KEY
   searchKey: string = '';
 
+  searchKeyTwo: string ='';
+
+  filteredList : any = [];
+
   email_add: any;
   fname_fld: any;
   mname_fld: any;
@@ -55,6 +59,19 @@ export class HomeComponent implements OnInit {
     private route: Router,
     private activateRoute: ActivatedRoute
   ) {}
+
+  filterFromSearch(){
+    this.allTags = this.filteredList
+    this.allTags = this.allTags.filter((o:any) =>
+    Object.keys(o).some((k:any) => {
+      if (k == 'id' || k == 'remember_token' || 'tags'){
+        return this.allTags;
+      }else {
+        return o[k].toLowerCase().includes(this.searchKeyTwo.toLowerCase())
+      }
+    }
+    ));
+  }
 
   allTags: any[] = [];
   ngOnInit(): void {
@@ -78,6 +95,8 @@ export class HomeComponent implements OnInit {
     //instances//
     this.getTotalPost();
     this.getAllData();
+
+    this.searchTags();
     // this.onTableSizeChange(this.getAllData);
 
     this._apiService.request('tags', '', '', 'get').subscribe(
@@ -92,6 +111,13 @@ export class HomeComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  searchTags(){
+    this._apiService.searchTwo.subscribe((val: any) => {
+      this.searchKeyTwo = val;
+
+    });
   }
 
   filterTag(item?: any) {

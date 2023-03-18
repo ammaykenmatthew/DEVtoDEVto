@@ -167,23 +167,35 @@
                       <div class="col-md-3" >
 
                       <div class="sidebar-view-subreddit">
-                        <div style="color: black; font-weight: bold; font-size: 15px; font-family: 'Rubik', sans-serif;">Watched Tags</div>
-                        <hr />
+                        <!-- <div style="color: black; font-weight: bold; font-size: 15px; font-family: 'Rubik', sans-serif;">Watched Tags</div>
+                        <hr /> -->
                         <h4 class="subreddit-text" style="cursor: pointer;" (click)="filterTag({tags: ''})"><a >Clear Tags</a></h4>
                         <hr />
+
+                        <div class="input-group">
+                          <input type = "search" [(ngModel)]="searchKeyTwo" class="form-control rounded col-md-2" placeholder="Search" aria-label="Search">
+                          <button type="button" (click)="filterFromSearch()" class="btn btn-primary">search</button>
+                        </div>
                         <!-- <span *ngFor="let item of allTags">
                             <span class="subreddit-text" (click)="filterTag(item)"><a >{{item.tags}} ({{item.count}})</a></span>
                             <hr />
                         </span> -->
+                        <br>
 
-                        <mat-chip-list aria-label="Fish selection" >
+                        <!-- <mat-chip-list aria-label="Fish selection" >
                           <mat-chip class="tags-chip" style="
                           color: #0095ff;
                           background-color: #a0d7ff;
-                          font-family: 'IBM Plex Sans', sans-serif; cursor: pointer;" *ngFor="let item of allTags">
+                          font-family: 'IBM Plex Sans', sans-serif; cursor: pointer;" *ngFor="let item of allTags | filter:searchKeyTwo: 'tags'">
                             <span class="subreddit-text" (click)="filterTag(item)"><a >{{item.tags}} ({{item.count}})</a></span>
                           </mat-chip>
-                        </mat-chip-list>
+                        </mat-chip-list> -->
+                        <div class="container">
+                        <span class="tags d-flex flex-wrap" *ngFor="let item of allTags | filter:searchKeyTwo: 'tags'">
+                            <span class="badge bg-info " (click)="filterTag(item)"><a>{{item.tags}} ({{item.count}})</a></span>
+                        </span>
+                      </div>
+
 
                     </div>
                       </div>

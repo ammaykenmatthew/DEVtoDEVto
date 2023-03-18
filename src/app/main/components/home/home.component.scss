@@ -285,6 +285,11 @@ mat-chip {
 /*For Loader -end*/
 
 
+.pager{
+  position: relative;
+  bottom:0%;
+}
+
 .pager1{
   margin-left: 3rem;
   margin-top: 2.8rem;
@@ -305,6 +310,8 @@ mat-chip {
 }
 
 .sidebar-view-subreddit {
+
+
   width: 312px;
   min-height: 30%;
   --post-line-color: #ccc;
@@ -318,6 +325,25 @@ mat-chip {
   padding: 5px;
   margin-top: 10px;
   margin-bottom: 10px;
+
+  .container{
+    display: flex;
+    flex-wrap: wrap;
+    .tags{
+      cursor: pointer;
+
+      display: inline-block;
+      font-size: 20px;
+      font-weight: 400;
+      line-height: 1.5;
+      padding: 0.25rem 0.4rem;
+      text-align: center;
+      vertical-align: middle;
+      white-space: nowrap;
+    }
+
+  }
+
 }
 
 .sidebar-view-subreddit {

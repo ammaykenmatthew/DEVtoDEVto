@@ -94,9 +94,9 @@
               <table mat-table [dataSource]="dataSource" matSort>
 
                 <!-- ID Column -->
-                <ng-container matColumnDef="id">
-                  <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
-                  <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+                <ng-container matColumnDef="number">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
+                  <td mat-cell *matCellDef="let row; let i = index"> {{i + 1 + (currentPage-1)*pageSize}} </td>
                 </ng-container>
 
                  <!-- Student Name Column -->
@@ -151,7 +151,8 @@
                 </tr>
               </table>
 
-              <mat-paginator [pageSizeOptions]="[10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+              <mat-paginator [pageSizeOptions]="[10, 25, 100]" aria-label="Select page of users" (page)="onPageChanged($event)"></mat-paginator>
+
             </div>
           </div>
         </div>

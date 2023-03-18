@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl,FormGroup,Validators,FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 import { AuthService } from '../services/auth.service';
 import { LoginUsers, Users} from '../services/data.schema';
 
@@ -93,15 +94,26 @@ export class LoginComponent implements OnInit {
           }
           console.log("Logged In Successfully");
         }
-      }), (error: any)=>{
-        alert(error);
+
+
+
+
+      }, (error: any)=>{
+
         console.log ("Error", error);
+        Swal.fire({
+          title: 'Please provide all the required values!',
+          text: 'Double check your credentials and try to login again',
+          icon: 'error',
+          confirmButtonText: 'OK',
+
+        })
         this.isLoading = false;
-      }
+      })
     } else {
       if (!this.frmGroup.valid){
               console.log('Please provide all the required values!')
-              return;
+          return;
       }
     }
   }

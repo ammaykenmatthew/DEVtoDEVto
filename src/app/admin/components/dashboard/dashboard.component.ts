@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, ViewChild, OnInit } from '@angular/core';
 import { MaterialModules } from 'src/app/modules/material.module';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
@@ -15,8 +15,12 @@ import { ViewPostComponent } from 'src/app/main/components/view-post/view-post.c
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements AfterViewInit {
+
+  currentPage =1;
+  pageSize =  5;
+
   displayedColumns: string[] = [
-    'id',
+    'number',
     'student_name',
     'student_program',
     'title',
@@ -92,5 +96,10 @@ export class DashboardComponent implements AfterViewInit {
         id: id,
       },
     });
+  }
+
+  onPageChanged(event: PageEvent) {
+    this.currentPage = event.pageIndex + 1;
+    this.pageSize = event.pageSize;
   }
 }

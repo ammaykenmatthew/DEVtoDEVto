@@ -24,6 +24,7 @@
 
 }
 .page-header{
+    // margin-left: 13px;
     margin-top: 1vh;
     height: 130px;
     width: 97vh;
@@ -75,12 +76,14 @@
   border-radius: 4px;
   padding:5px;
 
-  .tags-chip{
-    color: #1e293b;
-    background-color: #a0d7ff;
-    font-family: 'IBM Plex Sans', sans-serif;
-    border-radius: none;
-  }
+}
+
+.tags-chip{
+  color: #0095ff;
+  background-color: #a0d7ff;
+  font-family: 'IBM Plex Sans', sans-serif;
+  border-radius: none;
+
 }
 
 .btnCommments{
@@ -89,6 +92,7 @@
   opacity: 1;
   display: inline-flex;
   align-items: center;
+
 }
 button.login{
   background-color: #0a95ff;
@@ -118,6 +122,12 @@ button.login{
   color: #1e293b;
 }
 
+@media only screen and (max-width: 758px) {
+
+  .vote{
+    display: none;
+  }
+}
 
 
 
@@ -139,6 +149,12 @@ button.login{
 }
 .upvote:hover {
   color: green;
+}
+.done{
+  color:#002ead;
+}
+.doneDown{
+  color:red;
 }
 .downvote:hover {
   color: red;
@@ -172,13 +188,6 @@ button.login{
 }
 mat-chip {
   max-width: 200px;
-}
-
-@media only screen and (max-width: 758px) {
-
-  .vote{
-    display: none;
-  }
 }
 
 /*For Loader */
@@ -276,6 +285,11 @@ mat-chip {
 /*For Loader -end*/
 
 
+.pager{
+  position: relative;
+  bottom:0%;
+}
+
 .pager1{
   margin-left: 3rem;
   margin-top: 2.8rem;
@@ -294,3 +308,45 @@ mat-chip {
     font-family: 'Rubik', sans-serif;
   }
 }
+
+.sidebar-view-subreddit {
+
+
+  width: 312px;
+  min-height: 30%;
+  --post-line-color: #ccc;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+  overflow: hidden;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #878A8C;
+  position: relative;
+  border-radius: 4px;
+  padding: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+  .container{
+    display: flex;
+    flex-wrap: wrap;
+    .tags{
+      cursor: pointer;
+
+      display: inline-block;
+      font-size: 20px;
+      font-weight: 400;
+      line-height: 1.5;
+      padding: 0.25rem 0.4rem;
+      text-align: center;
+      vertical-align: middle;
+      white-space: nowrap;
+    }
+
+  }
+
+}
+
+.sidebar-view-subreddit {
+  min-height: 30%;
+}
+

@@ -151,7 +151,7 @@ button.login{
   color: green;
 }
 .done{
-  color:#002ead;
+  color:green;
 }
 .doneDown{
   color:red;
@@ -162,6 +162,11 @@ button.login{
 
 .votecount{
   font-weight: bold;
+}
+
+.vl{
+  border-right: 6px solid green;
+  height: 50px;
 }
 
 /*Display Total Questions*/

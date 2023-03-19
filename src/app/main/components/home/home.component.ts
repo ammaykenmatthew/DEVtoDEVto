@@ -9,6 +9,8 @@ import {
   faArrowDown,
   faComments,
   faSearch,
+  faCaretUp,
+  faCaretDown,
 } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -49,6 +51,8 @@ export class HomeComponent implements OnInit {
   faArrowDown = faArrowDown;
   faComments = faComments;
   faSearch = faSearch;
+  faCaretUp = faCaretUp;
+  faCaretDown = faCaretDown;
 
   // fname_fld:any;
 

@@ -27,13 +27,24 @@
       <div class="row post">
         <div class="col-md-1">
           <!-- vote button -->
+          <div class="p-2" >
+            <mat-icon class="accept done " data-bs-toggle="tooltip" data-bs-placement="top" title="Answer Accepted">done_outline</mat-icon>
+          </div>
+          <div class="p-2" >
+            <mat-icon class="accept" data-bs-toggle="tooltip" data-bs-placement="top" title="Mark as answered">done_outline</mat-icon>
+          </div>
+
         </div>
         <div class="col-md-10">
           <span>
             <span>
               <a >Posted by {{post.program_fld}} | {{post.fname_fld}} {{post.mname_fld}} {{post.lname_fld}} </a>
+
             </span>
+
             <span>at {{post.created_at|date:'MMM d, y h a'}}</span>
+
+            <!-- <button  type="button" class="btn btn-success">Answered</button> -->
           </span>
           <hr />
           <h4 style="color: black;" class="post-title">{{post.title}}</h4>

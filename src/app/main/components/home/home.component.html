@@ -71,22 +71,23 @@
                             <!-- <div class="p-2" *ngIf="post.votes_value == 0 && !post.votes_value">
                                 <fa-icon class="upvote" [icon]="faArrowUp" (click)="upVotes(post.user_id, post.id)"></fa-icon>
                             </div> -->
-                            <div class="p-2" *ngIf=" post.votestatus1?.votes_status ">
-                              <fa-icon class="upvote done" [icon]="faArrowUp" (click)="upVotes(post.user_id, post.id)"></fa-icon>
+                            <div class="p-2" *ngIf=" post.votestatus1?.votes_status" data-bs-placement="top" title="This post is helpful">
+                              <fa-icon class="upvote done" [icon]="faArrowUp" (click)="upVotes(post.user_id, post.id)"  ></fa-icon>
                           </div>
-                          <div class="p-2" *ngIf=" !post.votestatus1?.votes_status ">
-                            <fa-icon class="upvote" [icon]="faArrowUp" (click)="upVotes(post.user_id, post.id)"></fa-icon>
+                          <div class="p-2" *ngIf=" !post.votestatus1?.votes_status">
+                            <fa-icon class="upvote" [icon]="faArrowUp" (click)="upVotes(post.user_id, post.id)" ></fa-icon>
                           </div>
 
-                            <div class="p-2 votecount">{{post.upvote}}</div>
+                            <div class="p-2  votecount">{{post.upvote}}</div>
                             <br>
                             <div class="p-2 votecount">{{post.downvote}}</div>
-                            <div class="p-2" *ngIf="post.votestatus0?.votes_status ">
+
+                            <div class="p-2 " *ngIf="post.votestatus0?.votes_status ">
                                 <fa-icon class="downvote doneDown" [icon]="faArrowDown" (click)="downVotes(post.user_id, post.id)">
                                 </fa-icon>
                             </div>
-                            <div class="p-2" *ngIf="!post.votestatus0?.votes_status ">
-                              <fa-icon class="downvote " [icon]="faArrowDown" (click)="downVotes(post.user_id, post.id)">
+                            <div class="p-2 " *ngIf="!post.votestatus0?.votes_status " data-bs-placement="top" title="This post is not helpful">
+                              <fa-icon class="downvote " [icon]="faArrowDown" (click)="downVotes(post.user_id, post.id)" >
                               </fa-icon>
                           </div>
                             <!-- <div class="p-2" *ngIf="post.votes_value == 1 && !post.votes_value">

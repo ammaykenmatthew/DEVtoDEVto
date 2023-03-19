@@ -66,15 +66,28 @@
 
                         <div class="vote col-md-1">
                           <div class="d-flex flex-column votebox">
-                            <div class="p-2">
-                              Votes
+                            <div class="mr-2 mt-2" style="margin-right: 15px;">
+                             <a> Votes</a>
                             </div>
-                            <div class="p-2 votecount">{{post.votes}} </div>
-                            <div class="p-2">
 
+                            <div class="m-2 votecount">{{post.votes}} </div> <!-- Vote Count -->
+
+                            <div class="mr-2" style="margin-right: 15px;">
+                              Status
                             </div>
+                            <div class="m-2" style="margin-right: 15px;">
+                              <mat-icon class="accept done " data-bs-toggle="tooltip" data-bs-placement="top" title="Post has been answered">done_outline</mat-icon>
+                            </div>
+                            <div class="m-2" style="margin-right: 15px;">
+                              <mat-icon class="accept " data-bs-toggle="tooltip" data-bs-placement="top" title="Not yet answered">done_outline</mat-icon>
+                            </div>
+
+
+                            <!-- End -->
                         </div>
+
                         </div>
+
                         <div class="col-md-11">
                             <span>
                                 <span class="subreddit-text"></span>

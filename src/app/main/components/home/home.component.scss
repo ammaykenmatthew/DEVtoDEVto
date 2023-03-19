@@ -146,12 +146,13 @@ button.login{
 .upvote,.downvote {
   cursor: pointer;
   border-radius: 2px solid;
+
 }
 .upvote:hover {
   color: green;
 }
 .done{
-  color:#002ead;
+  color:green;
 }
 .doneDown{
   color:red;

@@ -55,7 +55,7 @@
             <!-- <img [src]="'http://127.0.0.1:8000/'+post.photo" style="height: auto; width:auto;" class="responsive" > -->
 
            <!-- <img [src]="'http://127.0.0.1:8000/'+post.photo" style="height: auto; width:auto;" class="responsive" > -->
-           <div  *ngIf="image+post.photo" class="imageData" style="height: auto; width:auto;" >
+           <div  *ngIf="post.photo" class="imageData" style="height: auto; width:auto;" >
             <img [src]="image+post.photo"  class="responsive" loading="lazy">
           </div>
           </div>
@@ -102,7 +102,7 @@
             <!-- <div class="comment" *ngFor="let comment of comments">
               <div *ngIf="comment === 0" style="font-size: 30px; font-family: 'IBM Plex Sans', sans-serif;"><h4>There are no comments found</h4></div>
               <div class="col-md-11"> Comment Content -->
-                <!-- <img [src]="'http://localhost:8000/'+comment.comments.profilepic_fld"  alt="" style="height: 35px; width: 35px; margin-right: 3px; margin-top: 5px; border-radius: 50%; border: 2px solid #878A8C;">
+                <!-- <img [src]="'https://gordoncollegeweb.com/capAPI/public/'+comment.comments.profilepic_fld"  alt="" style="height: 35px; width: 35px; margin-right: 3px; margin-top: 5px; border-radius: 50%; border: 2px solid #878A8C;">
               <span>
 
                 <span>
@@ -120,7 +120,7 @@
                 <div class="post-comment">
                   <div class="list">
                     <div class="user">
-                      <div class="user-image"><img [src]="'http://localhost:8000/'+comment.comments.profilepic_fld"  alt=""></div>
+                      <div class="user-image"><img [src]="'https://gordoncollegeweb.com/capAPI/public/'+comment.comments.profilepic_fld"  alt=""></div>
                       <div class="user-meta">
                         <div class="name">{{comment.comments.program_fld}} | {{comment.comments.fname_fld}} {{comment.comments.mname_fld}} {{comment.comments.lname_fld}} </div>
                         <div class="day">{{comment.comments.created_at|date:'MMM d, y - h a'}} </div>
@@ -141,7 +141,7 @@
               <!-- </span> -->
             <!-- <ng-container *ngIf="comment?.visible"> Reply Content -->
               <!-- <div class="commentReply" *ngFor="let rep of comment.reply">
-                <img [src]="'http://localhost:8000/'+rep.profilepic_fld" alt="" style="height: 35px; width: 35px; margin-right: 3px; margin-top: 5px; border-radius: 50%; border: 2px solid #878A8C;">
+                <img [src]="'https://gordoncollegeweb.com/capAPI/public/'+rep.profilepic_fld" alt="" style="height: 35px; width: 35px; margin-right: 3px; margin-top: 5px; border-radius: 50%; border: 2px solid #878A8C;">
                 <span>
                   <a > {{rep.program_fld}} | {{rep.fname_fld}} {{rep.mname_fld}} {{rep.lname_fld}} </a>
                 </span>
@@ -156,7 +156,7 @@
               <!--Form for Reply Content-->
               <!-- <form [formGroup]="replyForm" (ngSubmit)="replyComment(comment)">
               <div class="reply">
-                <img [src]="'http://localhost:8000/'+profilepic_fld" alt="" style=" display:flex; height: 30px; width: 30px; margin-right: 3px; border-radius: 50%; border: 2px solid #878A8C;">
+                <img [src]="'https://gordoncollegeweb.com/capAPI/public/'+profilepic_fld" alt="" style=" display:flex; height: 30px; width: 30px; margin-right: 3px; border-radius: 50%; border: 2px solid #878A8C;">
                 <input type="text" name="" class="form-control" [formControlName]="'replyContent'" placeholder="Write a reply..">
                 <button type="submit" >Submit</button>
               </div> -->
@@ -183,7 +183,7 @@
                 </div>
                 <a (click)="replyClick()">reply</a>
                 <div class="reply">
-                  <img [src]="'http://localhost:8000/'+profilepic_fld" alt="" style=" display:flex; height: 30px; width: 30px; margin-right: 3px; border-radius: 50%; border: 2px solid #878A8C;">
+                  <img [src]="'https://gordoncollegeweb.com/capAPI/public/'+profilepic_fld" alt="" style=" display:flex; height: 30px; width: 30px; margin-right: 3px; border-radius: 50%; border: 2px solid #878A8C;">
                   <input *ngIf="isEditing"   type="text" name="" class="form-control" [formControlName]="'replyContent'" placeholder="Write a reply..">
                   <button type="submit" >Submit</button>
                 </div>

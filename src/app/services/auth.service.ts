@@ -11,10 +11,10 @@ export class AuthService {
 
   // request = environment.request;
   //Not Hosted
-  private _url: string = 'http://localhost:8000/api/';
+  // private _url: string = 'http://localhost:8000/api/';
 
   //Hoster
-  // private _url: string = request;
+  private _url: string = environment.request;
 
   public search =new BehaviorSubject<string>("");
 

@@ -1,13 +1,13 @@
 export const environment = {
  //Not Hosted
-  request: 'http://localhost:8000/api/',
+  // request: 'http://localhost:8000/api/',
 
-  image: 'http://localhost:8000/',
+  // image: 'http://localhost:8000/',
 
  //Hosted
-  // request: 'gordoncollegeweb.com/capAPI/api/'
+  request: 'https://gordoncollegeweb.com/capAPI/public/api/',
 
-  // image: 'gordoncollegeweb.com/capAPI/',
-
+  image: 'https://gordoncollegeweb.com/capAPI/public/',
+  production: true
 
 };

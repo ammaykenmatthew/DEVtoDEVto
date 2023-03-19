@@ -161,6 +161,7 @@ export class ViewPostComponent implements OnInit {
   }
   dateCreated: any;
 
+
   mycomments!: Observable<Array<any>>;
   src: any = [];
   commentAction$ = new Subject<any>();
@@ -183,12 +184,6 @@ export class ViewPostComponent implements OnInit {
         );
 
         this.mycomments = this.commentStream$;
-        this.mycomments.subscribe({
-          next: (val) => {
-            console.log(val);
-          },
-        });
-        // console.log(this.comments);
       }),
       (error: any) => {
         alert('Error posting data...');

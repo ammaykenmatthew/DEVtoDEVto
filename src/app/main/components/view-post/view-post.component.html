@@ -97,9 +97,11 @@
             <!--Display Comments-->
 
             <div class="container2">
-            <div class="comment" *ngFor="let comment of comments">
+              <app-comment *ngFor="let c of mycomments | async" [comment]="c"></app-comment>
+
+            <!-- <div class="comment" *ngFor="let comment of comments">
               <div *ngIf="comment === 0" style="font-size: 30px; font-family: 'IBM Plex Sans', sans-serif;"><h4>There are no comments found</h4></div>
-              <div class="col-md-11"> <!--Comment Content-->
+              <div class="col-md-11"> Comment Content -->
                 <!-- <img [src]="'http://localhost:8000/'+comment.comments.profilepic_fld"  alt="" style="height: 35px; width: 35px; margin-right: 3px; margin-top: 5px; border-radius: 50%; border: 2px solid #878A8C;">
               <span>
 
@@ -114,7 +116,7 @@
                 <p style="background-color: #f7f9fa; font-family: 'Rubik', sans-serif;">{{comment.comments.content}}</p>
               </div>
               <hr> -->
-              <div class="comment-session">
+              <!-- <div class="comment-session">
                 <div class="post-comment">
                   <div class="list">
                     <div class="user">
@@ -127,18 +129,18 @@
                     <div class="comment-post">{{comment.comments.content}}</div>
                   </div>
                 </div>
-              </div>
+              </div> -->
 
 
                <!--End Comment Content-->
-              <span  style="display: flex;
+              <!-- <span  style="display: flex;
               align-items: center; color: #fda239; cursor: pointer; margin-left: 40px;">
                 <mat-icon> comment</mat-icon>
-                <a (click)="onClick(comment)">View Replies  ({{comment.reply}})</a>
+                <a (click)="onClick(comment)">View Replies  ({{comment.reply}})</a> -->
                 <!-- ({{comment.reply.length}}) -->
-              </span>
-            <ng-container *ngIf="comment?.visible"> <!--Reply Content-->
-              <div class="commentReply" *ngFor="let rep of comment.reply">
+              <!-- </span> -->
+            <!-- <ng-container *ngIf="comment?.visible"> Reply Content -->
+              <!-- <div class="commentReply" *ngFor="let rep of comment.reply">
                 <img [src]="'http://localhost:8000/'+rep.profilepic_fld" alt="" style="height: 35px; width: 35px; margin-right: 3px; margin-top: 5px; border-radius: 50%; border: 2px solid #878A8C;">
                 <span>
                   <a > {{rep.program_fld}} | {{rep.fname_fld}} {{rep.mname_fld}} {{rep.lname_fld}} </a>
@@ -149,22 +151,22 @@
                 </div>
               </div>
 
-              <hr>
+              <hr> -->
 
               <!--Form for Reply Content-->
-              <form [formGroup]="replyForm" (ngSubmit)="replyComment(comment)">
+              <!-- <form [formGroup]="replyForm" (ngSubmit)="replyComment(comment)">
               <div class="reply">
                 <img [src]="'http://localhost:8000/'+profilepic_fld" alt="" style=" display:flex; height: 30px; width: 30px; margin-right: 3px; border-radius: 50%; border: 2px solid #878A8C;">
                 <input type="text" name="" class="form-control" [formControlName]="'replyContent'" placeholder="Write a reply..">
                 <button type="submit" >Submit</button>
-              </div>
-            </form> <!--End of Form for Reply Content-->
-          </ng-container>
-          </div>
-        </div>
+              </div> -->
+            <!-- </form> End of Form for Reply Content -->
+          <!-- </ng-container> -->
+          <!-- </div> -->
+        <!-- </div> -->
           <!-- Outside of Comment Div -->
 
-          <div class="replies">
+          <!-- <div class="replies">
             <div class="main">
               <div class="left">
                 <button><</button>
@@ -187,10 +189,10 @@
                 </div>
               </div>
             </div>
-            <br/>
+            <br/> -->
             <!-- PUT REPLIES HERE -->
             <!-- <app-comment *ngFor="let c of comment.comments" [comment]="c"></app-comment> -->
-          </div>
+          <!-- </div> -->
 
           <!-- <div class="comment-section">
             <h3>Comments</h3>

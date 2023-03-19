@@ -1,0 +1,22 @@
+<div class="replies">
+	<div class="main">
+		<div class="left">
+			<button><</button>
+			<div>fewge{{comment.id}}</div>
+			<button>></button>
+		</div>
+		<div class="right">
+			<div class="detail">
+				<span class="user">{{comment.user_id}}</span>
+				<span class="date">{{comment.post_id}}</span>
+			</div>
+			<div class="comment">
+				<p>{{comment.content}}</p>
+			</div>
+			<!-- <a (click)="replyClick()">reply</a>
+			<app-comment-box (add)="onAdd($event)" *ngIf="isEditing"></app-comment-box> -->
+		</div>
+	</div>
+	<br/>
+	<app-comment *ngFor="let c of comment.comments" [comment]="c"></app-comment>
+</div>

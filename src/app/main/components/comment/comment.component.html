@@ -1,22 +1,28 @@
+
 <div class="replies">
 	<div class="main">
-		<div class="left">
-			<button><</button>
-			<div>fewge{{comment.id}}</div>
-			<button>></button>
-		</div>
+
 		<div class="right">
 			<div class="detail">
-				<span class="user">{{comment.user_id}}</span>
-				<span class="date">{{comment.post_id}}</span>
+        <span><img src="https://cdn-icons-png.flaticon.com/512/149/149071.png"></span>
+				<span class="user">Ken Matthew Ammay {{comment.user_id}}</span>
+				<span class="date">&bull; January 3, 2023 {{comment.post_id}}</span>
+
+        <!-- name -->
+        <!-- {{comment.comments.program_fld}} | {{comment.comments.fname_fld}} {{comment.comments.mname_fld}} {{comment.comments.lname_fld}} -->
+
+        <!-- date -->
+        <!-- {{comment.comments.created_at|date:'MMM d, y - h a'}} -->
 			</div>
 			<div class="comment">
 				<p>{{comment.content}}</p>
 			</div>
-			<!-- <a (click)="replyClick()">reply</a>
-			<app-comment-box (add)="onAdd($event)" *ngIf="isEditing"></app-comment-box> -->
+			<a (click)="replyClick()" style=" margin-left: 35px; cursor: pointer; font-size: 13px; font-style: system-ui; color: #666869;">Reply</a>
+      <br>
+			<app-comment-box (add)="onAdd($event)" *ngIf="isEditing"></app-comment-box>
 		</div>
 	</div>
 	<br/>
+  <!-- pre pwede 2 replies lng max makita tapos may show more replies na sa baba-->
 	<app-comment *ngFor="let c of comment.comments" [comment]="c"></app-comment>
 </div>

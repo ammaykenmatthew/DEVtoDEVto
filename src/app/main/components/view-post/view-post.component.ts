@@ -55,7 +55,8 @@ export class ViewPostComponent implements OnInit {
     private activateRoute: ActivatedRoute,
     private _location: Location,
     private formBuilder: FormBuilder,
-    public snackbar: MatSnackBar
+    public snackbar: MatSnackBar,
+    // @Inject(MAT_DIALOG_DATA) public post_id: {id: number},
   ) {}
 
   //EXTRA
@@ -64,6 +65,7 @@ export class ViewPostComponent implements OnInit {
   replyClick() {
     this.isEditing = !this.isEditing;
   }
+
 
   //EXTRA
 

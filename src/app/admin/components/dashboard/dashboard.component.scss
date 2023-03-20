@@ -61,3 +61,51 @@ table {
 }
 
 
+//charts
+* {
+  box-sizing: border-box;
+}
+
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 30px;
+  text-align: center;
+  gap: 10px;
+}
+
+.flex-item-left {
+ flex: 45%;
+}
+
+.flex-item-right {
+ flex: 45%;
+
+}
+
+/* Responsive layout - makes a one column-layout instead of a two-column layout */
+@media (max-width: 766px) {
+  .flex-item-right, .flex-item-left {
+    flex: 100%;
+
+  }
+  .chartData{
+    max-width: 100%;
+  }
+
+  .chartData2{
+    max-width: 100%;
+  }
+}
+
+.chartData{
+  max-height: 35vh;
+  max-width: 40vw;
+}
+
+.chartData2{
+
+  max-height: 35vh;
+  max-width: 40vw;
+}
+

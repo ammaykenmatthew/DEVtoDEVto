@@ -20,6 +20,9 @@ export class DashboardComponent implements AfterViewInit {
   @ViewChild('barCanvas') barCanvas: ElementRef | undefined;
   barChart: any;
 
+  @ViewChild('lineCanvas') lineCanvas: ElementRef | undefined;
+  lineChart: any;
+
   currentPage =1;
   pageSize =  5;
 
@@ -77,55 +80,71 @@ export class DashboardComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     this.barChartMethod();
+
+    this.lineChartMethod();
   }
 
+  lineChartMethod() {
+    this.lineChart = new Chart(this.lineCanvas?.nativeElement, {
+      type: 'line',
+      data: {
+        labels: [
+          'January',
+          'February',
+          'March',
+          'April',
+          'May',
+          'June',
+          'July',
+          'August',
+          'September',
+          'November',
+          'December',
+        ],
+        datasets: [
+          {
+            label: 'Post per month', //Von pagawa palagay kung gano kadami Post per Month
+          //  lineTension: 0.2,
+            fill: false,
+            backgroundColor: 'rgba(75,192,192,0.4)',
+            borderColor: 'rgba(75,192,192,1)',
+            borderCapStyle: 'butt',
+            borderDash: [],
+            borderDashOffset: 0.0,
+            borderJoinStyle: 'miter',
+            pointBorderColor: 'rgba(75,192,192,1)',
+            pointBackgroundColor: '#fff',
+            pointBorderWidth: 1,
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+            pointHoverBorderColor: 'rgba(220,220,220,1)',
+            pointHoverBorderWidth: 2,
+            pointRadius: 1,
+            pointHitRadius: 10,
+            data: [65, 59, 80, 81, 56, 55, 40, 10, 5, 50, 10, 15],
+            spanGaps: false,
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+         scales: {
+          x: {
+            ticks: {
+              display: true,
+            },
+          },
+          y: {
+            ticks: {
+              display: true,
+            },
+          },
+        },
+      },
+    });
+  }
 
-
-
-  // barChartMethod() {
-  //   this._apiService
-  //   .request('tags', '', '', 'get')
-  //   .subscribe((res: any) => {
-  //     console.log(res)
-  //   this.barChart = new Chart(this.barCanvas?.nativeElement, {
-  //     type: 'bar',
-  //     data: {
-  //       labels: ['BJP', 'INC', 'AAP', 'CPI', 'CPI-M', 'NCP'],
-  //       datasets: [
-  //         {
-  //           label: '# of Votes',
-  //           data: [200, 50, 30, 15, 20, 34],
-  //           backgroundColor: [
-  //             'rgba(255, 99, 132, 0.2)',
-  //             'rgba(54, 162, 235, 0.2)',
-  //             'rgba(255, 206, 86, 0.2)',
-  //             'rgba(75, 192, 192, 0.2)',
-  //             'rgba(153, 102, 255, 0.2)',
-  //             'rgba(255, 159, 64, 0.2)',
-  //           ],
-  //           borderColor: [
-  //             'rgba(255,99,132,1)',
-  //             'rgba(54, 162, 235, 1)',
-  //             'rgba(255, 206, 86, 1)',
-  //             'rgba(75, 192, 192, 1)',
-  //             'rgba(153, 102, 255, 1)',
-  //             'rgba(255, 159, 64, 1)',
-  //           ],
-  //           borderWidth: 1,
-  //         },
-  //       ],
-  //     },
-  //     options: {
-  //       scales: {
-  //         y: {
-  //           beginAtZero: true,
-  //         },
-  //       },
-  //     },
-  //   });
-  //   })
-
-  // }
 
   barChartMethod() {
     this._apiService
@@ -141,7 +160,7 @@ export class DashboardComponent implements AfterViewInit {
             labels,
             datasets: [
               {
-                label: '# of Tags',
+                label: 'No. of Tags ',
                 data,
                 backgroundColor: [
                   'rgba(255, 99, 132, 0.2)',
@@ -164,9 +183,18 @@ export class DashboardComponent implements AfterViewInit {
             ],
           },
           options: {
-            scales: {
+            responsive: true,
+            maintainAspectRatio: false,
+             scales: {
+              x: {
+                ticks: {
+                  display: true,
+                },
+              },
               y: {
-                beginAtZero: true,
+                ticks: {
+                  display: true,
+                },
               },
             },
           },

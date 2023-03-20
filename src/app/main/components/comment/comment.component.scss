@@ -1,3 +1,66 @@
 :host {
   display: block;
 }
+
+
+
+//COMMENTS REPLIES
+/* Add application styles & imports to this file! */
+.replies {
+  border-top: 1px solid #c3c3c3;
+    padding: 20px 5px;
+    border-radius: 2px;
+    display: block;
+    margin-left: 20px;
+
+}
+
+.main{
+  display: flex;
+
+}
+
+.right {
+  padding: 2px;
+  width: 100%;
+}
+
+.comment{
+  font-size: var(--reg-font-size);
+  text-align: justify;
+  font-style: system-ui;
+  word-break: break-all;
+  white-space: pre-line;
+  margin-left: 35px;
+  margin-bottom: 4px;
+  padding: 0 .5em .5em;
+  color: black;
+  background-color: #f7f9fa;
+
+}
+
+.detail {
+  padding: 2px
+}
+.detail .name{
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.detail img{
+  height: 38px;
+  width: 38px;
+  margin-right: 10px;
+  border-radius: 50%;
+  border: 2px solid #878A8C;
+}
+.user {
+  color: #6391fb;
+}
+
+.user+.date {
+  margin-left: 5px;
+  opacity: 0.6;
+}
+
+

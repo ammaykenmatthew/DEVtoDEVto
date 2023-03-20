@@ -13,8 +13,20 @@
                   <div class="card-body">
                     <div class="d-flex flex-column align-items-center text-center">
 
-                      <img [src]="'https://gordoncollegeweb.com/capAPI/public/'+profilepic_fld" style=" width: 100px;
-                          height: 100px; margin-top: 13px; border-radius: 50%; border: 2px solid #878A8C;" >
+
+                      <div  *ngIf="profilepic_fld == null " class="imageData" >
+                        <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="" style=" width: 100px;
+                        height: 100px; margin-top: 13px; border-radius: 50%; border: 2px solid #878A8C;">
+
+                      </div>
+
+                      <div  *ngIf="profilepic_fld" class="imageData" >
+                        <img [src]="image+profilepic_fld" style=" width: 100px;
+                        height: 100px; margin-top: 13px; border-radius: 50%; border: 2px solid #878A8C;" loading="lazy">
+                      </div>
+
+                      <!-- <img [src]="image+profilepic_fld" style=" width: 100px;
+                          height: 100px; margin-top: 13px; border-radius: 50%; border: 2px solid #878A8C;" > -->
                       <br>
                       <div class="mt-3">
                         <p class="text-secondary mb-2">{{fname_fld}} {{mname_fld}} {{lname_fld}}</p>

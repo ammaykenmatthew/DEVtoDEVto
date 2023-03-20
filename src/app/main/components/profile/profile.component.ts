@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ThemePalette} from '@angular/material/core';
 import {ProgressBarMode} from '@angular/material/progress-bar';
 import { AuthService } from 'src/app/services/auth.service';
+import { environment } from 'src/environments/environment.prod';
 
 
 @Component({
@@ -10,6 +11,8 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
+
+  image = environment.image;
 
   color: ThemePalette = 'primary';
   mode: ProgressBarMode = 'determinate';

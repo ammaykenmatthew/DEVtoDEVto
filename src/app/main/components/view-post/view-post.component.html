@@ -92,9 +92,11 @@
           </div>
         </div>
 
+        <!-- Von palagay number of comments  -->
             <hr/>
             <h4 style="font-size: 20px; color: black;">Comments</h4>
             <!--Display Comments-->
+
 
             <div class="container2">
               <app-comment *ngFor="let c of mycomments | async" [comment]="c"></app-comment>
@@ -193,153 +195,6 @@
             <!-- PUT REPLIES HERE -->
             <!-- <app-comment *ngFor="let c of comment.comments" [comment]="c"></app-comment> -->
           <!-- </div> -->
-
-          <!-- <div class="comment-section">
-            <h3>Comments</h3>
-            <div class="comment">
-              <div class="comment-avatar">
-                <img src="https://via.placeholder.com/50" alt="User Avatar">
-              </div>
-              <div class="comment-content">
-                <div class="comment-header">
-                  <h4 class="comment-author">John Doe</h4>
-                  <span class="comment-time">3 hours ago</span>
-                </div>
-                <p class="comment-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                <div class="comment-footer">
-                  <a href="" class="comment-reply-link">Reply</a>
-                </div>
-              </div>
-            </div>
-            <div class="comment reply">
-              <div class="comment-avatar">
-                <img src="https://via.placeholder.com/50" alt="User Avatar">
-              </div>
-              <div class="comment-content">
-                <div class="comment-header">
-                  <h4 class="comment-author">Jane Smith</h4>
-                  <span class="comment-time">2 hours ago</span>
-                </div>
-                <p class="comment-body">Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                <div class="comment-footer">
-                  <a href="" class="comment-reply-link">Reply</a>
-                </div>
-              </div>
-            </div>
-          </div> -->
-
-
-
-          <!-- Comments And Reply UI  -->
-          <!-- <!DOCTYPE html>
-<html>
-<head>
-<title>Page Title</title>
-</head>
-
-<style>
-.comment-section {
-  padding: 20px;
-  border: 1px solid #ccc;
-}
-
-.comment {
-  display: flex;
-  margin-bottom: 20px;
-}
-
-.comment-avatar {
-  margin-right: 10px;
-}
-
-.comment-avatar img {
-  border-radius: 50%;
-}
-
-.comment-content {
-  flex: 1;
-}
-
-.comment-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.comment-author {
-  margin: 0;
-  font-size: 16px;
-}
-
-.comment-time {
-  margin: 0;
-  font-size: 14px;
-}
-
-.comment-body {
-  margin: 10px 0;
-}
-
-.comment-footer {
-  display: flex;
-}
-
-.comment-reply-link {
-  margin-right: 10px;
-  font-size: 14px;
-  color: blue;
-}
-
-.reply {
-  margin-left: 50px;
-  border-left: 1px solid #ccc;
-  padding-left: 20px;
-}
-``
-
-</style>
-<body>
-
-<div class="comment-section">
-  <h3>Comments</h3>
-  <div class="comment">
-    <div class="comment-avatar">
-      <img src="https://via.placeholder.com/50" alt="User Avatar">
-    </div>
-    <div class="comment-content">
-      <div class="comment-header">
-        <h4 class="comment-author">John Doe</h4>
-        <span class="comment-time">3 hours ago</span>
-      </div>
-      <p class="comment-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-      <div class="comment-footer">
-        <a href="#" class="comment-reply-link">Reply</a>
-      </div>
-    </div>
-  </div>
-  <div class="comment reply">
-    <div class="comment-avatar">
-      <img src="https://via.placeholder.com/50" alt="User Avatar">
-    </div>
-    <div class="comment-content">
-      <div class="comment-header">
-        <h4 class="comment-author">Jane Smith</h4>
-        <span class="comment-time">2 hours ago</span>
-      </div>
-      <p class="comment-body">Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-      <div class="comment-footer">
-        <a href="#" class="comment-reply-link">Reply</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-</body>
-</html>
- -->
-
-
-
 
           </div>
         </div>

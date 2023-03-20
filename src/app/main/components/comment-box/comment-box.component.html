@@ -1,5 +1,15 @@
 <div class="comment-box">
-  <textarea [(ngModel)]="value"></textarea>
-  <button (click)="post()">post</button>
-  <button (click)="value = ''">cancel</button>
+
+  <textarea class="form-control" placeholder="Leave a comment here" [(ngModel)]="value">
+  </textarea>
+
+  <button type="submit" class="btn btn-primary" (click)="replyComment(comment)" >Post</button>
+  <button type="button" class="btn btn-danger" (click)="value = ''">Cancel</button>
+
+<!-- <div style="float: right; margin-bottom: -50%">
+  <button type="button" (click)="post()"  slot="end">
+  <mat-icon style="font-size: 30px;">send</mat-icon>
+  </button>
+</div> -->
+
 </div>

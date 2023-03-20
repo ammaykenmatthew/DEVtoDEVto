@@ -89,9 +89,10 @@ export class LoginComponent implements OnInit {
           if(res.user.role === "admin"){
             this.route.navigate(['/admin'],{replaceUrl:true});
           }
-          if(res.user.role === "student"){
-            this.route.navigate(['/main'],{replaceUrl:true});
+          else if (res.user.role === 'student' || res.user.role === 'moderator') {
+            this.route.navigate(['/main'], { replaceUrl: true });
           }
+
           console.log("Logged In Successfully");
         }
 

@@ -20,10 +20,16 @@
 }
 
 .header{
-  display: flex;
-  font-family: 'IBM Plex Sans', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 30px;
   color: black;
+  p{
+    font-style: 'Rubik', sans-serif;
+    font-size: 17px;
+    color: grey;
+    margin-left: 23px;
+    margin-top: 14px;
+  }
 
 }
 
@@ -33,9 +39,7 @@
     table-layout: fixed;
 
     td{
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+
       color: #1e293b;
       font-family: 'Poppins', sans-serif;
     }

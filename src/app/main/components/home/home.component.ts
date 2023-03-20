@@ -44,6 +44,7 @@ export class HomeComponent implements OnInit {
   fname_fld: any;
   mname_fld: any;
   lname_fld: any;
+  role:any;
 
   posts$: Array<any> = []; //why array? try not array
 
@@ -87,6 +88,7 @@ export class HomeComponent implements OnInit {
     this.fname_fld = fullData.fname_fld;
     this.mname_fld = fullData.mname_fld;
     this.lname_fld = fullData.lname_fld;
+    this.role = fullData.role;
 
     // const message = 'Welcome, ' + this.fname_fld + ' ' + this.mname_fld + ' ' +  this.lname_fld;
     // this.snackbar.open(message , '' , {
@@ -115,6 +117,10 @@ export class HomeComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  deletePostAsModerator(){
+
   }
 
   searchTags(){

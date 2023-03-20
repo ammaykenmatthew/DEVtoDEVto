@@ -8,6 +8,7 @@ import {MatTableDataSource} from '@angular/material/table';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { RegStudentComponent } from '../reg-student/reg-student.component';
+import { environment } from 'src/environments/environment.prod';
 
 
 @Component({
@@ -16,6 +17,8 @@ import { RegStudentComponent } from '../reg-student/reg-student.component';
   styleUrls: ['./add-student.component.scss']
 })
 export class AddStudentComponent implements OnInit {
+
+  image = environment.image;
 
   displayedColumns: string[] = ['studnum_fld', 'fname_fld', 'mname_fld', 'lname_fld', 'extname_fld', 'dept_fld', 'program_fld', 'profilepic_fld', 'created_at', ];
   dataSource!: MatTableDataSource<any>;

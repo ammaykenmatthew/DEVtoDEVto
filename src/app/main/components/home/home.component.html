@@ -120,6 +120,15 @@
                                       </button>
                                       <!-- Report -->
 
+                                       <!-- Delete AS MODERATOR -->
+                                       <div class="del" *ngIf="role === 'moderator'">
+                                       <button mat-menu-item>
+                                        <mat-icon style="color:red">delete_outline</mat-icon>
+                                        <span style="font-family: 'Poppins', sans-serif; color: red;" (click)="deletePostAsModerator()" >Delete</span>
+                                        </button>
+                                      </div>
+                                        <!-- Delete AS MODERATOR -->
+
                                     </mat-menu>
                                   </span></span>
                                 <span> - {{post.created_at|date:'MMM d, y h a'}}</span>

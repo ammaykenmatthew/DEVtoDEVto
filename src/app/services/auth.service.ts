@@ -61,7 +61,7 @@ export class AuthService {
   IsLoggedIn(){
     // return localStorage.getItem('token')!=null;
     let userRole = localStorage.getItem('role');
-    return userRole === 'student'
+    return userRole === 'student' || userRole === 'moderator';
   }
 
   IsLoggedInAdmin(){
@@ -69,6 +69,8 @@ export class AuthService {
     let userRole = localStorage.getItem('role');
     return userRole === 'admin'
   }
+
+
 
 
 

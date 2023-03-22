@@ -78,9 +78,9 @@
                             <div class="m-2" style="margin-right: 15px;">
                               <mat-icon class="accept done " data-bs-toggle="tooltip" data-bs-placement="top" title="Post has been answered">done_outline</mat-icon>
                             </div>
-                            <div class="m-2" style="margin-right: 15px;">
+                            <!-- <div class="m-2" style="margin-right: 15px;">
                               <mat-icon class="accept " data-bs-toggle="tooltip" data-bs-placement="top" title="Not yet answered">done_outline</mat-icon>
-                            </div>
+                            </div> -->
 
 
                             <!-- End -->
@@ -91,26 +91,66 @@
                         <div class="col-md-11">
                             <span>
                                 <span class="subreddit-text"></span>
-                                <span><a>Posted by {{post.program_fld}} | {{post.fname_fld}} {{post.mname_fld}} {{post.lname_fld}}  </a>
-                                  <span>
-                                    <button mat-icon-button [matMenuTriggerFor]="menu" style="float: right;">
-                                      <mat-icon>more_horiz</mat-icon>
+                                <div class="post-head">
+                                  <div  *ngIf="post.profilepic_fld == null " class="imageData" >
+                                    <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="" style=" height: 38px;
+                                    width: 38px;
+                                    margin-right: 10px;
+                                    border-radius: 50%;
+                                    border: 2px solid #878A8C;"
+                                    loading="lazy">
+
+                                  </div>
+
+                                  <div  *ngIf="post.profilepic_fld" class="imageData" >
+                                    <img [src]="image+post.profilepic_fld" style=" height: 38px;
+                                    width: 38px;
+                                    margin-right: 10px;
+                                    border-radius: 50%;
+                                    border: 2px solid #878A8C;" loading="lazy">
+                                  </div>
+
+                                  <div class="post-details">
+                                    <div class="badge" *ngIf="post.role === 'moderator'" style="height: 5px; width: 5px;">
+                                      <span class="badge badge-primary">Moderator</span>
+                                    </div>
+                                    <div class="name"> {{post.program_fld}} | {{post.fname_fld}} {{post.mname_fld}} {{post.lname_fld}}</div>
+                                    <div class="date"> {{post.created_at|date:'MMM d, y h a'}}</div>
+                                    <!-- post.created_at|dateAsAgo //shows Just Now  -->
+                                  </div>
+
+                                  <button mat-icon-button [matMenuTriggerFor]="menu"   style="float: right;">
+                                    <mat-icon>more_horiz</mat-icon>
+                                  </button>
+                                  <mat-menu #menu="matMenu">
+                                    <!-- Bookmarks -->
+                                    <button mat-menu-item>
+                                      <mat-icon>bookmarks</mat-icon>
+                                      <span style="font-family: 'Poppins', sans-serif;" (click)="setBookmark(post.id)">Save this post</span>
                                     </button>
-                                    <mat-menu #menu="matMenu">
-                                      <button mat-menu-item>
-                                        <mat-icon>bookmarks</mat-icon>
-                                        <span style="font-family: 'Poppins', sans-serif;" (click)="setBookmark(post.id)">Save this post</span>
+                                     <!-- Bookmarks -->
+
+                                    <!-- Report -->
+                                    <button mat-menu-item>
+                                    <mat-icon>flag</mat-icon>
+                                    <span style="font-family: 'Poppins', sans-serif;" (click)="reportPost(post.id)">Report</span>
+                                    </button>
+                                    <!-- Report -->
+
+                                     <!-- Delete AS MODERATOR -->
+                                     <div class="del" *ngIf="role === 'moderator'">
+                                     <button mat-menu-item>
+                                      <mat-icon style="color:red">delete_outline</mat-icon>
+                                      <span style="font-family: 'Poppins', sans-serif; color: red;" (click)="deletePostAsModerator(post.id)" >Delete</span>
                                       </button>
-                                         <!-- Report -->
-                                         <button mat-menu-item>
-                                          <mat-icon>flag</mat-icon>
-                                          <span style="font-family: 'Poppins', sans-serif;" (click)="reportPost(post.id)">Report</span>
-                                          </button>
-                                          <!-- Report -->
-                                    </mat-menu>
-                                  </span></span>
-                                <span> - {{post.created_at|dateAsAgo}}</span>
-                                <!-- post.created_at|dateAsAgo //shows Just Now  -->
+                                    </div>
+                                      <!-- Delete AS MODERATOR -->
+
+                                  </mat-menu>
+
+                                  <!-- <a> {{post.program_fld}} | {{post.fname_fld}} {{post.mname_fld}} {{post.lname_fld}}  </a> -->
+
+                                </div>
 
 
 

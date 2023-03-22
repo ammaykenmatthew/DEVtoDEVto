@@ -4,6 +4,7 @@ import {ProgressBarMode} from '@angular/material/progress-bar';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-bookmarks',
@@ -11,6 +12,8 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./bookmarks.component.scss']
 })
 export class BookmarksComponent implements OnInit {
+
+  image = environment.image;
 
   durationInSeconds = 2;
 

@@ -26,7 +26,10 @@
       </mat-form-field>
       </div>
     <div class="bookmarks" *ngFor="let book of bookmarks?.bookmarks">
-
+      <div *ngIf="bookmarks.length === 0" style=" display: flex; align-items: center; font-size: 50px; font-family: 'IBM Plex Sans', sans-serif;">
+        No records found
+      </div>
+      <!-- show if theres no record existing -->
 
        <mat-card class="example-card">
         <span style="margin-left: 150px;">
@@ -41,11 +44,11 @@
           </mat-menu>
         </span>
         <div class="image">
-          <img [src]="'http://127.0.0.1:8000/'+book?.photo" style="height: 110px; width:110px;"  >
+          <img [src]="image+book?.photo" style="height: 110px; width:110px;"  >
         </div>
         <div class="content">
           <mat-card-header >
-            <!-- routerLink="main/view-post/{{book.id}}" -->
+
             <mat-card-title  style=" font-family: 'IBM Plex Sans', sans-serif; ">
               <a style="display: -webkit-box;
               overflow : hidden;
@@ -66,6 +69,18 @@
           </mat-card-actions>
 
         </mat-card>
+<!--
+        <div class="card-container">
+          <mat-card class="card" *ngFor="let book of bookmarks?.bookmarks">
+            <img mat-card-image [src]="image+book?.photo" alt="">
+            <mat-card-content>
+              <h2 mat-card-title>{{ book?.title }}</h2>
+              <mat-card-subtitle >{{book?.tags}}</mat-card-subtitle>
+              <p mat-card-subtitle>{{ book?.description }}</p>
+            </mat-card-content>
+          </mat-card>
+        </div> -->
+
       </div>
       <br>
   </div>

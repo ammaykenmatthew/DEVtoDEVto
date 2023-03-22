@@ -63,9 +63,18 @@
           <td mat-cell *matCellDef="let row"> {{row.program_fld}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="profilepic_fld">
+        <ng-container matColumnDef="profilepic_fld" >
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Profile Pic</th>
-          <td mat-cell *matCellDef="let row"> <img [src]="image+row.profilepic_fld" style="height: 50px; width:50px; border-radius: 50%;"> </td>
+          <td mat-cell *matCellDef="let row" >
+          <div class=""  *ngIf="row.profilepic_fld != null">
+            <img [src]="image+row.profilepic_fld" style="height: 50px; width:50px; border-radius: 50%;">
+          </div>
+          <div class="div" *ngIf="row.profilepic_fld == null">
+            <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+            style="height: 50px; width:50px; border-radius: 50%;">
+          </div>
+          </td>
+
         </ng-container>
 
 

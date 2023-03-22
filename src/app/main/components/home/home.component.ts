@@ -16,6 +16,8 @@ import { AuthService } from 'src/app/services/auth.service';
 
 import { SearchPipe } from 'src/app/shared/filter.pipe';
 import { ReportComponent } from '../report/report.component';
+import Swal from 'sweetalert2';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-home',
@@ -31,6 +33,8 @@ export class HomeComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
+  image = environment.image;
+
   durationInSeconds = 2;
 
   //*Search KEY
@@ -40,6 +44,7 @@ export class HomeComponent implements OnInit {
 
   filteredList : any = [];
 
+  profilepic_fld:any;
   email_add: any;
   fname_fld: any;
   mname_fld: any;
@@ -84,6 +89,7 @@ export class HomeComponent implements OnInit {
     console.log(JSON.parse(retrievedData));
     let fullData: any = JSON.parse(retrievedData);
 
+    this.profilepic_fld = fullData.profilepic_fld;
     this.email_add = fullData.email_add;
     this.fname_fld = fullData.fname_fld;
     this.mname_fld = fullData.mname_fld;
@@ -119,8 +125,33 @@ export class HomeComponent implements OnInit {
     );
   }
 
-  deletePostAsModerator(){
+  deletedData:any;
+  deletePostAsModerator(id: any){
+    Swal.fire({
+      title: 'Delete Post?',
+      text: 'Are you sure you want to delete this post?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'Cancel'
+    }).then((result) => {
+      if (result.value) {
+        this._apiService.request('deletePost/'+id, '', '', 'delete').subscribe((res:any ) =>{
 
+          this.deletedData = res;
+          window.location.reload();
+          const message = 'Deleted Succesfully!';
+            this.snackbar.open(message , '' , {
+              duration: this.durationInSeconds * 1000,
+            });
+
+        },(error: any)=>{
+          console.log ("Error", error);
+         });
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+
+      }
+    })
   }
 
   searchTags(){
@@ -255,11 +286,12 @@ export class HomeComponent implements OnInit {
     this.route.navigateByUrl('main/view-post/' + id);
   }
 
+  //OPEN POST FORM DIALOG
   openDialog() {
     this.dialog.open(PostFormComponent, {
       width: '98vh',
-
       maxWidth: '100vw',
+
     });
   }
 

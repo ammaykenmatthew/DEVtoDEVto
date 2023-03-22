@@ -64,6 +64,35 @@
 
 //POST
 
+.post-head {
+  display: flex;
+  align-items: center;
+}
+
+.post-details {
+  flex-grow: 1;
+  margin-right: 10px;
+}
+
+.name {
+  font-family: 'Rubik', sans-serif;
+  font-weight: 500 ;
+  opacity: 1;
+  color: #1e293b;
+}
+
+.date {
+  font-size: 14px;
+  color: #aaa;
+}
+
+.post-content {
+  margin-top: 10px;
+}
+
+
+//POST
+
 .post{
   --post-line-color: #ccc;
   border: 1px solid #ccc;

@@ -115,7 +115,7 @@
                                       <span class="badge badge-primary">Moderator</span>
                                     </div>
                                     <div class="name"> {{post.program_fld}} | {{post.fname_fld}} {{post.mname_fld}} {{post.lname_fld}}</div>
-                                    <div class="date"> {{post.created_at|date:'MMM d, y h a'}}</div>
+                                    <div class="date"> {{post.created_at|date:'MMM d, y &bull; h a'}}</div>
                                     <!-- post.created_at|dateAsAgo //shows Just Now  -->
                                   </div>
 
@@ -213,19 +213,20 @@
                         </span> -->
                         <br>
 
-                        <!-- <mat-chip-list aria-label="Fish selection" >
+                        <mat-chip-list aria-label="Fish selection" >
                           <mat-chip class="tags-chip" style="
                           color: #0095ff;
                           background-color: #a0d7ff;
                           font-family: 'IBM Plex Sans', sans-serif; cursor: pointer;" *ngFor="let item of allTags | filter:searchKeyTwo: 'tags'">
                             <span class="subreddit-text" (click)="filterTag(item)"><a >{{item.tags}} ({{item.count}})</a></span>
                           </mat-chip>
-                        </mat-chip-list> -->
-                        <div class="container">
+                        </mat-chip-list>
+
+                        <!-- <div class="container">
                         <span class="tags d-flex flex-wrap" *ngFor="let item of allTags | filter:searchKeyTwo: 'tags'">
                             <span class="badge bg-info " (click)="filterTag(item)"><a>{{item.tags}} ({{item.count}})</a></span>
                         </span>
-                      </div>
+                      </div> -->
 
 
                     </div>

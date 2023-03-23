@@ -258,23 +258,6 @@ export class HomeComponent implements OnInit {
           element.tags = this.returnTags(element.tags);
         });
 
-        // this.posts$ = this.posts$.filter((value, index, self) =>
-        // index === self.findIndex((t) => (
-        //   t.id=== value.id
-        // ))
-        // )
-
-        // let temp : any= []
-        // let ctr = 0;
-        // //limit
-        // this.posts$.forEach(element => {
-        //   if (ctr < limit) {
-        //    temp.push(element)
-        //   }
-        //   ctr++;
-        // });
-
-        // this.posts$ = temp;
         this.showLoader = false;
       });
   }
@@ -322,4 +305,8 @@ export class HomeComponent implements OnInit {
     this.getAllData();
   }
   /*Pagination */
+
+
+
+
 }

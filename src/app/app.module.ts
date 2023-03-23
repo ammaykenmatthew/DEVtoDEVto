@@ -20,6 +20,7 @@ import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontaweso
 import { faComment, faHouse } from '@fortawesome/free-solid-svg-icons';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { QuillModule } from 'ngx-quill';
 
 
 @NgModule({

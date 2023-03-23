@@ -4,7 +4,8 @@ export const environment = {
 
   image: 'http://localhost:8000/',
 
- //Hosted
+//  Hosted
+
   // request: 'https://gordoncollegeweb.com/capAPI/public/api/',
 
   // image: 'https://gordoncollegeweb.com/capAPI/public/',

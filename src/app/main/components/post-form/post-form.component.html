@@ -11,10 +11,18 @@
 
   <label for=""><h1>Description</h1></label>
   <p style="color: #878A8C; font-size: 15px;">Describe what you tried, what you expected to happen, and what actually resulted. </p>
-    <mat-form-field appearance="fill" >
+    <!-- <mat-form-field appearance="fill" >
           <mat-label></mat-label>
               <textarea style="height: 180px;" formControlName="description" matInput placeholder="..." class="form-control" formControlName="description"></textarea>
-    </mat-form-field>
+    </mat-form-field> -->
+
+    <quill-editor
+    [modules]="quillConfig"
+    placeholder="Enter Text"
+    formControlName="description"
+    class="form-control"></quill-editor>
+
+    <br>
 
   <label for=""><h1>Upload an Image</h1></label>
   <p style="color: #878A8C; font-size: 15px;">Upload an example screenshot of the error.</p>

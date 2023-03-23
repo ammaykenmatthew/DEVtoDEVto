@@ -25,6 +25,7 @@ import { QuestComponent } from './components/quest/quest.component';
 import { ReportComponent } from './components/report/report.component';
 import { CommentBoxComponent } from './components/comment-box/comment-box.component';
 import { CommentComponent } from './components/comment/comment.component';
+import { QuillModule } from 'ngx-quill';
 
 // import { MainRoutingModule } from "./main-routing.module";
 // import { QuestionsComponent } from './components/questions/questions.component';
@@ -51,6 +52,7 @@ import { CommentComponent } from './components/comment/comment.component';
     ReportComponent,
     CommentBoxComponent,
     CommentComponent,
+
   ],
   imports: [
     CommonModule,
@@ -60,6 +62,7 @@ import { CommentComponent } from './components/comment/comment.component';
     MainRoutingModule, // lagi meron ditong import ng MainRoutingModule
     FontAwesomeModule,
     NgxPaginationModule,
+    QuillModule,
   ],
 })
 export class MainModule {}

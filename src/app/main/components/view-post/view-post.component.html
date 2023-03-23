@@ -50,7 +50,11 @@
           <h4 style="color: black;" class="post-title">{{post.title}}</h4>
           <hr />
           <div>
-            <p class="post-text">{{post.description}}</p>
+            <!-- <p class="post-text">{{post.description}}</p> -->
+            <!-- <pre><code [innerHTML]="post.description"></code></pre> -->
+            <div [innerHTML]="post.description" style="color: black;"></div>
+
+            <!-- <code [innerHTML]="post.description"></code> -->
             <!-- <img [src]="image+post.photo" style="height: auto; width:auto;" class="responsive" > -->
             <!-- <img [src]="'http://127.0.0.1:8000/'+post.photo" style="height: auto; width:auto;" class="responsive" > -->
 

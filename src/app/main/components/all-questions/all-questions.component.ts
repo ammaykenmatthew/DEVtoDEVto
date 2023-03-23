@@ -239,7 +239,7 @@ export class AllQuestionsComponent implements OnInit {
 
     this.showLoader = true;
     this._apiService
-      .request('showAll/' + id + '/' + tag, '', this.posts$, 'get')
+    .request('showAllGlobal/' + id + '/' + tag, '', this.posts$, 'get')
       .subscribe((res: any) => {
         console.log(res);
 

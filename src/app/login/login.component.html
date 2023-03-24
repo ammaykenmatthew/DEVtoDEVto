@@ -1,5 +1,5 @@
 
-<div class="main-div" >
+<!-- <div class="main-div" >
   <div class="container">
       <div class="img-container">
           <img src="assets/images/dev2dev.png" class="img"/>
@@ -7,7 +7,7 @@
       <div class="text-container">
         <h1><strong> GC Dev2Dev</strong></h1>
         <p>Gordon College - College of Computer Studies</p>
-        <!-- <p class="text">V1.0</p> -->
+
           </div>
           <br>
   <form class="form-fld" (ngSubmit)="onSubmit($event)"  [formGroup]="frmGroup" ngNativeValidate  >
@@ -44,7 +44,52 @@
 <div class="footer">
   <span> Copyright 2023 &copy; Team Basics </span>
 </div>
+  </div> -->
+  <div class="main-div">
+    <div class="container">
+      <div class="img-container">
+        <img src="assets/images/dev2dev.png" class="img" alt="Dev2Dev Image"/>
+      </div>
+      <div class="text-container">
+        <h1><strong>GC Dev2Dev</strong></h1>
+        <p>Gordon College - College of Computer Studies</p>
+      </div>
+      <form class="form-fld" (ngSubmit)="onSubmit($event)" [formGroup]="frmGroup" ngNativeValidate>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-icon matPrefix>email</mat-icon>
+          <mat-label>Email</mat-label>
+          <input type="email" #name matInput formControlName="email_add" id="email" required/>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-icon matPrefix>lock</mat-icon>
+          <mat-label>Password</mat-label>
+          <input [type]="hide ? 'password' : 'text'" matInput formControlName="pword_fld" id="password" required />
+          <span mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </span>
+        </mat-form-field>
+
+        <button mat-raised-button type="submit" [disabled]="frmGroup.invalid" class="button">Login</button>
+        <mat-spinner *ngIf="isLoading" class="spinner" [diameter]="50"></mat-spinner>
+
+
+        <div class=" d-flex flex-column align-items-center">
+          <small class="text-center">
+            <p>By clicking the login button, you recognize the authority of Gordon College to process your personal and sensitive information,
+              pursuant to the <a href="https://gordoncollegeccs.edu.ph/datapolicy/">Gordon College General Privacy Notice</a> and applicable laws.</p>
+          </small>
+        </div>
+
+
+      </form>
+      <router-outlet></router-outlet>
+    </div>
+    <div class="footer">
+      <span>Copyright 2023 &copy; Team Basics</span>
+    </div>
   </div>
+
 
 
 

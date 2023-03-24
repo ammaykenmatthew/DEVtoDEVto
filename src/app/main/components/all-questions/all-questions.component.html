@@ -75,12 +75,12 @@
                             <div class="mr-2" style="margin-right: 15px;">
                               Status
                             </div>
-                            <div class="m-2" style="margin-right: 15px;">
+                            <div class="m-2" style="margin-right: 15px;" *ngIf="post.status == 'Accepted'">
                               <mat-icon class="accept done " data-bs-toggle="tooltip" data-bs-placement="top" title="Post has been answered">done_outline</mat-icon>
                             </div>
-                            <!-- <div class="m-2" style="margin-right: 15px;">
+                            <div class="m-2" style="margin-right: 15px;" *ngIf="post.status == 'Pending'">
                               <mat-icon class="accept " data-bs-toggle="tooltip" data-bs-placement="top" title="Not yet answered">done_outline</mat-icon>
-                            </div> -->
+                            </div>
 
 
                             <!-- End -->
@@ -144,8 +144,21 @@
                                       <span style="font-family: 'Poppins', sans-serif; color: red;" (click)="deletePostAsModerator(post.id)" >Delete</span>
                                       </button>
                                     </div>
-                                      <!-- Delete AS MODERATOR -->
 
+                                      <!-- cLOSE AS MODERATOR -->
+                                      <div class="del" *ngIf="role === 'moderator' && post.post_status =='open'">
+                                        <button mat-menu-item>
+                                         <mat-icon style="color:red">close_outline</mat-icon>
+                                         <span style="font-family: 'Poppins', sans-serif; color: red;" (click)="closePost(post)" >Close</span>
+                                         </button>
+                                       </div>
+                                      <!-- Open AS MODERATOR -->
+                                      <div class="del" *ngIf="role === 'moderator' && post.post_status =='close'">
+                                        <button mat-menu-item>
+                                         <mat-icon style="color:red">open_outline</mat-icon>
+                                         <span style="font-family: 'Poppins', sans-serif; color: red;" (click)="openPost(post)" >Open</span>
+                                         </button>
+                                       </div>
                                   </mat-menu>
 
                                   <!-- <a> {{post.program_fld}} | {{post.fname_fld}} {{post.mname_fld}} {{post.lname_fld}}  </a> -->

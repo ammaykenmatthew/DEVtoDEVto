@@ -8,6 +8,7 @@ import { Comment } from './comment.model';
 })
 export class CommentComponent implements OnInit {
   @Input() comment?: any;
+  @Input() post_status?: any;
   isEditing = false;
   constructor() {}
 
@@ -20,16 +21,12 @@ export class CommentComponent implements OnInit {
   }
 
   onAdd($event: any) {
-    const comment: Comment = {
-      text: $event,
-      username: 'Kevin',
-      votes: 0,
-      date: '1 min ago',
-    };
+    console.log($event);
+
     if (!this.comment.comments) {
       this.comment.comments = [];
     }
-    this.comment.comments.unshift(comment);
+    this.comment.comments.unshift($event);
     this.isEditing = false;
   }
 }

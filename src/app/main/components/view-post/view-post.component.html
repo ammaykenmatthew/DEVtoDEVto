@@ -25,12 +25,12 @@
 
     <div class="col-md-9">
       <div class="row post">
-        <div class="col-md-1">
+        <div class="col-md-1" *ngIf="id === post.user_id">
           <!-- vote button -->
-          <!-- <div class="p-2" >
+          <div class="p-2" *ngIf="post.status == 'Accepted'" (click)="unmarkAsAnswered(post)">
             <mat-icon class="accept done " data-bs-toggle="tooltip" data-bs-placement="top" title="Answer Accepted">done_outline</mat-icon>
-          </div> -->
-          <div class="p-2" >
+          </div>
+          <div class="p-2" *ngIf="post.status == 'Pending'" (click)="markAsAnswered(post)">
             <mat-icon class="accept" data-bs-toggle="tooltip" data-bs-placement="top" title="Mark as answered">done_outline</mat-icon>
           </div>
 
@@ -83,13 +83,13 @@
               margin-bottom: 5px;
               margin-right: 10px;
               color: white;
-              background-color: #0a95ff;
+              background-color: {{post.post_status =='close' ? '#0a95ff95' : '#0a95ff' }};
               width: 130px;
               height: 35px;
               border: none;
               border-radius: 12px;"
 
-              class="login float-right">Comment</button>
+              class="login float-right" [disabled]="post.post_status =='close'">Comment</button>
             </div>
           </form>
           <!-- Yung comment button dapat nakapaloob sa form para gumana -->
@@ -103,7 +103,7 @@
 
 
             <div class="container2">
-              <app-comment *ngFor="let c of mycomments | async" [comment]="c"></app-comment>
+              <app-comment *ngFor="let c of mycomments | async" [post_status]="post.post_status" [comment]="c"></app-comment>
 
             <!-- <div class="comment" *ngFor="let comment of comments">
               <div *ngIf="comment === 0" style="font-size: 30px; font-family: 'IBM Plex Sans', sans-serif;"><h4>There are no comments found</h4></div>

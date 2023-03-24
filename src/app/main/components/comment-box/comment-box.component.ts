@@ -1,10 +1,10 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { Comments } from 'src/app/services/data.schema';
-import {Location} from '@angular/common';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-comment-box',
@@ -13,11 +13,11 @@ import {Location} from '@angular/common';
 })
 export class CommentBoxComponent implements OnInit {
   @Output() add = new EventEmitter<string>();
+  @Input() commentdata!: any;
   value!: string;
 
   durationInSeconds = 2;
 
-  comment:any;
   commentForm!: FormGroup;
   replyForm!: FormGroup;
   comments$$: Array<Comments> = [];
@@ -27,13 +27,14 @@ export class CommentBoxComponent implements OnInit {
     private activateRoute: ActivatedRoute,
     private _location: Location,
     private formBuilder: FormBuilder,
-    public snackbar: MatSnackBar,
+    public snackbar: MatSnackBar
   ) {}
 
   ngOnInit() {
     this.replyForm = this.formBuilder.group({
       replyContent: ['', Validators.required],
     });
+    console.log(this.commentdata);
   }
 
   post() {
@@ -43,37 +44,34 @@ export class CommentBoxComponent implements OnInit {
     }
   }
 
-replyComment(comment: any) {
-  let retrievedData = localStorage.getItem('userdata') as unknown as string;
-  let fullData: any = JSON.parse(retrievedData);
+  replyComment() {
+    let retrievedData = localStorage.getItem('userdata') as unknown as string;
+    let fullData: any = JSON.parse(retrievedData);
 
-  let user_id = fullData.id;
+    let user_id = fullData.id;
 
-  if (this.replyForm.valid) {
-    this._apiService
-      .request(
-        'createReply/' + user_id + '/' + comment.comments.id,
-        '',
-        this.replyForm.value,
-        'post'
-      )
-      .subscribe((res: any) => {
-        this.comments$$ = res;
-        this.replyForm.reset();
+    if (this.value) {
+      this._apiService
+        .request(
+          'storeComment/' + user_id + '/' + this.commentdata.post_id,
+          '',
+          { content: this.value, parent_id: this.commentdata.id },
+          'post'
+        )
+        .subscribe((res: any) => {
+          console.log(res);
 
+          this.add.emit(res.comment);
 
-        console.log(this.replyForm.value);
-
-        const message = 'Commented sucessfully!';
-        this.snackbar.open(message, '', {
-          duration: this.durationInSeconds * 1000,
-        });
-      }),
-      (error: any) => {
-        alert('Error posting data...');
-        console.log('Error posting data', error);
-      };
+          const message = 'Commented sucessfully!';
+          this.snackbar.open(message, '', {
+            duration: this.durationInSeconds * 1000,
+          });
+        }),
+        (error: any) => {
+          alert('Error posting data...');
+          console.log('Error posting data', error);
+        };
+    }
   }
-}
-
 }

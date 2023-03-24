@@ -1,10 +1,15 @@
-import { Component, OnInit, ViewChild} from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import {MatPaginator} from '@angular/material/paginator';
+import { MatPaginator } from '@angular/material/paginator';
 import { PostFormComponent } from '../post-form/post-form.component';
 import { Router } from '@angular/router';
-import {faArrowUp, faArrowDown, faComments, faSearch} from '@fortawesome/free-solid-svg-icons';
+import {
+  faArrowUp,
+  faArrowDown,
+  faComments,
+  faSearch,
+} from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from 'src/app/services/auth.service';
 
 import { SearchPipe } from 'src/app/shared/filter.pipe';
@@ -15,7 +20,7 @@ import { environment } from 'src/environments/environment.prod';
 @Component({
   selector: 'app-all-questions',
   templateUrl: './all-questions.component.html',
-  styleUrls: ['./all-questions.component.scss']
+  styleUrls: ['./all-questions.component.scss'],
 })
 export class AllQuestionsComponent implements OnInit {
   title = 'pagination';
@@ -33,15 +38,15 @@ export class AllQuestionsComponent implements OnInit {
   //*Search KEY
   searchKey: string = '';
 
-  searchKeyTwo: string ='';
+  searchKeyTwo: string = '';
 
-  filteredList : any = [];
+  filteredList: any = [];
 
   email_add: any;
   fname_fld: any;
   mname_fld: any;
   lname_fld: any;
-  role:any;
+  role: any;
 
   posts$: Array<any> = []; //why array? try not array
 
@@ -56,21 +61,20 @@ export class AllQuestionsComponent implements OnInit {
     public snackbar: MatSnackBar,
     private dialog: MatDialog,
     private _apiService: AuthService,
-    private route: Router,
-
+    private route: Router
   ) {}
 
-  filterFromSearch(){
-    this.allTags = this.filteredList
-    this.allTags = this.allTags.filter((o:any) =>
-    Object.keys(o).some((k:any) => {
-      if (k == 'id' || k == 'remember_token' || 'tags'){
-        return this.allTags;
-      }else {
-        return o[k].toLowerCase().includes(this.searchKeyTwo.toLowerCase())
-      }
-    }
-    ));
+  filterFromSearch() {
+    this.allTags = this.filteredList;
+    this.allTags = this.allTags.filter((o: any) =>
+      Object.keys(o).some((k: any) => {
+        if (k == 'id' || k == 'remember_token' || 'tags') {
+          return this.allTags;
+        } else {
+          return o[k].toLowerCase().includes(this.searchKeyTwo.toLowerCase());
+        }
+      })
+    );
   }
 
   allTags: any[] = [];
@@ -114,40 +118,72 @@ export class AllQuestionsComponent implements OnInit {
     );
   }
 
-  deletedData:any;
-  deletePostAsModerator(id: any){
+  deletedData: any;
+  deletePostAsModerator(id: any) {
     Swal.fire({
       title: 'Delete Post?',
       text: 'Are you sure you want to delete this post?',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Yes, delete it!',
-      cancelButtonText: 'Cancel'
+      cancelButtonText: 'Cancel',
     }).then((result) => {
       if (result.value) {
-        this._apiService.request('deletePost/'+id, '', '', 'delete').subscribe((res:any ) =>{
-
-          this.deletedData = res;
-          window.location.reload();
-          const message = 'Deleted Succesfully!';
-            this.snackbar.open(message , '' , {
-              duration: this.durationInSeconds * 1000,
-            });
-
-        },(error: any)=>{
-          console.log ("Error", error);
-         });
+        this._apiService
+          .request('deletePost/' + id, '', '', 'delete')
+          .subscribe(
+            (res: any) => {
+              this.deletedData = res;
+              window.location.reload();
+              const message = 'Deleted Succesfully!';
+              this.snackbar.open(message, '', {
+                duration: this.durationInSeconds * 1000,
+              });
+            },
+            (error: any) => {
+              console.log('Error', error);
+            }
+          );
       } else if (result.dismiss === Swal.DismissReason.cancel) {
-
       }
-    })
+    });
   }
 
+  closePost(post: any) {
+    this._apiService
+      .request('setPostStatus/' + post.id + '/' + 'close', '', '', 'post')
+      .subscribe(
+        (res: any) => {
+          post.post_status = 'close';
+          this.snackbar.open(res.message, '', {
+            duration: this.durationInSeconds * 1000,
+          });
+        },
+        (error: any) => {
+          console.log('Error', error);
+        }
+      );
+  }
 
-  searchTags(){
+  openPost(post: any) {
+    this._apiService
+      .request('setPostStatus/' + post.id + '/' + 'open', '', '', 'post')
+      .subscribe(
+        (res: any) => {
+          post.post_status = 'open';
+          this.snackbar.open(res.message, '', {
+            duration: this.durationInSeconds * 1000,
+          });
+        },
+        (error: any) => {
+          console.log('Error', error);
+        }
+      );
+  }
+
+  searchTags() {
     this._apiService.searchTwo.subscribe((val: any) => {
       this.searchKeyTwo = val;
-
     });
   }
 
@@ -239,7 +275,7 @@ export class AllQuestionsComponent implements OnInit {
 
     this.showLoader = true;
     this._apiService
-    .request('showAllGlobal/' + id + '/' + tag, '', this.posts$, 'get')
+      .request('showAllGlobal/' + id + '/' + tag, '', this.posts$, 'get')
       .subscribe((res: any) => {
         console.log(res);
 

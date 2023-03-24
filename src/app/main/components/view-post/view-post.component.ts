@@ -55,8 +55,7 @@ export class ViewPostComponent implements OnInit {
     private activateRoute: ActivatedRoute,
     private _location: Location,
     private formBuilder: FormBuilder,
-    public snackbar: MatSnackBar,
-    // @Inject(MAT_DIALOG_DATA) public post_id: {id: number},
+    public snackbar: MatSnackBar // @Inject(MAT_DIALOG_DATA) public post_id: {id: number},
   ) {}
 
   //EXTRA
@@ -65,7 +64,6 @@ export class ViewPostComponent implements OnInit {
   replyClick() {
     this.isEditing = !this.isEditing;
   }
-
 
   //EXTRA
 
@@ -119,6 +117,15 @@ export class ViewPostComponent implements OnInit {
           this.showLoader = false;
 
           console.log(this.posts$);
+
+          this._apiService.request('addViews/' + id, '', '', 'post').subscribe(
+            (res: any) => {
+              console.log(res);
+            },
+            (error: any) => {
+              console.log('Error', error);
+            }
+          );
         },
         (error: any) => {
           console.log('Error', error);
@@ -162,7 +169,6 @@ export class ViewPostComponent implements OnInit {
     }
   }
   dateCreated: any;
-
 
   mycomments!: Observable<Array<any>>;
   src: any = [];
@@ -245,4 +251,36 @@ export class ViewPostComponent implements OnInit {
   //   this.isShowDiv = true;
   //   return this.isShowDiv;
   // }
+
+  unmarkAsAnswered(post: any) {
+    this._apiService
+      .request('setStatus/' + post.id + '/' + 'Pending', '', '', 'post')
+      .subscribe(
+        (res: any) => {
+          post.status = 'Pending';
+          this.snackbar.open('Successfully unmarked as answered', '', {
+            duration: this.durationInSeconds * 1000,
+          });
+        },
+        (error: any) => {
+          console.log('Error', error);
+        }
+      );
+  }
+
+  markAsAnswered(post: any) {
+    this._apiService
+      .request('setStatus/' + post.id + '/' + 'Accepted', '', '', 'post')
+      .subscribe(
+        (res: any) => {
+          post.status = 'Accepted';
+          this.snackbar.open('Successfully marked as answered', '', {
+            duration: this.durationInSeconds * 1000,
+          });
+        },
+        (error: any) => {
+          console.log('Error', error);
+        }
+      );
+  }
 }

@@ -1,4 +1,10 @@
-import { AfterViewInit, Component, ViewChild, ElementRef, OnInit } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ViewChild,
+  ElementRef,
+  OnInit,
+} from '@angular/core';
 import { MaterialModules } from 'src/app/modules/material.module';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -16,15 +22,14 @@ import Chart from 'chart.js/auto';
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements AfterViewInit {
-
   @ViewChild('barCanvas') barCanvas: ElementRef | undefined;
   barChart: any;
 
   @ViewChild('lineCanvas') lineCanvas: ElementRef | undefined;
   lineChart: any;
 
-  currentPage =1;
-  pageSize =  5;
+  currentPage = 1;
+  pageSize = 5;
 
   displayedColumns: string[] = [
     'number',
@@ -40,6 +45,8 @@ export class DashboardComponent implements AfterViewInit {
   userscount: number = 0;
   commentscount: number = 0;
   studentscount: number = 0;
+  postsPerMonth: any;
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -64,13 +71,22 @@ export class DashboardComponent implements AfterViewInit {
         alert('Error posting data...');
         console.log('Error posting data', error);
       };
+  }
+
+  ngAfterViewInit() {
+    this.barChartMethod();
+
     this._apiService
       .request('adminDashboard', '', '', 'get')
       .subscribe((res: any) => {
+        console.log(res);
+
         this.userscount = res.userscount;
         this.commentscount = res.commentscount;
         this.postscount = res.postscount;
         this.studentscount = res.studentscount;
+        this.postsPerMonth = res.postsPerMonth;
+        this.lineChartMethod();
       }),
       (error: any) => {
         alert('Error getting data...');
@@ -78,33 +94,23 @@ export class DashboardComponent implements AfterViewInit {
       };
   }
 
-  ngAfterViewInit() {
-    this.barChartMethod();
-
-    this.lineChartMethod();
-  }
-
   lineChartMethod() {
+    let data: any = [];
+    this.postsPerMonth.forEach((element: any) => {
+      data.push(element.rowcount);
+    });
+    let months: any = [];
+    this.postsPerMonth.forEach((element: any) => {
+      months.push(element.month);
+    });
     this.lineChart = new Chart(this.lineCanvas?.nativeElement, {
       type: 'line',
       data: {
-        labels: [
-          'January',
-          'February',
-          'March',
-          'April',
-          'May',
-          'June',
-          'July',
-          'August',
-          'September',
-          'November',
-          'December',
-        ],
+        labels: months,
         datasets: [
           {
             label: 'Post per month', //Von pagawa palagay kung gano kadami Post per Month
-          //  lineTension: 0.2,
+            //  lineTension: 0.2,
             fill: false,
             backgroundColor: 'rgba(75,192,192,0.4)',
             borderColor: 'rgba(75,192,192,1)',
@@ -121,7 +127,7 @@ export class DashboardComponent implements AfterViewInit {
             pointHoverBorderWidth: 2,
             pointRadius: 1,
             pointHitRadius: 10,
-            data: [65, 59, 80, 81, 56, 55, 40, 10, 5, 50, 10, 15],
+            data: data,
             spanGaps: false,
           },
         ],
@@ -129,7 +135,7 @@ export class DashboardComponent implements AfterViewInit {
       options: {
         responsive: true,
         maintainAspectRatio: false,
-         scales: {
+        scales: {
           x: {
             ticks: {
               display: true,
@@ -145,66 +151,59 @@ export class DashboardComponent implements AfterViewInit {
     });
   }
 
-
   barChartMethod() {
-    this._apiService
-      .request('tags', '', '', 'get')
-      .subscribe((res: any) => {
-        console.log(res)
-        const labels = res.map((tag: any) => tag.tags); // Assuming the API response contains an array of objects with a "tags" property
-        console.log(labels)
-        const data = res.map((tag: any) => tag.count); // Assuming the API response contains an array of objects with a "count" property
-        this.barChart = new Chart(this.barCanvas?.nativeElement, {
-          type: 'bar',
-          data: {
-            labels,
-            datasets: [
-              {
-                label: 'No. of Tags ',
-                data,
-                backgroundColor: [
-                  'rgba(255, 99, 132, 0.2)',
-                  'rgba(54, 162, 235, 0.2)',
-                  'rgba(255, 206, 86, 0.2)',
-                  'rgba(75, 192, 192, 0.2)',
-                  'rgba(153, 102, 255, 0.2)',
-                  'rgba(255, 159, 64, 0.2)',
-                ],
-                borderColor: [
-                  'rgba(255,99,132,1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(153, 102, 255, 1)',
-                  'rgba(255, 159, 64, 1)',
-                ],
-                borderWidth: 1,
+    this._apiService.request('tags', '', '', 'get').subscribe((res: any) => {
+      console.log(res);
+      const labels = res.map((tag: any) => tag.tags); // Assuming the API response contains an array of objects with a "tags" property
+      console.log(labels);
+      const data = res.map((tag: any) => tag.count); // Assuming the API response contains an array of objects with a "count" property
+      this.barChart = new Chart(this.barCanvas?.nativeElement, {
+        type: 'bar',
+        data: {
+          labels,
+          datasets: [
+            {
+              label: 'No. of Tags ',
+              data,
+              backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+              ],
+              borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)',
+              ],
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            x: {
+              ticks: {
+                display: true,
               },
-            ],
-          },
-          options: {
-            responsive: true,
-            maintainAspectRatio: false,
-             scales: {
-              x: {
-                ticks: {
-                  display: true,
-                },
-              },
-              y: {
-                ticks: {
-                  display: true,
-                },
+            },
+            y: {
+              ticks: {
+                display: true,
               },
             },
           },
-
-        });
+        },
       });
+    });
   }
-
-
-
 
   ngOnInit() {}
 

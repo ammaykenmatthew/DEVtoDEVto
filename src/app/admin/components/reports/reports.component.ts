@@ -24,6 +24,7 @@ export class ReportsComponent implements OnInit {
     'id',
     'user_id',
     'post_id',
+    'reported',
     'report',
     'created_at',
     'action',

@@ -40,16 +40,16 @@ export class HomeComponent implements OnInit {
   //*Search KEY
   searchKey: string = '';
 
-  searchKeyTwo: string ='';
+  searchKeyTwo: string = '';
 
-  filteredList : any = [];
+  filteredList: any = [];
 
-  profilepic_fld:any;
+  profilepic_fld: any;
   email_add: any;
   fname_fld: any;
   mname_fld: any;
   lname_fld: any;
-  role:any;
+  role: any;
 
   posts$: Array<any> = []; //why array? try not array
 
@@ -61,7 +61,8 @@ export class HomeComponent implements OnInit {
   faCaretDown = faCaretDown;
 
   // fname_fld:any;
-
+  isAllowedToPost = false;
+  isAllowedToPostLoading = true;
   constructor(
     public snackbar: MatSnackBar,
     private dialog: MatDialog,
@@ -70,17 +71,17 @@ export class HomeComponent implements OnInit {
     private activateRoute: ActivatedRoute
   ) {}
 
-  filterFromSearch(){
-    this.allTags = this.filteredList
-    this.allTags = this.allTags.filter((o:any) =>
-    Object.keys(o).some((k:any) => {
-      if (k == 'id' || k == 'remember_token' || 'tags'){
-        return this.allTags;
-      }else {
-        return o[k].toLowerCase().includes(this.searchKeyTwo.toLowerCase())
-      }
-    }
-    ));
+  filterFromSearch() {
+    this.allTags = this.filteredList;
+    this.allTags = this.allTags.filter((o: any) =>
+      Object.keys(o).some((k: any) => {
+        if (k == 'id' || k == 'remember_token' || 'tags') {
+          return this.allTags;
+        } else {
+          return o[k].toLowerCase().includes(this.searchKeyTwo.toLowerCase());
+        }
+      })
+    );
   }
 
   allTags: any[] = [];
@@ -123,35 +124,51 @@ export class HomeComponent implements OnInit {
         console.log(error);
       }
     );
+
+    this._apiService
+      .request('isAllowedToPost/' + fullData.id, '', '', 'get')
+      .subscribe(
+        (res: any) => {
+          console.log(res);
+
+          this.isAllowedToPost = res.isAllowedToPost;
+          this.isAllowedToPostLoading = false;
+        },
+        (error: any) => {
+          console.log(error);
+        }
+      );
   }
 
-  deletedData:any;
-  deletePostAsModerator(id: any){
+  deletedData: any;
+  deletePostAsModerator(id: any) {
     Swal.fire({
       title: 'Close Post?',
       text: 'Are you sure you want to close this post?',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Yes, close it!',
-      cancelButtonText: 'Cancel'
+      cancelButtonText: 'Cancel',
     }).then((result) => {
       if (result.value) {
-        this._apiService.request('deletePost/'+id, '', '', 'delete').subscribe((res:any ) =>{
-
-          this.deletedData = res;
-          window.location.reload();
-          const message = 'Deleted Succesfully!';
-            this.snackbar.open(message , '' , {
-              duration: this.durationInSeconds * 1000,
-            });
-
-        },(error: any)=>{
-          console.log ("Error", error);
-         });
+        this._apiService
+          .request('deletePost/' + id, '', '', 'delete')
+          .subscribe(
+            (res: any) => {
+              this.deletedData = res;
+              window.location.reload();
+              const message = 'Deleted Succesfully!';
+              this.snackbar.open(message, '', {
+                duration: this.durationInSeconds * 1000,
+              });
+            },
+            (error: any) => {
+              console.log('Error', error);
+            }
+          );
       } else if (result.dismiss === Swal.DismissReason.cancel) {
-
       }
-    })
+    });
   }
 
   closePost(post: any) {
@@ -161,24 +178,24 @@ export class HomeComponent implements OnInit {
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Yes, close it!',
-      cancelButtonText: 'Cancel'
+      cancelButtonText: 'Cancel',
     }).then((result) => {
       if (result.value) {
-    this._apiService
-      .request('setPostStatus/' + post.id + '/' + 'close', '', '', 'post')
-      .subscribe(
-        (res: any) => {
-          post.post_status = 'close';
-          this.snackbar.open(res.message, '', {
-            duration: this.durationInSeconds * 1000,
-          });
-        },
-        (error: any) => {
-          console.log('Error', error);
-        }
-      );
-       }
-    })
+        this._apiService
+          .request('setPostStatus/' + post.id + '/' + 'close', '', '', 'post')
+          .subscribe(
+            (res: any) => {
+              post.post_status = 'close';
+              this.snackbar.open(res.message, '', {
+                duration: this.durationInSeconds * 1000,
+              });
+            },
+            (error: any) => {
+              console.log('Error', error);
+            }
+          );
+      }
+    });
   }
 
   openPost(post: any) {
@@ -197,10 +214,9 @@ export class HomeComponent implements OnInit {
       );
   }
 
-  searchTags(){
+  searchTags() {
     this._apiService.searchTwo.subscribe((val: any) => {
       this.searchKeyTwo = val;
-
     });
   }
 
@@ -317,7 +333,6 @@ export class HomeComponent implements OnInit {
     this.dialog.open(PostFormComponent, {
       width: '98vh',
       maxWidth: '100vw',
-
     });
   }
 
@@ -348,8 +363,4 @@ export class HomeComponent implements OnInit {
     this.getAllData();
   }
   /*Pagination */
-
-
-
-
 }

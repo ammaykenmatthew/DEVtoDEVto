@@ -39,6 +39,10 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Post ID.</th>
           <td mat-cell *matCellDef="let row"> {{row.post_id}} </td>
         </ng-container>
+        <ng-container matColumnDef="reported">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Reported.</th>
+          <td mat-cell *matCellDef="let row"> {{row.postUser.postuser_id}} </td>
+        </ng-container>
 
         <ng-container matColumnDef="report">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Report Description.</th>

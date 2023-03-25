@@ -14,8 +14,8 @@
 
                 <div class="add p-2 justify-content-start">
 
-                  <button type="button" color="primary" (click)="openDialog()"> + Ask a Question</button>
-
+                  <button style="{{!isAllowedToPost && !isAllowedToPostLoading ? 'opacity:0.4' : ''}}" [disabled]="!isAllowedToPost && !isAllowedToPostLoading" type="button" color="primary" (click)="openDialog()"> + Ask a Question</button>
+                  <p *ngIf="!isAllowedToPost && !isAllowedToPostLoading" style="color: red">You currently have 10 reports, cannot post</p>
 
               <div class="pager1 ">
                 <div class ="d-flex ">

@@ -11,6 +11,8 @@ import { ViewQuestionComponent } from './components/view-question/view-question.
 import { AddStudentComponent } from './components/add-student/add-student.component';
 import { RegStudentComponent } from './components/reg-student/reg-student.component';
 import { ReportsComponent } from './components/reports/reports.component';
+import { AddModeratorComponent } from './components/add-moderator/add-moderator.component';
+import { RegModeratorComponent } from './components/reg-moderator/reg-moderator.component';
 
 
 @NgModule({
@@ -22,6 +24,8 @@ import { ReportsComponent } from './components/reports/reports.component';
     AddStudentComponent,
     RegStudentComponent,
     ReportsComponent,
+    AddModeratorComponent,
+    RegModeratorComponent,
 
   ],
     imports: [

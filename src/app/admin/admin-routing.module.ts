@@ -6,12 +6,14 @@ import { StudentpostComponent } from './components/studentpost/studentpost.compo
 import { FiltersComponent } from './components/filters/filters.component';
 import { AddStudentComponent } from "./components/add-student/add-student.component";
 import { ReportsComponent } from "./components/reports/reports.component";
+import { AddModeratorComponent } from "./components/add-moderator/add-moderator.component";
 
 const routes : Routes =  [
     { path: 'dashboard', component: DashboardComponent },
     { path: 'studentpost', component: StudentpostComponent},
     { path: 'filters', component: FiltersComponent},
     { path: 'add-student', component: AddStudentComponent},
+    { path: 'add-moderator', component: AddModeratorComponent},
     { path: 'reports', component: ReportsComponent},
     {
         path: '',

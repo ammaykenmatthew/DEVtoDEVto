@@ -128,11 +128,11 @@ export class HomeComponent implements OnInit {
   deletedData:any;
   deletePostAsModerator(id: any){
     Swal.fire({
-      title: 'Delete Post?',
-      text: 'Are you sure you want to delete this post?',
+      title: 'Close Post?',
+      text: 'Are you sure you want to close this post?',
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonText: 'Yes, delete it!',
+      confirmButtonText: 'Yes, close it!',
       cancelButtonText: 'Cancel'
     }).then((result) => {
       if (result.value) {
@@ -152,6 +152,49 @@ export class HomeComponent implements OnInit {
 
       }
     })
+  }
+
+  closePost(post: any) {
+    Swal.fire({
+      title: 'Close Post?',
+      text: 'Are you sure you want to close this post?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, close it!',
+      cancelButtonText: 'Cancel'
+    }).then((result) => {
+      if (result.value) {
+    this._apiService
+      .request('setPostStatus/' + post.id + '/' + 'close', '', '', 'post')
+      .subscribe(
+        (res: any) => {
+          post.post_status = 'close';
+          this.snackbar.open(res.message, '', {
+            duration: this.durationInSeconds * 1000,
+          });
+        },
+        (error: any) => {
+          console.log('Error', error);
+        }
+      );
+       }
+    })
+  }
+
+  openPost(post: any) {
+    this._apiService
+      .request('setPostStatus/' + post.id + '/' + 'open', '', '', 'post')
+      .subscribe(
+        (res: any) => {
+          post.post_status = 'open';
+          this.snackbar.open(res.message, '', {
+            duration: this.durationInSeconds * 1000,
+          });
+        },
+        (error: any) => {
+          console.log('Error', error);
+        }
+      );
   }
 
   searchTags(){

@@ -20,8 +20,78 @@
     margin-left: 23px;
     margin-top: 14px;
   }
-}
+  .printButton{
+    height: 35px;
 
+    display: flex;
+    color: white;
+    font-family: sans-serif;
+    background: #12c53f;
+    border-radius: 8px;
+    border: none;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+
+  }
+}
+@media print{
+  * {
+    box-sizing: border-box;
+  }
+  .button{
+    display:none;
+  }
+
+  .flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 30px;
+    text-align: center;
+    gap: 10px;
+  }
+
+  .flex-item-left {
+   flex: 45%;
+  }
+
+  .flex-item-right {
+   flex: 45%;
+
+  }
+
+  .flex-item-bottom {
+    flex: 45%;
+
+  }
+
+  .flex-item-bottom-right {
+    flex: 45%;
+
+  }
+
+  .chartData{
+    max-height: 35vh;
+    max-width: 40vw;
+  }
+
+  .chartData2{
+
+    max-height: 35vh;
+    max-width: 40vw;
+  }
+
+  .donutData{
+    max-height: 35vh;
+    max-width: 40vw;
+
+  }
+  .pieData{
+    max-height: 35vh;
+    max-width: 40vw;
+  }
+
+}
 
 .body{
   margin: 0;
@@ -83,6 +153,16 @@ table {
 
 }
 
+.flex-item-bottom {
+  flex: 45%;
+
+}
+
+.flex-item-bottom-right {
+  flex: 45%;
+
+}
+
 /* Responsive layout - makes a one column-layout instead of a two-column layout */
 @media (max-width: 766px) {
   .flex-item-right, .flex-item-left {
@@ -105,6 +185,16 @@ table {
 
 .chartData2{
 
+  max-height: 35vh;
+  max-width: 40vw;
+}
+
+.donutData{
+  max-height: 35vh;
+  max-width: 40vw;
+
+}
+.pieData{
   max-height: 35vh;
   max-width: 40vw;
 }

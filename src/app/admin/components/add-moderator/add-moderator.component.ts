@@ -9,18 +9,18 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { RegStudentComponent } from '../reg-student/reg-student.component';
 import { environment } from 'src/environments/environment.prod';
-
+import { RegModeratorComponent } from '../reg-moderator/reg-moderator.component';
 
 @Component({
-  selector: 'app-add-student',
-  templateUrl: './add-student.component.html',
-  styleUrls: ['./add-student.component.scss']
+  selector: 'app-add-moderator',
+  templateUrl: './add-moderator.component.html',
+  styleUrls: ['./add-moderator.component.scss']
 })
-export class AddStudentComponent implements OnInit {
+export class AddModeratorComponent implements OnInit {
 
   image = environment.image;
 
-  displayedColumns: string[] = ['id','studnum_fld', 'fname_fld', 'mname_fld', 'lname_fld', 'extname_fld', 'dept_fld', 'program_fld', 'profilepic_fld', 'created_at', ];
+  displayedColumns: string[] = ['studnum_fld', 'fname_fld', 'mname_fld', 'lname_fld', 'extname_fld', 'dept_fld', 'program_fld', 'profilepic_fld', 'created_at', ];
   dataSource!: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -36,11 +36,11 @@ export class AddStudentComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.getAllPosts();
+    this.getAllModerators();
   }
 
-  getAllPosts(){
-    this._apiService.request('getAllStudents', '', '', 'get').subscribe((res:any)=>{
+  getAllModerators(){
+    this._apiService.request('getModerators', '', '', 'get').subscribe((res:any)=>{
       this.dataSource = new MatTableDataSource(res);
 
       this.dataSource.paginator = this.paginator;
@@ -63,12 +63,11 @@ export class AddStudentComponent implements OnInit {
   }
 
   addModal(){
-    this.dialog.open(RegStudentComponent,{
+    this.dialog.open(RegModeratorComponent,{
       width: '70vh',
       maxWidth: '90vw',
 
     });
   }
-
 
 }

@@ -5,14 +5,22 @@ import { AuthGuard } from "./guards/auth.guard";
 import { AdminGuard } from "./guards/admin.guard";
 import { LoginComponent } from "./login/login.component";
 import { MainComponent } from "./main/main.component";
+import { PrintChartComponent } from "./print-chart/print-chart.component";
 
 
 const routes: Routes = [
+
     {
         path: 'login',
         component: LoginComponent,
         //canActivate:[AuthGuard]
     },
+    {
+      path: 'print-chart',
+      component: PrintChartComponent,
+      //canActivate:[AuthGuard]
+  },
+
     {
       path: 'main',
       component: MainComponent,

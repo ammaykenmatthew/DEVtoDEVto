@@ -1,0 +1,38 @@
+
+<div class="flex-container">
+  <h1>Graphical Charts for GC Dev2Dev</h1>
+  <div class="print">
+    <button class="accept btn btn-primary" style="margin-left: 10%;" (click)="print()">Print</button>
+  </div>
+
+  <div class="flex-group">
+    <div class="flex-item-left">
+      <p>Top 10 most used tags</p>
+      <canvas #barCanvas class="chartData"></canvas>
+      <hr color="red">
+    </div>
+
+    <div class="flex-item-right">
+      <p>Posts made per month</p>
+      <canvas #lineCanvas class="chartData"></canvas>
+      <hr color="red">
+    </div>
+  </div>
+
+  <div class="flex-group">
+    <div class="flex-item-bottom">
+      <p>Posts that has answer accepted and not yet accepted</p>
+      <canvas #doughnutCanvas class="donutData"></canvas>
+      <hr color="red">
+    </div>
+    <div class="flex-item-bottom-right">
+      <p>Students per program using the application</p>
+      <canvas #pieCanvas class="pieData"></canvas>
+      <hr color="red">
+    </div>
+  </div>
+</div>
+
+
+
+

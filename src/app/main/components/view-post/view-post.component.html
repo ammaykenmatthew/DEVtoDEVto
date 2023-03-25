@@ -25,7 +25,8 @@
 
     <div class="col-md-9">
       <div class="row post">
-        <div class="col-md-1" *ngIf="id === post.user_id">
+        <div class="col-md-1">
+          <div class="" *ngIf="id === post.user_id">
           <!-- vote button -->
           <div class="p-2" *ngIf="post.status == 'Accepted'" (click)="unmarkAsAnswered(post)">
             <mat-icon class="accept done " data-bs-toggle="tooltip" data-bs-placement="top" title="Answer Accepted">done_outline</mat-icon>
@@ -33,7 +34,7 @@
           <div class="p-2" *ngIf="post.status == 'Pending'" (click)="markAsAnswered(post)">
             <mat-icon class="accept" data-bs-toggle="tooltip" data-bs-placement="top" title="Mark as answered">done_outline</mat-icon>
           </div>
-
+        </div>
         </div>
         <div class="col-md-10">
           <span>
@@ -98,6 +99,16 @@
 
         <!-- Von palagay number of comments  -->
             <hr/>
+            <div class="markThread" *ngIf="post.post_status == 'close' "
+            style="
+              font-size: 20px;
+              color: red;
+              font-family: sans-serif;
+              font-style: italic;
+              border: 1px solid red;
+            ">
+              <p>This thread has been closed by the moderator and does no longer accept any comments or replies.</p>
+            </div>
             <h4 style="font-size: 20px; color: black;">Comments</h4>
             <!--Display Comments-->
 

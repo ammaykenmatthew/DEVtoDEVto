@@ -12,16 +12,16 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { MatDialog } from '@angular/material/dialog';
-import { ViewQuestionComponent } from '../view-question/view-question.component';
 import { ViewPostComponent } from 'src/app/main/components/view-post/view-post.component';
 import Chart from 'chart.js/auto';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss'],
+  selector: 'app-print-chart',
+  templateUrl: './print-chart.component.html',
+  styleUrls: ['./print-chart.component.scss']
 })
-export class DashboardComponent implements AfterViewInit {
+export class PrintChartComponent implements OnInit {
+
   @ViewChild('barCanvas') barCanvas: ElementRef | undefined;
   barChart: any;
 
@@ -36,6 +36,7 @@ export class DashboardComponent implements AfterViewInit {
   @ViewChild('pieCanvas') pieCanvas!: { nativeElement: any };
 
   pieChart: any;
+
 
 
   currentPage = 1;
@@ -88,8 +89,15 @@ export class DashboardComponent implements AfterViewInit {
       };
   }
 
-  printChart(){
-    window.open('#/print-chart', '_target');
+
+  ngOnInit() {
+    this.getAllStudentProgram();
+    this.getAllPostStatus();
+
+  }
+
+  print(){
+    window.print();
   }
 
   ngAfterViewInit() {
@@ -115,10 +123,6 @@ export class DashboardComponent implements AfterViewInit {
         alert('Error getting data...');
         console.log('Error getting data', error);
       };
-
-
-
-
 
 
   }
@@ -352,38 +356,6 @@ export class DashboardComponent implements AfterViewInit {
     };
   }
 
-  ngOnInit() {
-    this.getAllStudentProgram();
-    this.getAllPostStatus();
-  }
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
 
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
-  }
-
-  viewPost(id: number): void {
-    this.route.navigateByUrl('main/view-post/' + id);
-  }
-
-  viewStudentPost(id: number): void {
-    this.dialog.open(ViewPostComponent, {
-      width: '100vh',
-      height: '100vh',
-      maxWidth: '100vw',
-      maxHeight: '100vh',
-      data: {
-        id: id,
-      },
-    });
-  }
-
-  onPageChanged(event: PageEvent) {
-    this.currentPage = event.pageIndex + 1;
-    this.pageSize = event.pageSize;
-  }
 }

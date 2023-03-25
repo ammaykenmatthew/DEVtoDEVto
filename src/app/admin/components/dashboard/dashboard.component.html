@@ -6,8 +6,18 @@
     <mat-icon>dashboard</mat-icon>
     <span>Dashboard</span>
     <br>
-    <p>Monitor the usage of the platform.</p>
+    <span>
+    <p>Monitor the usage of the platform.
+      <button class="printButton" (click)="printChart()" style="float:right; margin-right: 40px;"  >
+        <mat-icon>print</mat-icon>
+        Print
+      </button>
+    </p>
+  </span>
+
+
   </div>
+
   <hr/>
   <div class="container-fluid py-4" >
     <div class="row">
@@ -119,6 +129,21 @@
           <hr color="red">
 
       </div>
+      <div class="flex-item-bottom">
+
+
+          <canvas #doughnutCanvas class="donutData"></canvas>
+          <hr color="red">
+
+    </div>
+    <div class="flex-item-bottom-right">
+
+
+        <canvas #pieCanvas class="pieData"></canvas>
+        <hr color="red">
+
+
+</div>
 
     </div>
 

@@ -150,6 +150,15 @@ export class AllQuestionsComponent implements OnInit {
   }
 
   closePost(post: any) {
+    Swal.fire({
+      title: 'Close Post?',
+      text: 'Are you sure you want to close this post?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, close it!',
+      cancelButtonText: 'Cancel'
+    }).then((result) => {
+      if (result.value) {
     this._apiService
       .request('setPostStatus/' + post.id + '/' + 'close', '', '', 'post')
       .subscribe(
@@ -163,6 +172,8 @@ export class AllQuestionsComponent implements OnInit {
           console.log('Error', error);
         }
       );
+       }
+    })
   }
 
   openPost(post: any) {

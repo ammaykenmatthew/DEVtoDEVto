@@ -120,7 +120,7 @@ export class ViewPostComponent implements OnInit {
 
           this._apiService.request('addViews/' + id, '', '', 'post').subscribe(
             (res: any) => {
-              console.log(res);
+
             },
             (error: any) => {
               console.log('Error', error);

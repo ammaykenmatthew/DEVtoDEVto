@@ -21,6 +21,7 @@ import { faComment, faHouse } from '@fortawesome/free-solid-svg-icons';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { QuillModule } from 'ngx-quill';
+import { PrintChartComponent } from './print-chart/print-chart.component';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { QuillModule } from 'ngx-quill';
     LoginComponent,
     AdminComponent,
     SearchComponent,
+    PrintChartComponent,
 
   ],
   imports: [

@@ -114,73 +114,97 @@
 
 
             <div class="container2">
-              <app-comment *ngFor="let c of mycomments | async" [post_status]="post.post_status" [comment]="c"></app-comment>
-
-            <!-- <div class="comment" *ngFor="let comment of comments">
-              <div *ngIf="comment === 0" style="font-size: 30px; font-family: 'IBM Plex Sans', sans-serif;"><h4>There are no comments found</h4></div>
-              <div class="col-md-11"> Comment Content -->
-                <!-- <img [src]="'https://gordoncollegeweb.com/capAPI/public/'+comment.comments.profilepic_fld"  alt="" style="height: 35px; width: 35px; margin-right: 3px; margin-top: 5px; border-radius: 50%; border: 2px solid #878A8C;">
-              <span>
-
+              <div class="comment" *ngFor="let comment of comments">
+                <div *ngIf="comment === 0" style="font-size: 30px; font-family: 'IBM Plex Sans', sans-serif;"><h4>There are no comments found</h4></div>
+                <div class="col-md-11"> <!--Comment Content-->
+                  <!-- <img [src]="'http://localhost:8000/'+comment.comments.profilepic_fld"  alt="" style="height: 35px; width: 35px; margin-right: 3px; margin-top: 5px; border-radius: 50%; border: 2px solid #878A8C;">
                 <span>
-                  <a>{{comment.comments.program_fld}} | {{comment.comments.fname_fld}} {{comment.comments.mname_fld}} {{comment.comments.lname_fld}}  </a> <a matTooltip="Credit Score"  matTooltipClass="toolTiptip">{{comment.credit}}</a>
+                  <span>
+                    <a>{{comment.comments.program_fld}} | {{comment.comments.fname_fld}} {{comment.comments.mname_fld}} {{comment.comments.lname_fld}}  </a> <a matTooltip="Credit Score"  matTooltipClass="toolTiptip">{{comment.credit}}</a>
+                  </span>
+                  <span> at {{comment.comments.created_at|date:'MMM d, y - h a'}}  </span>
                 </span>
-
-                <span> at {{comment.comments.created_at|date:'MMM d, y - h a'}}  </span>
-              </span>
-
-              <div>
-                <p style="background-color: #f7f9fa; font-family: 'Rubik', sans-serif;">{{comment.comments.content}}</p>
-              </div>
-              <hr> -->
-              <!-- <div class="comment-session">
-                <div class="post-comment">
-                  <div class="list">
-                    <div class="user">
-                      <div class="user-image"><img [src]="'https://gordoncollegeweb.com/capAPI/public/'+comment.comments.profilepic_fld"  alt=""></div>
-                      <div class="user-meta">
-                        <div class="name">{{comment.comments.program_fld}} | {{comment.comments.fname_fld}} {{comment.comments.mname_fld}} {{comment.comments.lname_fld}} </div>
-                        <div class="day">{{comment.comments.created_at|date:'MMM d, y - h a'}} </div>
+                <div>
+                  <p style="background-color: #f7f9fa; font-family: 'Rubik', sans-serif;">{{comment.comments.content}}</p>
+                </div>
+                <hr> -->
+                <div class="comment-session">
+                  <div class="post-comment">
+                    <div class="list">
+                      <div class="user">
+                        <div class="user-image" *ngIf="comment.comments.profilepic_fld">
+                          <img [src]="image+comment.comments.profilepic_fld"  alt="">
+                        </div>
+                        <div class="user-image"  *ngIf="comment.comments.profilepic_fld == null">
+                          <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png"  alt="">
+                        </div>
+                        <div class="user-meta">
+                          <div class="name">{{comment.comments.program_fld}} | {{comment.comments.fname_fld}} {{comment.comments.mname_fld}} {{comment.comments.lname_fld}} </div>
+                          <div class="day">{{comment.comments.created_at|date:'MMM d, y - h a'}} </div>
+                        </div>
                       </div>
+                      <div class="comment-post">{{comment.comments.content}}</div>
                     </div>
-                    <div class="comment-post">{{comment.comments.content}}</div>
                   </div>
                 </div>
-              </div> -->
 
 
-               <!--End Comment Content-->
-              <!-- <span  style="display: flex;
-              align-items: center; color: #fda239; cursor: pointer; margin-left: 40px;">
-                <mat-icon> comment</mat-icon>
-                <a (click)="onClick(comment)">View Replies  ({{comment.reply}})</a> -->
-                <!-- ({{comment.reply.length}}) -->
-              <!-- </span> -->
-            <!-- <ng-container *ngIf="comment?.visible"> Reply Content -->
-              <!-- <div class="commentReply" *ngFor="let rep of comment.reply">
-                <img [src]="'https://gordoncollegeweb.com/capAPI/public/'+rep.profilepic_fld" alt="" style="height: 35px; width: 35px; margin-right: 3px; margin-top: 5px; border-radius: 50%; border: 2px solid #878A8C;">
-                <span>
-                  <a > {{rep.program_fld}} | {{rep.fname_fld}} {{rep.mname_fld}} {{rep.lname_fld}} </a>
+                 <!--End Comment Content-->
+                <span  style="display: flex;
+                align-items: center; color: #fda239; cursor: pointer; margin-left: 40px;">
+                  <mat-icon> comment</mat-icon>
+                  <a (click)="onClick(comment)">View Replies  ({{comment.reply.length}})</a>
                 </span>
-                <span> at {{rep.created_at|date:'MMM d, y h a'}}</span>
-                <div>
-                  <p style="background-color: #f5f5f5;">{{rep.replyContent}}</p>
+              <ng-container *ngIf="comment?.visible"> <!--Reply Content-->
+                <!-- <div class="commentReply" *ngFor="let rep of comment.reply">
+                  <div class *ngIf="rep.profilepic_fld">
+                    <img [src]="image+rep.profilepic_fld" alt="" style="height: 35px; width: 35px; margin-right: 3px; margin-top: 5px; border-radius: 50%; border: 2px solid #878A8C;">
+                  </div>
+                  <div class *ngIf="rep.profilepic_fld == null">
+                    <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="" style="height: 35px; width: 35px; margin-right: 3px; margin-top: 5px; border-radius: 50%; border: 2px solid #878A8C;">
+                  </div>
+                  <span>
+                    <a > {{rep.program_fld}} | {{rep.fname_fld}} {{rep.mname_fld}} {{rep.lname_fld}} </a>
+                  </span>
+                  <span> at {{rep.created_at|date:'MMM d, y h a'}}</span>
+                  <div>
+                    <p style="background-color: #f5f5f5;">{{rep.replyContent}}</p>
+                  </div>
+                </div> -->
+
+                <div class="commentReply" *ngFor="let rep of comment.reply">
+                  <div class="post-comment">
+                  <div class="list">
+                    <div class="user">
+                      <div class="user-image" *ngIf="rep.profilepic_fld">
+                        <img [src]="image+rep.profilepic_fld"  alt="">
+                      </div>
+                      <div class="user-image"  *ngIf="rep.profilepic_fld == null">
+                        <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png"  alt="">
+                      </div>
+                      <div class="user-meta">
+                        <div class="name">{{rep.program_fld}} | {{rep.fname_fld}} {{rep.mname_fld}} {{rep.lname_fld}} </div>
+                        <div class="day">at {{rep.created_at|date:'MMM d, y h a'}}</div>
+                      </div>
+                    </div>
+                    <div class="comment-post">{{rep.replyContent}}</div>
+                  </div>
                 </div>
-              </div>
+                </div>
 
-              <hr> -->
+                <hr>
 
-              <!--Form for Reply Content-->
-              <!-- <form [formGroup]="replyForm" (ngSubmit)="replyComment(comment)">
-              <div class="reply">
-                <img [src]="'https://gordoncollegeweb.com/capAPI/public/'+profilepic_fld" alt="" style=" display:flex; height: 30px; width: 30px; margin-right: 3px; border-radius: 50%; border: 2px solid #878A8C;">
-                <input type="text" name="" class="form-control" [formControlName]="'replyContent'" placeholder="Write a reply..">
-                <button type="submit" >Submit</button>
-              </div> -->
-            <!-- </form> End of Form for Reply Content -->
-          <!-- </ng-container> -->
-          <!-- </div> -->
-        <!-- </div> -->
+                <!--Form for Reply Content-->
+                <form [formGroup]="replyForm" (ngSubmit)="replyComment(comment)">
+                <div class="reply">
+                  <img [src]="image+profilepic_fld" alt="" style=" display:flex; height: 30px; width: 30px; margin-right: 3px; border-radius: 50%; border: 2px solid #878A8C;">
+                  <input type="text" name="" class="form-control" [formControlName]="'replyContent'" placeholder="Write a reply..">
+                  <button type="submit" [disabled]="post.post_status =='close'" style="background-color: {{post.post_status =='close' ? '#0a95ff95' : '#0a95ff' }};">Submit</button>
+                </div>
+              </form> <!--End of Form for Reply Content-->
+            </ng-container>
+            </div>
+          </div>
           <!-- Outside of Comment Div -->
 
           <!-- <div class="replies">

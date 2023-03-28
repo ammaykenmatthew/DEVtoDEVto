@@ -27,9 +27,9 @@ export class AddStudentComponent implements OnInit {
     'id',
     'studnum_fld',
     'fname_fld',
-    'mname_fld',
+
     'lname_fld',
-    'extname_fld',
+
     'dept_fld',
     'program_fld',
     'profilepic_fld',

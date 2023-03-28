@@ -27,7 +27,7 @@ export class ReportsComponent implements OnInit {
     'reported',
     'report',
     'created_at',
-    'action',
+
   ];
   dataSource!: MatTableDataSource<any>;
 

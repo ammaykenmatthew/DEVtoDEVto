@@ -52,7 +52,7 @@
           <input type="file" accept="image/*" hidden class="file-input" multiple (change)="onFile($event)" #fileInput />
       <mat-hint>Picture is required!</mat-hint>
       <img [src]="selectedFile" *ngIf="selectedFile  && fileChange" style="height: 150px; width:150px">
-      <img [src]="'https://gordoncollegeweb.com/capAPI/public/'+selectedFile" *ngIf="selectedFile && !fileChange" style="height: 150px; width:150px">
+      <img [src]="image+selectedFile" *ngIf="selectedFile && !fileChange" style="height: 150px; width:150px">
 
       </mat-form-field >
 

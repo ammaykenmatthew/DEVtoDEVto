@@ -37,8 +37,9 @@ export class BookmarksComponent implements OnInit {
    this.showBookmarks();
   }
 
-  goToPost(id: any): void{
-    this.route.navigateByUrl('main/view-post/'+id);
+  goToPost(book_id: any): void{
+    this.route.navigateByUrl('main/view-post/'+book_id);
+    console.log(book_id);
   }
 
   showLoader = false;
@@ -63,9 +64,11 @@ export class BookmarksComponent implements OnInit {
   }
 
   deletedData:any;
-  remove(book_id:any){
-    this._apiService.request('destroy/'+book_id ,'', '', 'delete').subscribe((res:any)=>{
+  remove(id:any){
+    console.log(id)
+    this._apiService.request('destroyBookmark/'+id ,'', '', 'delete').subscribe((res:any)=>{
       this.deletedData = res;
+      console.log(res)
       this.showBookmarks();
 
       const message = 'Removed Succesfully!';

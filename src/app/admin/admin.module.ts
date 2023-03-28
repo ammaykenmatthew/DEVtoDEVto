@@ -15,6 +15,7 @@ import { AddModeratorComponent } from './components/add-moderator/add-moderator.
 import { RegModeratorComponent } from './components/reg-moderator/reg-moderator.component';
 
 
+
 @NgModule({
     declarations:[
     DashboardComponent,
@@ -26,6 +27,7 @@ import { RegModeratorComponent } from './components/reg-moderator/reg-moderator.
     ReportsComponent,
     AddModeratorComponent,
     RegModeratorComponent,
+
 
   ],
     imports: [

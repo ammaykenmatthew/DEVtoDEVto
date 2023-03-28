@@ -7,13 +7,14 @@
                     <br> Questions</span>
                     <div class="total align-self-end">
                       {{total_post}} questions
+                      <p *ngIf="!isAllowedToPost && !isAllowedToPostLoading" style="color: red">You currently have 10 reports, cannot post</p>
                     </div>
 
                 </div>
 
                 <div class="add p-2 justify-content-start">
 
-                  <button type="button" color="primary" (click)="openDialog()"> + Ask a Question</button>
+                  <button style="{{!isAllowedToPost && !isAllowedToPostLoading ? 'opacity:0.4' : ''}}" [disabled]="!isAllowedToPost && !isAllowedToPostLoading" type="button" color="primary" (click)="openDialog()"> + Ask a Question</button>
 
 
               <div class="pager1 ">
@@ -72,21 +73,23 @@
 
                             <div class="m-2 votecount">{{post.votes}} </div> <!-- Vote Count -->
 
-                            <div class="mr-2 mt-2" style="margin-right: 15px;">
-                              Status
-                            </div>
-                            <div class="m-2" style="margin-right: 15px;" *ngIf="post.status == 'Accepted'">
-                              <mat-icon class="accept done " data-bs-toggle="tooltip" data-bs-placement="top" title="Post has been answered">done_outline</mat-icon>
-                            </div>
-                            <div class="m-2" style="margin-right: 15px;" *ngIf="post.status == 'Pending'">
-                              <mat-icon class="accept " data-bs-toggle="tooltip" data-bs-placement="top" title="Not yet answered">done_outline</mat-icon>
-                            </div>
 
                             <div class="mr-2 mt-2" style="margin-right: 15px;">
                               Views
                             </div>
                             <div class="m-2 votecount">{{post.views}} </div>
 
+
+                            <div class="mr-2 mt-2" style="margin-right: 15px;">
+                              Status
+                            </div>
+
+                            <div class="m-2" style="margin-right: 15px;" *ngIf="post.status == 'Accepted'">
+                              <mat-icon class="accept done " data-bs-toggle="tooltip" data-bs-placement="top" title="Post has been answered">done_outline</mat-icon>
+                            </div>
+                            <div class="m-2" style="margin-right: 15px;" *ngIf="post.status == 'Pending'">
+                              <mat-icon class="accept " data-bs-toggle="tooltip" data-bs-placement="top" title="Not yet answered">done_outline</mat-icon>
+                            </div>
                             <!-- End -->
                         </div>
 
@@ -128,16 +131,16 @@
                                   </button>
                                   <mat-menu #menu="matMenu">
                                     <!-- Bookmarks -->
-                                    <button mat-menu-item>
+                                    <button mat-menu-item (click)="setBookmark(post.id)">
                                       <mat-icon>bookmarks</mat-icon>
-                                      <span style="font-family: 'Poppins', sans-serif;" (click)="setBookmark(post.id)">Save this post</span>
+                                      <span style="font-family: 'Poppins', sans-serif;" >Save this post</span>
                                     </button>
                                      <!-- Bookmarks -->
 
                                     <!-- Report -->
-                                    <button mat-menu-item>
+                                    <button mat-menu-item (click)="reportPost(post.id)">
                                     <mat-icon>flag</mat-icon>
-                                    <span style="font-family: 'Poppins', sans-serif;" (click)="reportPost(post.id)">Report</span>
+                                    <span style="font-family: 'Poppins', sans-serif;" >Report</span>
                                     </button>
                                     <!-- Report -->
 
@@ -151,16 +154,16 @@
 
                                       <!-- cLOSE AS MODERATOR -->
                                       <div class="del" *ngIf="role === 'moderator' && post.post_status =='open'">
-                                        <button mat-menu-item>
+                                        <button mat-menu-item (click)="closePost(post)">
                                          <mat-icon style="color:red">close_outline</mat-icon>
-                                         <span style="font-family: 'Poppins', sans-serif; color: red;" (click)="closePost(post)" >Close Post</span>
+                                         <span style="font-family: 'Poppins', sans-serif; color: red;"  >Close Post</span>
                                          </button>
                                        </div>
                                       <!-- Open AS MODERATOR -->
                                       <div class="del" *ngIf="role === 'moderator' && post.post_status =='close'">
-                                        <button mat-menu-item>
+                                        <button mat-menu-item (click)="openPost(post)" >
                                          <mat-icon style="color:green">check_circle_outline</mat-icon>
-                                         <span style="font-family: 'Poppins', sans-serif; color: green;" (click)="openPost(post)" >Open Post</span>
+                                         <span style="font-family: 'Poppins', sans-serif; color: green;" >Open Post</span>
                                          </button>
                                        </div>
                                   </mat-menu>
@@ -214,7 +217,7 @@
                     </div>
                     <div class="col-md-3" >
 
-                      <div class="sidebar-view-subreddit">
+                      <div class="sidebar-view-subreddit" style="min-height: 50px; padding: 20px;">
                         <!-- <div style="color: black; font-weight: bold; font-size: 15px; font-family: 'Rubik', sans-serif;">Watched Tags</div>
                         <hr /> -->
                         <h4 class="subreddit-text" style="cursor: pointer;" (click)="filterTag({tags: ''})"><a >Clear Tags</a></h4>

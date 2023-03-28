@@ -10,12 +10,14 @@
                       {{total_post}} questions
                     </div>
 
+                    <p *ngIf="!isAllowedToPost && !isAllowedToPostLoading" style="color: red">You currently have been reported 10 times, you are not allowed to post
+                      Please send your appeal at admin@gmail.com</p>
+
                 </div>
 
                 <div class="add p-2 justify-content-start">
 
                   <button style="{{!isAllowedToPost && !isAllowedToPostLoading ? 'opacity:0.4' : ''}}" [disabled]="!isAllowedToPost && !isAllowedToPostLoading" type="button" color="primary" (click)="openDialog()"> + Ask a Question</button>
-                  <p *ngIf="!isAllowedToPost && !isAllowedToPostLoading" style="color: red">You currently have 10 reports, cannot post</p>
 
               <div class="pager1 ">
                 <div class ="d-flex ">
@@ -97,6 +99,8 @@
 
                         </div>
                         </div>
+
+
                         <div class="col-md-11">
                             <span>
                                 <span class="subreddit-text"></span>
@@ -128,6 +132,15 @@
                                     <div class="name"> {{post.program_fld}} | {{post.fname_fld}} {{post.mname_fld}} {{post.lname_fld}}</div>
                                     <div class="date"> {{post.created_at|date:'MMM d, y &bull; h a'}}</div>
                                     <!-- post.created_at|dateAsAgo //shows Just Now  -->
+
+                                  </div>
+
+
+                                  <div class="m-2" style="margin-right: 15px;" *ngIf="post.status == 'Accepted'">
+                                    <mat-icon class="accept done " data-bs-toggle="tooltip" data-bs-placement="top" title="Post has been answered">done_outline</mat-icon>
+                                  </div>
+                                  <div class="m-2" style="margin-right: 15px;" *ngIf="post.status == 'Pending'">
+                                    <mat-icon class="accept " data-bs-toggle="tooltip" data-bs-placement="top" title="Not yet answered">done_outline</mat-icon>
                                   </div>
 
                                   <button mat-icon-button [matMenuTriggerFor]="menu"   style="float: right;">
@@ -135,16 +148,16 @@
                                   </button>
                                   <mat-menu #menu="matMenu">
                                     <!-- Bookmarks -->
-                                    <button mat-menu-item>
+                                    <button mat-menu-item (click)="setBookmark(post.id)">
                                       <mat-icon>bookmarks</mat-icon>
-                                      <span style="font-family: 'Poppins', sans-serif;" (click)="setBookmark(post.id)">Save this post</span>
+                                      <span style="font-family: 'Poppins', sans-serif;" >Save this post</span>
                                     </button>
                                      <!-- Bookmarks -->
 
                                     <!-- Report -->
-                                    <button mat-menu-item>
+                                    <button mat-menu-item (click)="reportPost(post.id)">
                                     <mat-icon>flag</mat-icon>
-                                    <span style="font-family: 'Poppins', sans-serif;" (click)="reportPost(post.id)">Report</span>
+                                    <span style="font-family: 'Poppins', sans-serif;" >Report</span>
                                     </button>
                                     <!-- Report -->
 
@@ -158,9 +171,9 @@
 
                                       <!-- cLOSE AS MODERATOR -->
                                       <div class="del" *ngIf="role === 'moderator' && post.post_status =='open'">
-                                        <button mat-menu-item>
+                                        <button mat-menu-item (click)="closePost(post)" >
                                          <mat-icon style="color:red">close_outline</mat-icon>
-                                         <span style="font-family: 'Poppins', sans-serif; color: red;" (click)="closePost(post)" >Close Post</span>
+                                         <span style="font-family: 'Poppins', sans-serif; color: red;" >Close Post</span>
                                          </button>
                                        </div>
                                       <!-- Open AS MODERATOR -->
@@ -225,7 +238,7 @@
                     </div>
                       <div class="col-md-3" >
 
-                      <div class="sidebar-view-subreddit">
+                        <div class="sidebar-view-subreddit" style="min-height: 50px; padding: 20px;">
                         <!-- <div style="color: black; font-weight: bold; font-size: 15px; font-family: 'Rubik', sans-serif;">Watched Tags</div>
                         <hr /> -->
                         <h4 class="subreddit-text" style="cursor: pointer;" (click)="filterTag({tags: ''})"><a >Clear Tags</a></h4>
@@ -255,10 +268,11 @@
                             <span class="badge bg-info " (click)="filterTag(item)"><a>{{item.tags}} ({{item.count}})</a></span>
                         </span>
                       </div> -->
-
-
-                    </div>
                       </div>
+
+                      <!-- <button *ngIf="!isAllowedToPost && !isAllowedToPostLoading" type="button" mat-raised-button mat-button color="warn">Send Appeal</button>
+                      </div> -->
+
 
                   </div>
                 </div>

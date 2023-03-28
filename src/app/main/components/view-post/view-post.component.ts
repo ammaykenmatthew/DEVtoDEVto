@@ -36,6 +36,7 @@ export class ViewPostComponent implements OnInit {
 
   postId: any;
   posts$: Array<any> = [];
+  comments: Array<any> = [];
 
   commentForm!: FormGroup;
   replyForm!: FormGroup;
@@ -181,17 +182,19 @@ export class ViewPostComponent implements OnInit {
     this._apiService
       .request('showAllwithComments/' + post_id, '', '', 'get')
       .subscribe((res: any) => {
-        console.log(res);
+        this.comments = res;
 
-        this.src = res;
-        this.commentAction$ = new Subject<any>();
-        this.commentSubject$ = this.commentAction$.asObservable();
-        this.commentStream$ = merge(this.commentSubject$, from([res])).pipe(
-          scan((acc: Array<any>, value: any) => [value, ...acc])
-          // provide an initial value of empty array to the scan operator
-        );
+        console.log(this.comments)
 
-        this.mycomments = this.commentStream$;
+        // this.src = res;
+        // this.commentAction$ = new Subject<any>();
+        // this.commentSubject$ = this.commentAction$.asObservable();
+        // this.commentStream$ = merge(this.commentSubject$, from([res])).pipe(
+        //   scan((acc: Array<any>, value: any) => [value, ...acc])
+
+        // );
+
+        // this.mycomments = this.commentStream$;
       }),
       (error: any) => {
         alert('Error posting data...');

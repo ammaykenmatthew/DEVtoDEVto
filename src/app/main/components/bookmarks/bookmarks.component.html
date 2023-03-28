@@ -26,11 +26,6 @@
       </mat-form-field>
       </div>
     <div class="bookmarks" *ngFor="let book of bookmarks?.bookmarks">
-      <div *ngIf="bookmarks.length === 0" style=" display: flex; align-items: center; font-size: 50px; font-family: 'IBM Plex Sans', sans-serif;">
-        No records found
-      </div>
-      <!-- show if theres no record existing -->
-
        <mat-card class="example-card">
         <span style="margin-left: 150px;">
           <button mat-icon-button [matMenuTriggerFor]="menu" style="float: right;">
@@ -43,8 +38,11 @@
             </button>
           </mat-menu>
         </span>
-        <div class="image">
+        <div class="image" *ngIf="book?.photo">
           <img [src]="image+book?.photo" style="height: 110px; width:110px;"  >
+        </div>
+        <div class="image" *ngIf="book?.photo == null ">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg?20200913095930" style="height: 110px; width:110px;"  >
         </div>
         <div class="content">
           <mat-card-header >
@@ -64,7 +62,7 @@
         </div>
           <mat-divider></mat-divider>
           <mat-card-actions align="start" >
-            <button mat-stroked-button color="primary" style="margin-left: 5px;" (click)="goToPost(book.id)">View</button>
+            <button mat-stroked-button color="primary" style="margin-left: 5px;" (click)="goToPost(book.book_id)">View</button>
 
           </mat-card-actions>
 

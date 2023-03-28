@@ -48,6 +48,8 @@ export class AllQuestionsComponent implements OnInit {
   lname_fld: any;
   role: any;
 
+  isAllowedToPost = false;
+  isAllowedToPostLoading = true;
   posts$: Array<any> = []; //why array? try not array
 
   faArrowUp = faArrowUp;

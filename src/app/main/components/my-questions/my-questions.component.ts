@@ -4,7 +4,8 @@ import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import {MatPaginator} from '@angular/material/paginator';
 import { PostFormComponent } from '../post-form/post-form.component';
 import { Router } from '@angular/router';
-import {faArrowUp, faArrowDown, faComments, faSearch} from '@fortawesome/free-solid-svg-icons';
+import {faArrowUp, faArrowDown, faComments, faSearch,  faThumbsDown,
+  faThumbsUp} from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from 'src/app/services/auth.service';
 
 import { SearchPipe } from 'src/app/shared/filter.pipe';
@@ -43,6 +44,8 @@ export class MyQuestionsComponent implements OnInit {
   faArrowDown = faArrowDown;
   faComments = faComments;
   faSearch = faSearch;
+  faThumbsDown = faThumbsDown;
+  faThumbsUp = faThumbsUp;
 
   // fname_fld:any;
 

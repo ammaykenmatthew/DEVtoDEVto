@@ -37,17 +37,17 @@
                   <mat-icon>more_horiz</mat-icon>
                 </button>
                 <mat-menu #menu="matMenu">
-                  <button mat-menu-item style="color: red;">
+                  <button mat-menu-item style="color: red;" (click)="deleteQuestions(post.id)">
                     <mat-icon style="color: red;" >delete_outline</mat-icon>
-                    <span style="font-family: 'Poppins', sans-serif;" (click)="deleteQuestions(post.id)" >Delete Post</span>
+                    <span style="font-family: 'Poppins', sans-serif;"  >Delete Post</span>
                   </button>
-                  <button mat-menu-item style="color: blue;">
+                  <button mat-menu-item style="color: blue;" (click)="goToPost(post.id)">
                     <mat-icon style="color: blue;">visibility</mat-icon>
-                    <span style="font-family: 'Poppins', sans-serif;" (click)="goToPost(post.id)">View Post</span>
+                    <span style="font-family: 'Poppins', sans-serif;" >View Post</span>
                   </button>
-                  <button mat-menu-item style="color: #fda239">
+                  <button mat-menu-item style="color: #fda239" (click)="editQuestions(post)">
                     <mat-icon style="color: #fda239">edit</mat-icon>
-                    <span style="font-family: 'Poppins', sans-serif;" (click)="editQuestions(post)">Edit Post</span>
+                    <span style="font-family: 'Poppins', sans-serif;" >Edit Post</span>
                   </button>
                 </mat-menu>
               </span>

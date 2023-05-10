@@ -11,6 +11,8 @@ import {
   faSearch,
   faCaretUp,
   faCaretDown,
+  faThumbsDown,
+  faThumbsUp,
 } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -51,6 +53,7 @@ export class HomeComponent implements OnInit {
   lname_fld: any;
   role: any;
 
+
   posts$: Array<any> = []; //why array? try not array
 
   faArrowUp = faArrowUp;
@@ -59,6 +62,8 @@ export class HomeComponent implements OnInit {
   faSearch = faSearch;
   faCaretUp = faCaretUp;
   faCaretDown = faCaretDown;
+  faThumbsDown = faThumbsDown;
+  faThumbsUp = faThumbsUp;
 
   // fname_fld:any;
   isAllowedToPost = false;
@@ -71,19 +76,26 @@ export class HomeComponent implements OnInit {
     private activateRoute: ActivatedRoute
   ) {}
 
-  filterFromSearch() {
-    this.allTags = this.filteredList;
-    this.allTags = this.allTags.filter((o: any) =>
-      Object.keys(o).some((k: any) => {
-        if (k == 'id' || k == 'remember_token' || 'tags') {
-          return this.allTags;
-        } else {
-          return o[k].toLowerCase().includes(this.searchKeyTwo.toLowerCase());
-        }
-      })
-    );
-  }
 
+  //this is not being used anymore ==
+  filterFromSearch() {
+  this.allTags = this.filteredList;
+  this.allTags = this.allTags.filter((o: any) =>
+    Object.keys(o).some((k: any) => {
+      if (k === 'id' || k === 'remember_token' || k === 'tags') {
+        return false;
+      } else {
+        return typeof o[k] === 'string' && o[k].toLowerCase().includes(this.searchKeyTwo.toLowerCase());
+      }
+
+    })
+
+  );
+}
+// ==
+
+  id:any;
+  totalCredits : number = 0;
   allTags: any[] = [];
   ngOnInit(): void {
     let retrievedData = localStorage.getItem('userdata') as unknown as string;
@@ -97,6 +109,7 @@ export class HomeComponent implements OnInit {
     this.lname_fld = fullData.lname_fld;
     this.role = fullData.role;
 
+
     // const message = 'Welcome, ' + this.fname_fld + ' ' + this.mname_fld + ' ' +  this.lname_fld;
     // this.snackbar.open(message , '' , {
     //   duration: this.durationInSeconds * 1000,
@@ -105,6 +118,8 @@ export class HomeComponent implements OnInit {
       this.searchKey = val;
     });
 
+
+
     //instances//
     this.getTotalPost();
     this.getAllData();
@@ -112,13 +127,34 @@ export class HomeComponent implements OnInit {
     this.searchTags();
     // this.onTableSizeChange(this.getAllData);
 
+    // this._apiService.request('tags', '', '', 'get').subscribe(
+    //   (res: any) => {
+    //     console.log(
+    //       '🚀 ~ file: home.component.ts:83 ~ HomeComponent ~ this._apiService.request ~ res',
+    //       res
+    //     );
+    //     this.allTags = res;
+    //   },
+    //   (error: any) => {
+    //     console.log(error);
+    //   }
+    // );
+
+    interface Tag {
+      name: string;
+      count: number;
+    }
+
     this._apiService.request('tags', '', '', 'get').subscribe(
-      (res: any) => {
-        console.log(
-          '🚀 ~ file: home.component.ts:83 ~ HomeComponent ~ this._apiService.request ~ res',
-          res
-        );
-        this.allTags = res;
+      (res: Tag[]) => {
+        console.log('🚀 ~ file: home.component.ts:83 ~ HomeComponent ~ this._apiService.request ~ res', res);
+
+        // Sort tags based on count
+        const sortedTags = res.sort((a: Tag, b: Tag) => b.count - a.count);
+
+        // Select only the top 10 tags
+        this.allTags = sortedTags.slice(0, 10);
+
       },
       (error: any) => {
         console.log(error);
@@ -220,9 +256,21 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  //this is for filtering the post based on tags that has been clicked
   filterTag(item?: any) {
     console.log(item);
     this.getAllData(item.tags);
+
+  }
+  //try for fixing the search tag -- 5/6/23
+  searchData:any;
+
+  get_the_tag(){
+    this._apiService
+    .request('searchTags/', '', { searchKeyTwo: this.searchKeyTwo }, 'get')
+    .subscribe((res:any) => {
+      this.searchData = res;
+    });
   }
 
   reportPost(post_id: any) {

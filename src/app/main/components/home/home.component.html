@@ -73,11 +73,11 @@
                             <!-- <div class="p-2" *ngIf="post.votes_value == 0 && !post.votes_value">
                                 <fa-icon class="upvote" [icon]="faArrowUp" (click)="upVotes(post.user_id, post.id)"></fa-icon>
                             </div> -->
-                            <div class="p-2" *ngIf=" post.votestatus1?.votes_status" data-bs-placement="top" title="This post is helpful">
-                              <fa-icon class="upvote done" [icon]="faArrowUp" (click)="upVotes(post.user_id, post.id)"  ></fa-icon>
+                            <div class="p-2" *ngIf=" post.votestatus1?.votes_status" >
+                              <fa-icon class="upvote done" [icon]="faThumbsUp" (click)="upVotes(post.user_id, post.id)" data-bs-placement="top" title="This post is helpful" ></fa-icon>
                           </div>
                           <div class="p-2" *ngIf=" !post.votestatus1?.votes_status">
-                            <fa-icon class="upvote" [icon]="faArrowUp" (click)="upVotes(post.user_id, post.id)" ></fa-icon>
+                            <fa-icon class="upvote" [icon]="faThumbsUp" (click)="upVotes(post.user_id, post.id)" ></fa-icon>
                           </div>
 
                             <div class="p-2  votecount">{{post.upvote}}</div>
@@ -85,11 +85,11 @@
                             <div class="p-2 votecount">{{post.downvote}}</div>
 
                             <div class="p-2 " *ngIf="post.votestatus0?.votes_status ">
-                                <fa-icon class="downvote doneDown" [icon]="faArrowDown" (click)="downVotes(post.user_id, post.id)">
+                                <fa-icon class="downvote doneDown" [icon]="faThumbsDown" (click)="downVotes(post.user_id, post.id)">
                                 </fa-icon>
                             </div>
-                            <div class="p-2 " *ngIf="!post.votestatus0?.votes_status " data-bs-placement="top" title="This post is not helpful">
-                              <fa-icon class="downvote " [icon]="faArrowDown" (click)="downVotes(post.user_id, post.id)" >
+                            <div class="p-2 " *ngIf="!post.votestatus0?.votes_status " >
+                              <fa-icon class="downvote " [icon]="faThumbsDown" (click)="downVotes(post.user_id, post.id)" data-bs-placement="top" title="This post is not helpful">
                               </fa-icon>
                           </div>
                             <!-- <div class="p-2" *ngIf="post.votes_value == 1 && !post.votes_value">
@@ -129,8 +129,11 @@
                                     <div class="badge" *ngIf="post.role === 'moderator'" style="height: 5px; width: 5px;">
                                       <span class="badge badge-primary">Moderator</span>
                                     </div>
-                                    <div class="name"> {{post.program_fld}} | {{post.fname_fld}} {{post.mname_fld}} {{post.lname_fld}}</div>
+                                    <div class="name"> {{post.program_fld}} | {{post.fname_fld}} {{post.mname_fld}} {{post.lname_fld}}
+                                        <span class="badge badge-pill badge-primary" style="font-size: 10px; color: white; background-color: #fda239;" data-bs-placement="top" title="Credit Score">500</span>
+                                    </div>
                                     <div class="date"> {{post.created_at|date:'MMM d, y &bull; h a'}}</div>
+
                                     <!-- post.created_at|dateAsAgo //shows Just Now  -->
 
                                   </div>
@@ -239,14 +242,13 @@
                       <div class="col-md-3" >
 
                         <div class="sidebar-view-subreddit" style="min-height: 50px; padding: 20px;">
-                        <!-- <div style="color: black; font-weight: bold; font-size: 15px; font-family: 'Rubik', sans-serif;">Watched Tags</div>
-                        <hr /> -->
+
                         <h4 class="subreddit-text" style="cursor: pointer;" (click)="filterTag({tags: ''})"><a >Clear Tags</a></h4>
                         <hr />
 
                         <div class="input-group">
                           <input type = "search" [(ngModel)]="searchKeyTwo" class="form-control rounded col-md-2" placeholder="Search" aria-label="Search">
-                          <button type="button" (click)="filterFromSearch()" class="btn btn-primary">search</button>
+                          <button type="button" (click)="get_the_tag()" class="btn btn-primary">search</button>
                         </div>
                         <!-- <span *ngFor="let item of allTags">
                             <span class="subreddit-text" (click)="filterTag(item)"><a >{{item.tags}} ({{item.count}})</a></span>

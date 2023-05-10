@@ -71,9 +71,14 @@
           <div class="post-comment">
 
             <form [formGroup]="commentForm" (ngSubmit)="postComment()"> <!--(ngSubmit)="postComment()">-->
-              <div class="form-group">
+              <!-- <div class="form-group">
                 <textarea style="height: 180px;" class="form-control" [formControlName]="'content'" placeholder="Your Thoughts?"></textarea>
-              </div>
+              </div> -->
+              <quill-editor
+              [modules]="quillConfig"
+              placeholder="Enter Text"
+              formControlName="content"
+              class="form-control"></quill-editor>
 
 
               <div class="row button d-flex flex-row justify-content-end ">
@@ -151,9 +156,10 @@
 
                  <!--End Comment Content-->
                 <span  style="display: flex;
-                align-items: center; color: #fda239; cursor: pointer; margin-left: 40px;">
+                align-items: center; color: #39a5fd; cursor: pointer; margin-left: 40px;">
                   <mat-icon> comment</mat-icon>
                   <a (click)="onClick(comment)">View Replies  ({{comment.reply.length}})</a>
+
                 </span>
               <ng-container *ngIf="comment?.visible"> <!--Reply Content-->
                 <!-- <div class="commentReply" *ngFor="let rep of comment.reply">

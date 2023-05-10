@@ -95,10 +95,6 @@ export class LoginComponent implements OnInit {
 
           console.log("Logged In Successfully");
         }
-
-
-
-
       }, (error: any)=>{
 
         console.log ("Error", error);

@@ -3,7 +3,7 @@
     <mat-icon>school</mat-icon>
     <span>Student List</span>
     <br>
-    <p>View students that are using the application.</p>
+    <p>View lists students that are using the application.</p>
   </div>
 
   <div class="body">
@@ -18,7 +18,7 @@
 
     </span>
 
-    <!-- <button class="" (click)="addModal()" style="float:right; margin-right: 20px;"  >+Add Student</button> -->
+    <button class="" (click)="addModal()" style="float:right; margin-right: 20px;"  >+Add Student</button>
     </div>
 
   <div class="table-z">
@@ -76,7 +76,9 @@
 
         <ng-container matColumnDef="action">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
-          <td mat-cell *matCellDef="let row" (click)="reinstate(row.userid)"><button type="button">Reinstate </button></td>
+          <td mat-cell *matCellDef="let row" (click)="reinstate(row.userid)">
+            <button style="{{row.reports !=10 ? 'opacity:0.4' : ''}}" [disabled]="row.reports !=10" type="button">Reinstate </button>
+          </td>
         </ng-container>
 
         <ng-container matColumnDef="profilepic_fld" >

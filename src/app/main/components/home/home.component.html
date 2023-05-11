@@ -130,7 +130,7 @@
                                       <span class="badge badge-primary">Moderator</span>
                                     </div>
                                     <div class="name"> {{post.program_fld}} | {{post.fname_fld}} {{post.mname_fld}} {{post.lname_fld}}
-                                        <span class="badge badge-pill badge-primary" style="font-size: 10px; color: white; background-color: #fda239;" data-bs-placement="top" title="Credit Score">500</span>
+                                        <span class="badge badge-pill badge-primary" style="font-size: 10px; color: white; background-color: #fda239;" data-bs-placement="top" title="Credit Score">{{post.credits}}</span>
                                     </div>
                                     <div class="date"> {{post.created_at|date:'MMM d, y &bull; h a'}}</div>
 
@@ -152,14 +152,14 @@
                                   <mat-menu #menu="matMenu">
                                     <!-- Bookmarks -->
                                     <button mat-menu-item (click)="setBookmark(post.id)">
-                                      <mat-icon>bookmarks</mat-icon>
+                                      <mat-icon style="color: #fda239">bookmarks</mat-icon>
                                       <span style="font-family: 'Poppins', sans-serif;" >Save this post</span>
                                     </button>
                                      <!-- Bookmarks -->
 
                                     <!-- Report -->
                                     <button mat-menu-item (click)="reportPost(post.id)">
-                                    <mat-icon>flag</mat-icon>
+                                    <mat-icon style="color: red">flag</mat-icon>
                                     <span style="font-family: 'Poppins', sans-serif;" >Report</span>
                                     </button>
                                     <!-- Report -->
@@ -247,8 +247,8 @@
                         <hr />
 
                         <div class="input-group">
-                          <input type = "search" [(ngModel)]="searchKeyTwo" class="form-control rounded col-md-2" placeholder="Search" aria-label="Search">
-                          <button type="button" (click)="get_the_tag()" class="btn btn-primary">search</button>
+                          <input type = "search" [(ngModel)]="searchKeyTwo" class="form-control rounded col-md-2" placeholder="Search">
+                          <!-- <button type="button" (click)="get_the_tag()" class="btn btn-primary">search</button> -->
                         </div>
                         <!-- <span *ngFor="let item of allTags">
                             <span class="subreddit-text" (click)="filterTag(item)"><a >{{item.tags}} ({{item.count}})</a></span>

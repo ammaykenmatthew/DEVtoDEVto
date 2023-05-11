@@ -62,7 +62,7 @@
             </div>
             <br>
               <mat-card-title  style=" font-family: 'IBM Plex Sans', sans-serif;">
-                  <a>{{post.title}}</a>
+                  <a (click)="goToPost(post.id)">{{post.title}}</a>
               </mat-card-title>
               <hr>
               <mat-card-subtitle >

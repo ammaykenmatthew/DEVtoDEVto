@@ -41,9 +41,8 @@ export class LoginComponent implements OnInit {
 
   frmGroup: FormGroup = this.formBuilder.group({
     email_add: [null, Validators.required],
-    pword_fld: [null, [Validators.required]],
-   })
-
+    pword_fld: [null, Validators.required],
+   });
 
    hide = true;
    isLoading = false;

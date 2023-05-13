@@ -124,9 +124,7 @@ export class MyQuestionsComponent implements OnInit {
     this.dialog.open(PostFormComponent,{
 
       width: '98vh',
-      height: '90vh',
       maxWidth: '100vw',
-      maxHeight: '100vh',
       data:row
     });
   }

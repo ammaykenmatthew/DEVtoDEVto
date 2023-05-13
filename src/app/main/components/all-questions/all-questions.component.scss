@@ -40,22 +40,22 @@
     }
 }
 .add{
-    button{
-      position: relative;
-      font-size: 15px;
-      color: white;
-      background-color: #0a95ff;
-      width: 150px;
-      height: 45px;
-      border-radius: 12px;
-      border-color: #002ead;
+      button{
+        position: relative;
+        font-size: 15px;
+        color: white;
+        background-color: #0a95ff;
+        width: 150px;
+        height: 45px;
+        border-radius: 12px;
+        border:none;
 
 
-  }
-  button:hover {
-      background-color:#1f45ad;
-      transition: 0.3s;
-  }
+    }
+    button:hover {
+        background-color:#0c83df;
+        transition: 0.3s;
+    }
 }
 
 .question{

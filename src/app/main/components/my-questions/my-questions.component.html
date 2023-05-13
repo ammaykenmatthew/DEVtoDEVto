@@ -59,13 +59,13 @@
 
               <div class="head">
               <span style="font-size: 14px;">
-                <a>Posted by {{post.program_fld}} | {{post.fname_fld}} {{post.mname_fld}} {{post.lname_fld}}</a>
-                <span> - {{post.created_at|date:'MMM d, y - h a'}}</span>
+                <a>{{post.program_fld}} | {{post.fname_fld}} {{post.mname_fld}} {{post.lname_fld}}</a>
+                <span> - {{post.created_at|date:'MMM d, y &bull; h a'}}</span>
                 <!-- post.created_at|dateAsAgo //shows Just Now  -->
             </span>
             </div>
             <br>
-              <mat-card-title  style=" font-family: 'IBM Plex Sans', sans-serif;">
+              <mat-card-title  style=" font-family: 'Rubik', sans-serif;">
                   <a (click)="goToPost(post.id)">{{post.title}}</a>
               </mat-card-title>
               <hr>

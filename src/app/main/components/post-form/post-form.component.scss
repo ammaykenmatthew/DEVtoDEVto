@@ -4,9 +4,12 @@
 //font-family: 'IBM Plex Sans', sans-serif;
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@500&display=swap');
 
+//Rubik, Quicksand
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&family=Rubik:wght@400;500&display=swap');
+
 h1{
-  font-family: 'IBM Plex Sans', sans-serif;
-  font-weight: 500;
+  font-family: 'Rubik', sans-serif;
+  font-weight: 400;
 }
 
 mat-form-field {
@@ -22,3 +25,44 @@ mat-form-field {
   max-width: 100%;
   height: auto;
 }
+
+//CSS for Buttons
+
+.close{
+  width: 70px;
+  height: 35px;
+  color: #757678;
+  font-family: 'Rubik', sans-serif;
+  font-weight: 500;
+  background: white;
+  border-radius: 50px;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor:pointer;
+}
+.close:hover{
+  background-color:#c9c9c9;
+  transition: 0.3s;
+}
+
+.submit{
+  width: 78px;
+  height: 37px;
+  color: white;
+  font-family: 'Rubik', sans-serif;
+  font-weight: 500;
+  background: #0a95ff;
+  border-radius: 50px;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor:pointer;
+}
+.submit:hover{
+  background-color: #0c83df;
+  transition: 0.3s;
+}
+//

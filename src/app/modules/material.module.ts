@@ -24,6 +24,8 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatTabsModule} from '@angular/material/tabs';
+
 //Includes all modules
 const MatModules = [
     MatToolbarModule,
@@ -48,7 +50,8 @@ const MatModules = [
     MatTooltipModule,
     MatRadioModule,
     MatAutocompleteModule,
-    MatSelectModule
+    MatSelectModule,
+    MatTabsModule
 ];
 
 @NgModule({

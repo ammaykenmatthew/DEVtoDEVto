@@ -1,85 +1,85 @@
 <div class="page">
   <div class="page-box p-3 ">
     <mat-icon>bookmarks</mat-icon> Bookmarks
+    <br>
+    <br>
+    <p style="color:rgb(255, 255, 255); font-size: 16px; font-family: 'Rubik', sans-serif;">Shows the list of posts that has been reported</p>
   </div>
   <div class="page-content">
     <!--Loader-->
-<div *ngIf="showLoader" class="loader text-center">
-  <div class="bar1"></div>
-  <div class="bar2"></div>
-  <div class="bar3"></div>
-  <div class="bar4"></div>
-  <div class="bar5"></div>
-  <div class="bar6"></div>
-  <div class="bar7"></div>
-  <div class="bar8"></div>
-  <div class="bar9"></div>
-  <div class="bar10"></div>
-  <div class="bar11"></div>
-  <div class="bar12"></div>
-</div>
-<!--Loader-->
+        <div *ngIf="showLoader" class="loader text-center">
+          <div class="bar1"></div>
+          <div class="bar2"></div>
+          <div class="bar3"></div>
+          <div class="bar4"></div>
+          <div class="bar5"></div>
+          <div class="bar6"></div>
+          <div class="bar7"></div>
+          <div class="bar8"></div>
+          <div class="bar9"></div>
+          <div class="bar10"></div>
+          <div class="bar11"></div>
+          <div class="bar12"></div>
+        </div>
+    <!--Loader-->
     <div class="search">
-      <p>Search Bookmarks:</p>
+      <p style="font-family: 'Rubik', sans-serif;">Search Bookmarks:</p>
       <mat-form-field appearance="outline" class="field">
         <input matInput  placeholder="Ex. Where is .." #input>
       </mat-form-field>
       </div>
+<mat-tab-group animationDuration="0ms">
+  <mat-tab label="Bookmarks">
+    <br>
     <div class="bookmarks" *ngFor="let book of bookmarks?.bookmarks">
-       <mat-card class="example-card">
-        <span style="margin-left: 150px;">
-          <button mat-icon-button [matMenuTriggerFor]="menu" style="float: right;">
-            <mat-icon>more_horiz</mat-icon>
-          </button>
-          <mat-menu #menu="matMenu">
-            <button mat-menu-item>
-              <mat-icon style="color: red;" >delete_outline</mat-icon>
-              <span style="font-family: 'Poppins', sans-serif;" (click)="remove(book.id)">Remove from bookmarks</span>
-            </button>
-          </mat-menu>
-        </span>
-        <div class="image" *ngIf="book?.photo">
-          <img [src]="image+book?.photo" style="height: 110px; width:110px;"  >
-        </div>
-        <div class="image" *ngIf="book?.photo == null ">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg?20200913095930" style="height: 110px; width:110px;"  >
-        </div>
-        <div class="content">
-          <mat-card-header >
+      <mat-card class="example-card">
+       <span style="margin-left: 150px;">
+         <button mat-icon-button [matMenuTriggerFor]="menu" style="float: right;">
+           <mat-icon>more_horiz</mat-icon>
+         </button>
+         <mat-menu #menu="matMenu">
+           <button mat-menu-item>
+             <mat-icon style="color: red;" >delete_outline</mat-icon>
+             <span style="font-family: 'Poppins', sans-serif;" (click)="remove(book.id)">Remove from bookmarks</span>
+           </button>
+         </mat-menu>
+       </span>
+       <div class="image" *ngIf="book?.photo">
+         <img [src]="image+book?.photo" style="height: 110px; width:110px;"  >
+       </div>
+       <div class="image" *ngIf="book?.photo == null ">
+         <img src="https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg?20200913095930" style="height: 110px; width:110px;"  >
+       </div>
+       <div class="content">
+         <mat-card-header >
 
-            <mat-card-title  style=" font-family: 'IBM Plex Sans', sans-serif; ">
-              <a style="display: -webkit-box;
-              overflow : hidden;
-              text-overflow: ellipsis; -webkit-box-orient: vertical;" >{{book?.title}}</a>
+           <mat-card-title  style=" font-family: 'IBM Plex Sans', sans-serif; ">
+             <a style="display: -webkit-box;
+             overflow : hidden;
+             text-overflow: ellipsis; -webkit-box-orient: vertical;" >{{book?.title}}</a>
 
-            </mat-card-title>
-            <mat-card-subtitle >{{book?.tags}}</mat-card-subtitle>
+           </mat-card-title>
+           <mat-card-subtitle >{{book?.tags}}</mat-card-subtitle>
 
-          </mat-card-header>
-          <mat-card-content >
-            <p>{{book?.description}}</p>
-          </mat-card-content>
-        </div>
-          <mat-divider></mat-divider>
-          <mat-card-actions align="start" >
-            <button mat-stroked-button color="primary" style="margin-left: 5px;" (click)="goToPost(book.book_id)">View</button>
+         </mat-card-header>
+         <mat-card-content >
+           <p>{{book?.description}}</p>
+         </mat-card-content>
+       </div>
+         <mat-divider></mat-divider>
+         <mat-card-actions align="start" >
+           <button mat-stroked-button color="primary" style="margin-left: 5px;" (click)="goToPost(book.book_id)">View</button>
 
-          </mat-card-actions>
+         </mat-card-actions>
 
-        </mat-card>
-<!--
-        <div class="card-container">
-          <mat-card class="card" *ngFor="let book of bookmarks?.bookmarks">
-            <img mat-card-image [src]="image+book?.photo" alt="">
-            <mat-card-content>
-              <h2 mat-card-title>{{ book?.title }}</h2>
-              <mat-card-subtitle >{{book?.tags}}</mat-card-subtitle>
-              <p mat-card-subtitle>{{ book?.description }}</p>
-            </mat-card-content>
-          </mat-card>
-        </div> -->
+       </mat-card>
 
-      </div>
-      <br>
+     </div>
+     <br>
+  </mat-tab>
+
+  <mat-tab label="Archived Posts">Archived Posts</mat-tab>
+</mat-tab-group>
+
   </div>
 </div>

@@ -33,32 +33,38 @@ export class ReportComponent implements OnInit {
 
   form = new FormGroup({
     report: new FormControl('Misinformation', Validators.required),
+    otherReport: new FormControl('')
   });
+
+  reportOptions = [
+    'Hate speech or graphic violence',
+    'Inappropriate language',
+    'Malicious content',
+    'Misinformation',
+    'Other'
+  ];
 
   ngOnInit(): void {}
 
   reports$: any;
   reportPost() {
-    // console.log(this.form.value);
     let retrievedData = localStorage.getItem('userdata') as unknown as string;
     let fullData: any = JSON.parse(retrievedData);
 
     let user_id = fullData.id;
-    console.log(this.form.value);
-    this._apiService
-      .request(
-        'setReport/' + user_id + '/' + this.data.post_id,
-        '',
-        this.form.value,
-        'post'
-      )
-      .subscribe((res: any) => {
+    let reportValue = this.form.get('report')?.value;
+    if (reportValue === 'Other') {
+      reportValue = this.form.get('otherReport')?.value;
+    }
+    const formData = { report: reportValue };
+    console.log(formData);
+    this._apiService.request('setReport/' + user_id + '/' + this.data.post_id,'',formData,'post').subscribe((res: any) => {
         this.reports$ = res;
       });
 
-    const message = 'Post reported sucessfully!';
+    const message = 'Post reported successfully!';
     this.snackbar.open(message, '', {
-      duration: this.durationInSeconds * 1000,
+      duration: 3000,
     });
   }
 }

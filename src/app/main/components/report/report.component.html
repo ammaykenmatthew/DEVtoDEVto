@@ -43,54 +43,26 @@
   </form>
 </div> -->
 
-<div class="containter">
-      <h1>Report Post</h1>
-      <form [formGroup]="form" (ngSubmit)="reportPost()">
-        <div class="form-group">
-          <div class="form-check">
-            <input class="form-check-input" type="radio"
-            value="Hate speech or graphic violence"
-            id="1"
-            formControlName="report">
-            <label class="form-check-label" for="Hate speech or graphic violence">
-              Hate speech or graphic violence
-            </label>
-          </div>
-
-          <div class="form-check">
-            <input class="form-check-input" type="radio"
-            value="Harassment or bullying"
-            id="2"
-            formControlName="report">
-            <label class="form-check-label" for="Harassment or bullying">
-              Harassment or bullying
-            </label>
-          </div>
-
-          <div class="form-check">
-            <input class="form-check-input" type="radio"
-            value="Unrelated content"
-            id="3"
-            formControlName="report" >
-            <label class="form-check-label" for="Unrelated content">
-              Unrelated content
-            </label>
-          </div>
-
-          <div class="form-check">
-            <input class="form-check-input" type="radio"
-            value="Misinformation"
-            id="4"
-            formControlName="report" >
-            <label class="form-check-label" for="Misinformation">
-              Misinformation
-            </label>
-          </div>
-
-          <div [align]="'end'" >
-            <button mat-raised-button color="warn" mat-dialog-close>Close</button>
-            <button style="margin-left:8px;" mat-raised-button color="primary"  mat-dialog-close (click)="reportPost()">Report</button>
-          </div>
-        </div>
-      </form>
+<div class="container">
+  <h1>Report Post</h1>
+  <form [formGroup]="form" (ngSubmit)="reportPost()">
+    <div class="form-group">
+      <div class="form-check" *ngFor="let report of reportOptions">
+        <input class="form-check-input" type="radio"
+          [value]="report"
+          id="{{ report }}"
+          formControlName="report">
+        <label class="form-check-label" for="{{ report }}">
+          {{ report }}
+        </label>
+      </div>
+      <div *ngIf="form.get('report')?.value === 'Other'">
+        <textarea rows="3" cols="30" formControlName="otherReport"></textarea>
+      </div>
+      <div class="buttonEnd" [align]="'end'">
+        <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+        <button style="margin-left:8px;" mat-raised-button color="primary" mat-dialog-close (click)="reportPost()">Report</button>
+      </div>
+    </div>
+  </form>
 </div>

@@ -1,6 +1,10 @@
 <div class="page">
   <div class="page-box p-3 ">
     <mat-icon>question_answer</mat-icon> My Questions
+    <br>
+    <br>
+    <p style="color:rgb(255, 255, 255); font-size: 16px; font-family: 'Rubik', sans-serif;">Shows the list of your posts</p>
+  </div>
   </div>
   <div class="page-content">
        <!--Loader-->
@@ -20,7 +24,7 @@
 </div>
 <!--Loader-->
     <div class="search">
-      <p>Search Question:</p>
+      <p style="font-family: 'Rubik', sans-serif;">Search Question:</p>
       <mat-form-field appearance="outline">
         <input matInput  [(ngModel)]="searchTerm"  (keyup)="search($event)" placeholder="Ex. Where is .." #input>
       </mat-form-field>

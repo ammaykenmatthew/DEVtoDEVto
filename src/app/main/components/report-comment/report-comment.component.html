@@ -1,0 +1,27 @@
+
+<div class="container">
+  <h1>Report Comment</h1>
+  <form [formGroup]="form" (ngSubmit)="reportComment()">
+    <div class="form-group">
+      <div class="form-check" *ngFor="let report of reportOptions">
+        <input class="form-check-input" type="radio"
+          [value]="report"
+          id="{{ report }}"
+          formControlName="report">
+        <label class="form-check-label" for="{{ report }}">
+          {{ report }}
+        </label>
+      </div>
+      <div *ngIf="form.get('report')?.value === 'Other'">
+        <textarea matIntput rows="3" cols="30" formControlName="otherReport"></textarea>
+      </div>
+      <div class="buttonEnd" [align]="'end'">
+
+        <button class="close" type="button" mat-dialog-close>Close</button>
+        <button class="submit"  style="margin-left:8px;" mat-raised-button color="primary" mat-dialog-close (click)="reportComment()">Report</button>
+
+      </div>
+    </div>
+  </form>
+</div>
+

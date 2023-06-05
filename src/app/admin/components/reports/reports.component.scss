@@ -64,3 +64,35 @@
 
 }
 
+
+.body_comments{
+  table {
+    width: 100%;
+    table-layout: fixed;
+
+    td{
+
+      color: #1e293b;
+      font-family: 'Poppins', sans-serif;
+    }
+    th{
+      background-color: #1e293b;
+      color: #fff;
+      font-family: 'Rubik', sans-serif;
+      font-size: 15px;
+
+    }
+
+  }
+
+  .mat-form-field {
+    font-size: 14px;
+    width: 20rem;
+  }
+  .container{
+    max-width: 125rem;
+    margin: 0 auto;
+  }
+
+}
+

@@ -7,7 +7,7 @@ import { UserService } from 'src/app/services/user.service';
 import { Location } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import {
   faComment,
   faArrowDown,
@@ -15,6 +15,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { environment } from 'src/environments/environment.prod';
 import { Comment } from '../comment/comment.model';
+import { ReportCommentComponent } from '../report-comment/report-comment.component';
 @Component({
   selector: 'app-view-post',
   templateUrl: './view-post.component.html',
@@ -55,6 +56,7 @@ export class ViewPostComponent implements OnInit {
     private postService: UserService,
     private activateRoute: ActivatedRoute,
     private _location: Location,
+    private dialog: MatDialog,
     private formBuilder: FormBuilder,
     public snackbar: MatSnackBar // @Inject(MAT_DIALOG_DATA) public post_id: {id: number},
   ) {}
@@ -66,7 +68,42 @@ export class ViewPostComponent implements OnInit {
     this.isEditing = !this.isEditing;
   }
 
+  editing = false;
+  editedComment: any;
+  comment: any;
+  onEditSubmit() {
+    // Update the comment content
+    const updatedComment = {
+      content: this.editedComment
+    };
+
+    // Make an HTTP PUT request to update the comment on the server
+    const commentId = this.comment.comments.id;
+    this._apiService.request('editComment/' + commentId, '', updatedComment, 'put')
+      .subscribe(
+        (res:any) => {
+          // Handle the success response
+          console.log()
+          console.log('Comment updated:', res);
+          this.editing = false; // Exit editing mode
+        },
+        (error:any) => {
+          // Handle the error response
+          console.error('Error updating comment:', error);
+          // You can display an error message or handle the error accordingly
+        }
+      );
+  }
+
   //EXTRA
+
+  editComment(comment: any) {
+    // Find the comment with the given id and set the editedComment variable to its content
+    let commentId = comment.comments.id;
+    console.log(commentId);
+    // Set the editing variable to true to show the edit form
+    this.editing = true;
+  }
 
   totalCredits: number = 0;
   ngOnInit(): void {
@@ -249,14 +286,7 @@ export class ViewPostComponent implements OnInit {
     let user_id = fullData.id;
 
     if (this.replyForm.valid) {
-      this._apiService
-        .request(
-          'createReply/' + user_id + '/' + comment.comments.id,
-          '',
-          this.replyForm.value,
-          'post'
-        )
-        .subscribe((res: any) => {
+      this._apiService.request('createReply/' + user_id + '/' + comment.comments.id,'',this.replyForm.value,'post').subscribe((res: any) => {
           this.comments$$ = res;
           this.replyForm.reset();
           this.viewComment();
@@ -311,4 +341,27 @@ export class ViewPostComponent implements OnInit {
         }
       );
   }
+
+  reportComment(comment_id: any) {
+    console.log(comment_id);
+
+    this.dialog.open(ReportCommentComponent, {
+      maxHeight: '40vh',
+      maxWidth: '100vw',
+      data: {
+        comment_id: comment_id,
+      },
+    });
+  }
+
+  openReportDialog(comment: any) {
+    console.log(comment)
+    const commentId = comment.comments.id; // Assuming 'id' is the property representing the comment's ID
+    this.reportComment(commentId);
+    console.log(commentId);
+
+
+  }
+
+
 }

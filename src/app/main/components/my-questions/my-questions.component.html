@@ -53,6 +53,14 @@
                     <mat-icon style="color: #fda239">edit</mat-icon>
                     <span style="font-family: 'Poppins', sans-serif;" >Edit Post</span>
                   </button>
+                  <button mat-menu-item  *ngIf="post.post_status =='open'">
+                    <mat-icon style="color:red">close_outline</mat-icon>
+                    <span style="font-family: 'Poppins', sans-serif; color: red;" (click)="closePost(post)">Close Post</span>
+                  </button>
+                  <button mat-menu-item *ngIf="post.post_status =='close'">
+                    <mat-icon style="color:green">check_circle_outline</mat-icon>
+                    <span style="font-family: 'Poppins', sans-serif; color: green;" (click)="openPost(post)" >Open Post</span>
+                  </button>
                 </mat-menu>
               </span>
 

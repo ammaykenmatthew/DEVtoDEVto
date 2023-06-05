@@ -26,6 +26,7 @@ import { ReportComponent } from './components/report/report.component';
 import { CommentBoxComponent } from './components/comment-box/comment-box.component';
 import { CommentComponent } from './components/comment/comment.component';
 import { QuillModule } from 'ngx-quill';
+import { ReportCommentComponent } from './components/report-comment/report-comment.component';
 
 // import { MainRoutingModule } from "./main-routing.module";
 // import { QuestionsComponent } from './components/questions/questions.component';
@@ -52,6 +53,7 @@ import { QuillModule } from 'ngx-quill';
     ReportComponent,
     CommentBoxComponent,
     CommentComponent,
+    ReportCommentComponent,
 
   ],
   imports: [

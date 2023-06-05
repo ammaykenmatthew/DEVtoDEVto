@@ -10,35 +10,56 @@
 //font-family: 'IBM Plex Sans', sans-serif;
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@500&display=swap');
 
-.page{
+// .page{
 
-    &__content{
-        width: 80vh;
-        min-height: calc(50vh - 160px);
-        // border-radius: 10px;
-        background: white;
-        color: black;
-        font-size: 2rem;
+//     &__content{
+//         width: 80vh;
+//         min-height: calc(50vh - 160px);
+//         // border-radius: 10px;
+//         background: white;
+//         color: black;
+//         font-size: 2rem;
 
+// }
+
+// }
+
+
+// .page-header{
+//     // margin-left: 13px;
+//     margin-top: 1vh;
+//     min-height: 130px;
+//     width: 97vh;
+//     border: 1px solid #ccc;
+//     background-color: #fff;
+//     color: #1e293b;
+//     span{
+//       font-family: 'Rubik', sans-serif;
+//       font-size: 30px;
+//       font-weight: 500;
+//       margin-top: 1vh;
+
+//     }
+// }
+
+.page-header {
+  margin-top: 1vh;
+  min-height: 130px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  color: #1e293b;
 }
 
+.page-header span {
+  font-family: 'Rubik', sans-serif;
+  font-size: 30px;
+  font-weight: 500;
+  margin-top: 1vh;
+  margin-left: 8px;
 }
-.page-header{
-    // margin-left: 13px;
-    margin-top: 1vh;
-    min-height: 130px;
-    width: 97vh;
-    border: 1px solid #ccc;
-    background-color: #fff;
-    color: #1e293b;
-    span{
-      font-family: 'Rubik', sans-serif;
-      font-size: 30px;
-      font-weight: 500;
-      margin-top: 1vh;
 
-    }
-}
+
+
 .add{
     button{
       position: relative;
@@ -342,7 +363,7 @@ mat-chip {
 .sidebar-view-subreddit {
 
 
-  width: 312px;
+
   min-height: 30%;
   --post-line-color: #ccc;
   border: 1px solid #ccc;

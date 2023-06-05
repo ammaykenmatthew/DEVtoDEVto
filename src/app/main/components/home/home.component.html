@@ -1,7 +1,6 @@
 <div class="container h-100">
   <div class="row h-100 justify-content-center  align-items-center">
-  <!-- <div class="row h-100 justify-content-center align-items-center"> -->
-            <div class="page-header d-flex flex-row justify-content-between">
+            <!-- <div class="page-header d-flex flex-row justify-content-between">
                 <div class="text d-flex flex-row justify-content-start">
                   <span>Top
                     <br>
@@ -31,12 +30,44 @@
                   </div>
                 </div>
               </div>
-
-
                 </div>
 
 
+            </div> -->
+
+            <div class="container-fluid">
+              <div class="page-header d-flex flex-row justify-content-between">
+                <div class="text d-flex flex-row justify-content-start">
+                  <span>Top
+                    <br>
+                    <br> Questions</span>
+                  <div class="total align-self-end">
+                    {{total_post}} questions
+                  </div>
+                  <p *ngIf="!isAllowedToPost && !isAllowedToPostLoading" style="color: red">You currently have been reported 10 times, you are not allowed to post
+                    Please send your appeal at admin@gmail.com</p>
+                </div>
+                <div class="add p-2 justify-content-start">
+                  <button style="{{!isAllowedToPost && !isAllowedToPostLoading ? 'opacity:0.4' : ''}}" [disabled]="!isAllowedToPost && !isAllowedToPostLoading" type="button" color="primary" (click)="openDialog()"> + Ask a Question</button>
+                  <div class="pager1 ">
+                    <div class="d-flex ">
+                      <div class="d-flex fd-column ">
+                        <label class="flex--item fs-caption">Show </label>
+                        <select class="selek" (change)="onTableSizeChange($event)">
+                          <option *ngFor="let size of tableSizes">
+                            {{size}}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
+
+
+
+
             <!--Loader-->
             <div *ngIf="showLoader" class="loader text-center">
               <div class="bar1"></div>
@@ -61,7 +92,7 @@
                   <!-- <div class="row d-flex justify-content-center"> -->
                     <div class="row d-flex justify-content-center">
 
-                    <div class="col-md-5">
+                    <div class="col-md-9">
                       <div class="row post" *ngFor="let post of posts$ | filter:searchKey: 'title' | paginate: {
                         itemsPerPage: tableSize,
                         currentPage: page,
@@ -163,6 +194,13 @@
                                     <span style="font-family: 'Poppins', sans-serif;" >Report</span>
                                     </button>
                                     <!-- Report -->
+
+                                    <!-- Hide Post -->
+                                    <button mat-menu-item >
+                                      <mat-icon>remove_red_eye</mat-icon>
+                                      <span style="font-family: 'Poppins', sans-serif;" >Hide post</span>
+                                      </button>
+                                      <!-- Hide Post -->
 
                                     <!-- Delete AS MODERATOR -->
                                      <!-- <div class="del" *ngIf="role === 'moderator'">

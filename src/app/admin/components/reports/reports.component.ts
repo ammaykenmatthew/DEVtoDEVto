@@ -29,10 +29,23 @@ export class ReportsComponent implements OnInit {
     'created_at',
 
   ];
+  displayedColumns2: string[] = [
+    'id',
+    'user_id',
+    'comment_id',
+    'reported',
+    'report',
+    'created_at',
+
+  ];
   dataSource!: MatTableDataSource<any>;
+  dataSource2!: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatPaginator) paginator2!: MatPaginator;
+
   @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild(MatSort) sort2!: MatSort;
 
   constructor(
     public _apiService: AuthService,
@@ -52,9 +65,26 @@ export class ReportsComponent implements OnInit {
         console.log(res);
       }),
       (error: any) => {
-        alert('Error posting data...');
-        console.log('Error posting data', error);
+        alert('Error getting data...');
+        console.log('Error getting data', error);
       };
+
+      this._apiService
+      .request('showAllReportComments', '', '', 'get')
+      .subscribe((res: any) => {
+        this.dataSource2 = new MatTableDataSource(res);
+
+        this.dataSource2.paginator = this.paginator2;
+        this.dataSource2.sort = this.sort2;
+        console.log(res);
+      }),
+      (error: any) => {
+        alert('Error getting data...');
+        console.log('Error getting data', error);
+      };
+
+
+
   }
 
   applyFilter(event: Event) {

@@ -112,7 +112,7 @@
               font-style: italic;
               border: 1px solid red;
             ">
-              <p>This thread has been closed by the moderator and does no longer accept any comments or replies.</p>
+              <p>This thread has been closed by the moderator or by the owner and does no longer accept any comments or replies.</p>
             </div>
             <h4 style="font-size: 20px; color: black;">Comments ({{post.commentcount}})</h4>
             <!--Display Comments-->
@@ -120,7 +120,7 @@
 
             <div class="container2">
               <div class="comment" *ngFor="let comment of comments">
-                <div *ngIf="comment === 0" style="font-size: 30px; font-family: 'IBM Plex Sans', sans-serif;"><h4>There are no comments found</h4></div>
+
                 <div class="col-md-11"> <!--Comment Content-->
                   <!-- <img [src]="'http://localhost:8000/'+comment.comments.profilepic_fld"  alt="" style="height: 35px; width: 35px; margin-right: 3px; margin-top: 5px; border-radius: 50%; border: 2px solid #878A8C;">
                 <span>
@@ -133,9 +133,30 @@
                   <p style="background-color: #f7f9fa; font-family: 'Rubik', sans-serif;">{{comment.comments.content}}</p>
                 </div>
                 <hr> -->
+
                 <div class="comment-session">
                   <div class="post-comment">
-                    <div class="list">
+                    <button mat-icon-button [matMenuTriggerFor]="menu"   style="float: right;">
+                      <mat-icon>more_horiz</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu">
+                      <!-- Bookmarks -->
+                      <button mat-menu-item *ngIf="id === comment.comments.user_id" >
+                        <mat-icon >edit</mat-icon>
+                        <span style="font-family: 'Poppins', sans-serif;" (click)="editComment(id)" >Edit</span>
+                      </button>
+                       <!-- Bookmarks -->
+
+                      <!-- Report -->
+                      <button mat-menu-item >
+                      <mat-icon >flag</mat-icon>
+                      <span style="font-family: 'Poppins', sans-serif;" (click)="openReportDialog(comment)" >Report</span>
+                      </button>
+                      <!-- Report -->
+        <!-- <div class="comment-post">{{comment.comments.content}}</div> -->
+                    </mat-menu>
+
+                    <!-- <div class="list">
                       <div class="user">
                         <div class="user-image" *ngIf="comment.comments.profilepic_fld">
                           <img [src]="image+comment.comments.profilepic_fld"  alt="">
@@ -144,15 +165,43 @@
                           <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png"  alt="">
                         </div>
                         <div class="user-meta">
-                          <div class="name">{{comment.comments.program_fld}} | {{comment.comments.fname_fld}} {{comment.comments.mname_fld}} {{comment.comments.lname_fld}} </div>
+                          <div class="name">{{comment.comments.program_fld}} | {{comment.comments.fname_fld}} {{comment.comments.mname_fld}} {{comment.comments.lname_fld}}
+                            <span class="badge badge-pill badge-primary" style="font-size: 10px; color: white; background-color: #fda239;" data-bs-placement="top" title="Credit Score">{{comment.credit}}</span>
+                          </div>
                           <div class="day">{{comment.comments.created_at|date:'MMM d, y &bull; h a'}} </div>
                         </div>
                       </div>
-                      <!-- <div class="comment-post">{{comment.comments.content}}</div> -->
+
                       <div class="comment-post" [innerHTML]="comment.comments.content" style="color: black;"></div>
                     </div>
                   </div>
+                </div> -->
+                <div *ngIf="comment.comments.length === 0" style="font-size: 30px; font-family: 'Rubik', sans-serif;">
+                  <h4>There are no comments found</h4>
                 </div>
+                <div class="list">
+                  <div class="user">
+                    <div class="user-image" *ngIf="comment.comments.profilepic_fld">
+                      <img [src]="image+comment.comments.profilepic_fld"  alt="">
+                    </div>
+                    <div class="user-image"  *ngIf="comment.comments.profilepic_fld == null">
+                      <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png"  alt="">
+                    </div>
+                    <div class="user-meta">
+                      <div class="name">{{comment.comments.program_fld}} | {{comment.comments.fname_fld}} {{comment.comments.mname_fld}} {{comment.comments.lname_fld}} </div>
+                      <div class="day">{{comment.comments.created_at|date:'MMM d, y &bull; h a'}} </div>
+                    </div>
+                  </div>
+                  <div class="comment-post" *ngIf="!editing" [innerHTML]="comment.comments.content" style="color: black;"></div>
+                  <form *ngIf="editing" (ngSubmit)="onEditSubmit()">
+                    <div class="form-group">
+                      <textarea class="form-control" [(ngModel)]="editedComment" name="editedComment"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                  </form>
+                  <!-- <button *ngIf="!editing" class="btn btn-link" (click)="editing = true">Edit</button> -->
+                </div>
+
 
 
                  <!--End Comment Content-->

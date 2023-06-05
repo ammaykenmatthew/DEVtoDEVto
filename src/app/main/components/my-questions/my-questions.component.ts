@@ -33,6 +33,7 @@ export class MyQuestionsComponent implements OnInit {
   searchKey:string = "";
   public searchTerm: string = '';
 
+  id:any;
   email_add:any;
   fname_fld:any;
   mname_fld:any;
@@ -62,6 +63,7 @@ export class MyQuestionsComponent implements OnInit {
     console.log(JSON.parse(retrievedData));
     let fullData:any = JSON.parse(retrievedData);
 
+    this.id = fullData.user_id;
     this.email_add = fullData.email_add;
     this.fname_fld = fullData.fname_fld;
     this.mname_fld = fullData.mname_fld;
@@ -175,6 +177,48 @@ export class MyQuestionsComponent implements OnInit {
     });
   }
 
+  closePost(post: any) {
+    Swal.fire({
+      title: 'Close Post?',
+      text: 'Are you sure you want to close this post?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, close it!',
+      cancelButtonText: 'Cancel',
+    }).then((result) => {
+      if (result.value) {
+        this._apiService
+          .request('setPostStatus/' + post.id + '/' + 'close', '', '', 'post')
+          .subscribe(
+            (res: any) => {
+              post.post_status = 'close';
+              this.snackbar.open(res.message, '', {
+                duration: this.durationInSeconds * 1000,
+              });
+            },
+            (error: any) => {
+              console.log('Error', error);
+            }
+          );
+      }
+    });
+  }
+
+  openPost(post: any) {
+    this._apiService
+      .request('setPostStatus/' + post.id + '/' + 'open', '', '', 'post')
+      .subscribe(
+        (res: any) => {
+          post.post_status = 'open';
+          this.snackbar.open(res.message, '', {
+            duration: this.durationInSeconds * 1000,
+          });
+        },
+        (error: any) => {
+          console.log('Error', error);
+        }
+      );
+  }
 
 
 }

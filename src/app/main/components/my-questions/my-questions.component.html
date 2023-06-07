@@ -75,7 +75,7 @@
             <br>
               <mat-card-title  style=" font-family: 'Rubik', sans-serif;">
                   <a (click)="goToPost(post.id)">{{post.title}}
-                    <span class="badge bg-danger" *ngIf="post.hasNewComments  && !isPostVisited">new</span>
+                    <span class="badge bg-danger" *ngIf="post.hasNewComments  && !post.visited">new</span>
                   </a>
               </mat-card-title>
               <hr>

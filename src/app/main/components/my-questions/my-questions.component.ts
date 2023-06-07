@@ -143,10 +143,23 @@ export class MyQuestionsComponent implements OnInit {
   goToPost(id: number): void {
     this.route.navigateByUrl(`main/view-post/${id}?visited=true`);
 
-    const post = this.posts$.find(post => post.id === id); // Find the post object by its id
+    const post = this.posts$.find(post => post.id === id);
     if (post) {
-      post.visited = true; // Set the visited flag to true
-      post.hasNewComments = false; // Reset the flag to hide the badge
+      post.visited = true;
+      post.hasNewComments = false;
+
+      // Update the visited flag in the database using an API request
+      this._apiService.request('updateVisitedFlag/' + id, '', '', 'post').subscribe(
+        (res: any) => {
+          console.log('Visited flag updated successfully');
+        },
+        (error: any) => {
+          console.log('Error updating visited flag', error);
+        }
+      );
+
+      console.log('Visited:', post.visited);
+      console.log('Has new comments:', post.hasNewComments);
     }
   }
 

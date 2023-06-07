@@ -94,6 +94,37 @@
 
 }
 
+.hiddenPosts{
+  margin-top: 30px;
+  margin: 0 15px;
+  mat-card{
+    border: 1px solid #ccc;
+    background-color: #fff;
+    box-shadow: none;
+    border-left: 7px solid  #fda239;
+    margin-bottom: 4px;
+  }
+
+  mat-card-content{
+      display: -webkit-box;
+      overflow : hidden;
+      text-overflow: ellipsis;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      font-family: 'IBM Plex Sans', sans-serif;
+      color: #878A8C;
+
+  }
+  .image{
+    float: left;
+    border: 1px solid #878A8C;
+    padding: 2px;
+    margin-right: 10px;
+
+  }
+
+}
+
 
 /*For Loader */
 .loader {

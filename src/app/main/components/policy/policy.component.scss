@@ -1,0 +1,26 @@
+//Rubik, Quicksand
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&family=Rubik:wght@400;500&display=swap');
+
+h1{
+  font-family: 'Rubik', sans-serif;
+  font-weight: 400;
+}
+
+.close{
+  width: 70px;
+  height: 35px;
+  color: #757678;
+  font-family: 'Rubik', sans-serif;
+  font-weight: 500;
+  background: white;
+  border-radius: 50px;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor:pointer;
+}
+.close:hover{
+  background-color:#c9c9c9;
+  transition: 0.3s;
+}

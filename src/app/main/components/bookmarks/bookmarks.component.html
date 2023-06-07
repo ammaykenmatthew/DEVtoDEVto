@@ -78,7 +78,54 @@
      <br>
   </mat-tab>
 
-  <mat-tab label="Archived Posts">Hidden Posts</mat-tab>
+  <mat-tab label="Hidden Posts">
+    <br>
+    <div class="hiddenPosts" *ngFor="let hidd of hiddenPosts | keyvalue">
+
+      <mat-card class="example-card">
+       <span style="margin-left: 150px;">
+         <button mat-icon-button [matMenuTriggerFor]="menu" style="float: right;">
+           <mat-icon>more_horiz</mat-icon>
+         </button>
+         <mat-menu #menu="matMenu">
+           <button mat-menu-item>
+             <mat-icon style="color: red;" >remove</mat-icon>
+             <span style="font-family: 'Poppins', sans-serif;" (click)="unhidePost(hidd.value.hidden_id)">Unhide Post</span>
+           </button>
+         </mat-menu>
+       </span>
+       <div class="image" *ngIf="hidd?.value.photo">
+         <img [src]="image+hidd?.value.photo" style="height: 110px; width:110px;"  >
+       </div>
+       <div class="image" *ngIf="hidd?.value.photo == null ">
+         <img src="https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg?20200913095930" style="height: 110px; width:110px;"  >
+       </div>
+       <div class="content">
+         <mat-card-header >
+
+           <mat-card-title  style=" font-family: 'Rubik', sans-serif; ">
+             <a style="display: -webkit-box;
+             overflow : hidden;
+             text-overflow: ellipsis; -webkit-box-orient: vertical;" >{{hidd?.value.title}}</a>
+
+           </mat-card-title>
+           <mat-card-subtitle >{{hidd?.value.tags}}</mat-card-subtitle>
+
+         </mat-card-header>
+         <mat-card-content >
+           <p>{{hidd?.value.description}}</p>
+         </mat-card-content>
+       </div>
+         <mat-divider></mat-divider>
+         <!-- <mat-card-actions align="start" >
+           <button mat-stroked-button color="primary" style="margin-left: 5px;" (click)="goToPost(hidd.post_id)">View</button>
+
+         </mat-card-actions> -->
+
+       </mat-card>
+
+     </div>
+  </mat-tab>
 </mat-tab-group>
 
   </div>

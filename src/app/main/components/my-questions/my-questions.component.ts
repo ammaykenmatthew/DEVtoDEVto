@@ -3,7 +3,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import {MatPaginator} from '@angular/material/paginator';
 import { PostFormComponent } from '../post-form/post-form.component';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {faArrowUp, faArrowDown, faComments, faSearch,  faThumbsDown,
   faThumbsUp} from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from 'src/app/services/auth.service';
@@ -40,6 +40,7 @@ export class MyQuestionsComponent implements OnInit {
   lname_fld:any;
 
   posts$: Array<any> = []; //why array? try not array
+  comments: Array<any> = [];
 
   faArrowUp = faArrowUp;
   faArrowDown = faArrowDown;
@@ -49,13 +50,15 @@ export class MyQuestionsComponent implements OnInit {
   faThumbsUp = faThumbsUp;
 
   // fname_fld:any;
-
+  isPostVisited: boolean = false;
 
   constructor(
     public snackbar: MatSnackBar,
     private dialog: MatDialog,
     private _apiService: AuthService,
-    private route: Router
+    private route: Router,
+    private activateRoute: ActivatedRoute,
+
     ){ }
 
   ngOnInit(): void {
@@ -77,6 +80,9 @@ export class MyQuestionsComponent implements OnInit {
       this.searchKey = val;
     });
 
+    this.activateRoute.queryParams.subscribe(params => {
+      this.isPostVisited = params['visited'] === 'true';
+    });
     //instances//
 
     this.getAllPosts();
@@ -122,6 +128,30 @@ export class MyQuestionsComponent implements OnInit {
     }
   }
 
+  hideBadge(event: any) {
+    event.target.style.display = 'none';
+  }
+
+  // goToPost(id: number): void{
+  //   this.route.navigateByUrl('main/view-post/' + id + '?visited=true');
+
+  //   const post = this.posts$.find(post => post.id === id); // Find the post object by its id
+  //   if (post) {
+  //     post.hasNewComments = false; // Reset the flag to hide the badge
+  //   }
+  // }
+  goToPost(id: number): void {
+    this.route.navigateByUrl(`main/view-post/${id}?visited=true`);
+
+    const post = this.posts$.find(post => post.id === id); // Find the post object by its id
+    if (post) {
+      post.visited = true; // Set the visited flag to true
+      post.hasNewComments = false; // Reset the flag to hide the badge
+    }
+  }
+
+
+
   editQuestions(row: any){
     this.dialog.open(PostFormComponent,{
 
@@ -163,9 +193,7 @@ export class MyQuestionsComponent implements OnInit {
   // openModal(){
   //   this.postForm.show();
   // }
-  goToPost(id: number): void{
-    this.route.navigateByUrl('main/view-post/' + id);
-  }
+
 
 
   openDialog(){

@@ -51,6 +51,8 @@ export class ViewPostComponent implements OnInit {
   lname_fld: any;
   profilepic_fld: any;
 
+  isPostVisited: boolean = false;
+
   constructor(
     private _apiService: AuthService,
     private postService: UserService,
@@ -59,7 +61,11 @@ export class ViewPostComponent implements OnInit {
     private dialog: MatDialog,
     private formBuilder: FormBuilder,
     public snackbar: MatSnackBar // @Inject(MAT_DIALOG_DATA) public post_id: {id: number},
-  ) {}
+  ) {
+    this.activateRoute.queryParams.subscribe(params => {
+      this.isPostVisited = params['visited'] === 'true';
+    });
+  }
 
   //EXTRA
 
@@ -245,10 +251,15 @@ export class ViewPostComponent implements OnInit {
       .request('showAllwithComments/' + post_id, '', '', 'get')
       .subscribe((res: any) => {
         this.comments = res;
-
         console.log(this.comments)
+      }),
+      (error: any) => {
+        alert('Error posting data...');
+        console.log('Error posting data', error);
+      };
+  }
 
-        // this.src = res;
+   // this.src = res;
         // this.commentAction$ = new Subject<any>();
         // this.commentSubject$ = this.commentAction$.asObservable();
         // this.commentStream$ = merge(this.commentSubject$, from([res])).pipe(
@@ -257,12 +268,6 @@ export class ViewPostComponent implements OnInit {
         // );
 
         // this.mycomments = this.commentStream$;
-      }),
-      (error: any) => {
-        alert('Error posting data...');
-        console.log('Error posting data', error);
-      };
-  }
 
   total_comment: any = [];
 

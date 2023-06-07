@@ -93,11 +93,11 @@
                     <div class="row d-flex justify-content-center">
 
                     <div class="col-md-9">
-                      <div class="row post" *ngFor="let post of posts$ | filter:searchKey: 'title' | paginate: {
+                      <ng-container *ngFor="let post of posts$ | filter:searchKey: 'title' | paginate: {
                         itemsPerPage: tableSize,
                         currentPage: page,
-                        totalItems: count}; let i = index
-                        ">
+                        totalItems: count}; let i = index">
+                      <div class="row post"  *ngIf="!isPostHidden(post.id)">
 
                         <div class="vote col-md-1">
                           <div class="votebox d-flex flex-column ">
@@ -196,7 +196,7 @@
                                     <!-- Report -->
 
                                     <!-- Hide Post -->
-                                    <button mat-menu-item >
+                                    <button mat-menu-item (click)="hidePost(post.id)" >
                                       <mat-icon>remove_red_eye</mat-icon>
                                       <span style="font-family: 'Poppins', sans-serif;" >Hide post</span>
                                       </button>
@@ -265,6 +265,7 @@
                         </div>
 
                       </div>
+                    </ng-container>
                       <br>
                       <div class="pager float-start">
                         <pagination-controls
@@ -313,8 +314,17 @@
                       <!-- <button *ngIf="!isAllowedToPost && !isAllowedToPostLoading" type="button" mat-raised-button mat-button color="warn">Send Appeal</button>
                       </div> -->
 
-
+                      <div class="privacyPolicy" >
+                        <h1>
+                          <a (click)=" openTermsPrivacy()"  style="
+                          font-size: 16px;
+                          font-family: 'Rubik', sans-serif;
+                          color: #878A8C;">Terms & Policy</a>
+                        </h1>
+                    </div>
                   </div>
+
+
                 </div>
               </div>
             </div>

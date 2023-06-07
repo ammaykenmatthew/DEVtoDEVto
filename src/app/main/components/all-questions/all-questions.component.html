@@ -36,7 +36,7 @@
 
             </div> -->
 
-            <div class="container-fluid">
+            <div class="container-fluid" >
               <div class="page-header d-flex flex-row justify-content-between">
                 <div class="text d-flex flex-row justify-content-start">
                   <span>All
@@ -67,7 +67,7 @@
             </div>
 
             <!--Loader-->
-            <div *ngIf="showLoader" class="loader text-center">
+            <div *ngIf="showLoader" class="loader text-center" >
               <div class="bar1"></div>
               <div class="bar2"></div>
               <div class="bar3"></div>
@@ -84,17 +84,18 @@
            <!--Loader-->
 
             <!--POST BODY-->
-            <div class="reddit-body">
+            <div class="reddit-body" >
 
-                <div class="container">
+                <div class="container" >
                   <div class="row d-flex justify-content-center">
 
                     <div class="col-md-9">
-                      <div class="row post" *ngFor="let post of posts$ | filter:searchKey: 'title' | paginate: {
+                      <ng-container *ngFor="let post of posts$ | filter:searchKey: 'title' | paginate: {
                         itemsPerPage: tableSize,
                         currentPage: page,
-                        totalItems: count}; let i = index
-                        ">
+                        totalItems: count}; let i = index">
+                        <div class="row post"  *ngIf="!isPostHidden(post.id)">
+
 
                         <div class="vote col-md-1">
                           <div class="d-flex flex-column votebox">
@@ -177,6 +178,13 @@
                                     </button>
                                     <!-- Report -->
 
+                                       <!-- Hide Post -->
+                                       <button mat-menu-item (click)="hidePost(post.id)">
+                                        <mat-icon>remove_red_eye</mat-icon>
+                                        <span style="font-family: 'Poppins', sans-serif;" >Hide post</span>
+                                        </button>
+                                        <!-- Hide Post -->
+
                                      <!-- Delete AS MODERATOR -->
                                      <!-- <div class="del" *ngIf="role === 'moderator'">
                                      <button mat-menu-item>
@@ -225,7 +233,6 @@
                             <hr />
                             <span>
                                 <a >
-
                                     <fa-icon [icon]="faComments"></fa-icon>
                                     ({{post.commentcount}})  Comments
                                 </a>
@@ -236,6 +243,7 @@
                         </div>
 
                       </div>
+                          </ng-container>
                       <br>
                       <div class="pager float-start">
                         <pagination-controls
@@ -283,7 +291,17 @@
 
 
                     </div>
+                    <div class="privacyPolicy" >
+                      <h1>
+                        <a (click)=" openTermsPrivacy()"  style="
+                        font-size: 16px;
+                        font-family: 'Rubik', sans-serif;
+                        color: #878A8C;">Terms & Policy</a>
+                      </h1>
+                  </div>
                       </div>
+
+
 
                   </div>
                 </div>

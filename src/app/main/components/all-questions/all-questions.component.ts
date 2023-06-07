@@ -16,6 +16,7 @@ import { SearchPipe } from 'src/app/shared/filter.pipe';
 import { ReportComponent } from '../report/report.component';
 import Swal from 'sweetalert2';
 import { environment } from 'src/environments/environment.prod';
+import { PolicyComponent } from '../policy/policy.component';
 
 @Component({
   selector: 'app-all-questions',
@@ -66,6 +67,14 @@ export class AllQuestionsComponent implements OnInit {
     private route: Router
   ) {}
 
+
+  openTermsPrivacy(){
+    this.dialog.open(PolicyComponent, {
+      width: '98vh',
+      maxWidth: '100vw',
+    });
+  }
+
   filterFromSearch() {
     this.allTags = this.filteredList;
     this.allTags = this.allTags.filter((o: any) =>
@@ -102,6 +111,8 @@ export class AllQuestionsComponent implements OnInit {
     //instances//
     this.getTotalPost();
     this.getAllData();
+    this.getAllHiddenPosts();
+
 
     this.searchTags();
     // this.onTableSizeChange(this.getAllData);
@@ -237,6 +248,108 @@ export class AllQuestionsComponent implements OnInit {
       });
   }
 
+  hiddenPosts: any[] = [];
+
+  hidePost(postId: any) {
+    const retrievedData = localStorage.getItem('userdata');
+    const fullData: any = JSON.parse(retrievedData || '{}');
+    const userId = fullData.id;
+
+    this._apiService.request('hidePost', '', { user_id: userId, post_id: postId }, 'post').subscribe(
+      (res: any) => {
+        const hiddenPost = res.hidden_post;
+
+        // Add the hidden post to the local hiddenPosts array
+        this.hiddenPosts.push(hiddenPost);
+
+        // Update the hiddenPosts in local storage
+        localStorage.setItem('hiddenPosts', JSON.stringify(this.hiddenPosts));
+
+        // ... Update UI to hide the post ...
+
+        const message = 'Post has been hidden successfully!';
+        this.snackbar.open(message, '', {
+          duration: this.durationInSeconds * 1000,
+        });
+
+        console.log(this.hiddenPosts);
+      },
+      (error: any) => {
+        console.error(error);
+      }
+    );
+  }
+
+
+
+  isPostHidden(postId: string): boolean {
+    const retrievedData = localStorage.getItem('userdata');
+    const fullData: any = JSON.parse(retrievedData || '{}');
+    const userId = fullData.id; // Helper function to get the user ID
+
+    if (!this.hiddenPosts || !Array.isArray(this.hiddenPosts)) {
+      return false; // Return false if hiddenPosts is not defined or not an array
+    }
+
+    return this.hiddenPosts.some((post: any) => post.post_id === postId && post.user_id === userId);
+  }
+
+
+
+getUserIdFromLocalStorage(): string {
+  const retrievedUserData = localStorage.getItem('userdata');
+  const fullData: any = JSON.parse(retrievedUserData || '{}');
+  return fullData.id || '';
+}
+
+getAllHiddenPosts() {
+  const retrievedData = localStorage.getItem('userdata');
+  const fullData: any = JSON.parse(retrievedData || '{}');
+  const userId = fullData.id;
+
+   // Load hidden posts from local storage if available
+   const storedHiddenPosts = localStorage.getItem('hiddenPosts');
+   if (storedHiddenPosts) {
+     this.hiddenPosts = JSON.parse(storedHiddenPosts);
+   }
+
+  this._apiService.request('getHiddenPosts/' + userId, '', '', 'get').subscribe(
+    (res: any) => {
+      this.hiddenPosts = res.hidden_post;
+      console.log(this.hiddenPosts);
+    },
+    (error: any) => {
+      console.error(error);
+    }
+  );
+}
+
+
+
+// hidePost(postId: any) {
+//   const retrievedData = localStorage.getItem('userdata');
+//   const fullData: any = JSON.parse(retrievedData || '{}');
+//   const userId = fullData.id;
+
+//   console.log(userId);
+
+//   this._apiService.request('hidePost', '', { user_id: userId, post_id: postId }, 'post').subscribe(
+//     (res: any) => {
+//       this.hiddenPosts.push(res.hidden_post);
+
+//       const message = 'Post has been hidden successfully!';
+//       this.snackbar.open(message, '', {
+//         duration: this.durationInSeconds * 1000,
+//       });
+
+//       console.log(this.hiddenPosts);
+//     },
+//     (error: any) => {
+//       console.error(error);
+//     }
+//   );
+// }
+
   votes: any;
   upVotes(user_id: any, post_id: any) {
     let retrievedData = localStorage.getItem('userdata') as unknown as string;
@@ -281,42 +394,31 @@ export class AllQuestionsComponent implements OnInit {
   showLoader = false;
   // limit : number = 5
   getAllData(tag: any = '') {
-    let retrievedData = localStorage.getItem('userdata') as unknown as string;
-    let fullData: any = JSON.parse(retrievedData);
-
-    let id = fullData.id;
+    const retrievedData = localStorage.getItem('userdata');
+    const fullData: any = JSON.parse(retrievedData || '{}');
+    const userId = fullData.id;
 
     this.showLoader = true;
     this._apiService
-      .request('showAllGlobal/' + id + '/' + tag, '', this.posts$, 'get')
-      .subscribe((res: any) => {
-        console.log(res);
+      .request('showAllGlobal/' + userId + '/' + tag, '', '', 'get')
+      .subscribe(
+        (res: any) => {
+          console.log(res);
 
-        this.posts$ = res;
-        this.posts$.forEach((element) => {
-          element.tags = this.returnTags(element.tags);
-        });
+          this.posts$ = res;
+          this.posts$.forEach((element: any) => {
+            element.tags = this.returnTags(element.tags);
+          });
 
-        // this.posts$ = this.posts$.filter((value, index, self) =>
-        // index === self.findIndex((t) => (
-        //   t.id=== value.id
-        // ))
-        // )
-
-        // let temp : any= []
-        // let ctr = 0;
-        // //limit
-        // this.posts$.forEach(element => {
-        //   if (ctr < limit) {
-        //    temp.push(element)
-        //   }
-        //   ctr++;
-        // });
-
-        // this.posts$ = temp;
-        this.showLoader = false;
-      });
+          this.showLoader = false;
+        },
+        (error: any) => {
+          console.error(error);
+          this.showLoader = false;
+        }
+      );
   }
+
 
   // openModal(){
   //   this.postForm.show();

@@ -162,6 +162,33 @@ export class AllQuestionsComponent implements OnInit {
     });
   }
 
+  closePostRequest(post: any) {
+    Swal.fire({
+      title: 'Close Post?',
+      text: 'Request to close this post?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, close it!',
+      cancelButtonText: 'Cancel'
+    }).then((result) => {
+      if (result.value) {
+    this._apiService
+      .request('requestModerator/' + post.id + '/' + 'pending', '', '', 'post')
+      .subscribe(
+        (res: any) => {
+          post.post_status = 'pending';
+          this.snackbar.open(res.message, '', {
+            duration: this.durationInSeconds * 1000,
+          });
+        },
+        (error: any) => {
+          console.log('Error', error);
+        }
+      );
+       }
+    })
+  }
+
   closePost(post: any) {
     Swal.fire({
       title: 'Close Post?',
@@ -258,14 +285,8 @@ export class AllQuestionsComponent implements OnInit {
     this._apiService.request('hidePost', '', { user_id: userId, post_id: postId }, 'post').subscribe(
       (res: any) => {
         const hiddenPost = res.hidden_post;
-
-        // Add the hidden post to the local hiddenPosts array
         this.hiddenPosts.push(hiddenPost);
-
-        // Update the hiddenPosts in local storage
         localStorage.setItem('hiddenPosts', JSON.stringify(this.hiddenPosts));
-
-        // ... Update UI to hide the post ...
 
         const message = 'Post has been hidden successfully!';
         this.snackbar.open(message, '', {
@@ -285,10 +306,10 @@ export class AllQuestionsComponent implements OnInit {
   isPostHidden(postId: string): boolean {
     const retrievedData = localStorage.getItem('userdata');
     const fullData: any = JSON.parse(retrievedData || '{}');
-    const userId = fullData.id; // Helper function to get the user ID
+    const userId = fullData.id;
 
     if (!this.hiddenPosts || !Array.isArray(this.hiddenPosts)) {
-      return false; // Return false if hiddenPosts is not defined or not an array
+      return false;
     }
 
     return this.hiddenPosts.some((post: any) => post.post_id === postId && post.user_id === userId);
@@ -307,7 +328,7 @@ getAllHiddenPosts() {
   const fullData: any = JSON.parse(retrievedData || '{}');
   const userId = fullData.id;
 
-   // Load hidden posts from local storage if available
+
    const storedHiddenPosts = localStorage.getItem('hiddenPosts');
    if (storedHiddenPosts) {
      this.hiddenPosts = JSON.parse(storedHiddenPosts);
@@ -324,31 +345,6 @@ getAllHiddenPosts() {
   );
 }
 
-
-
-// hidePost(postId: any) {
-//   const retrievedData = localStorage.getItem('userdata');
-//   const fullData: any = JSON.parse(retrievedData || '{}');
-//   const userId = fullData.id;
-
-//   console.log(userId);
-
-//   this._apiService.request('hidePost', '', { user_id: userId, post_id: postId }, 'post').subscribe(
-//     (res: any) => {
-//       this.hiddenPosts.push(res.hidden_post);
-
-//       const message = 'Post has been hidden successfully!';
-//       this.snackbar.open(message, '', {
-//         duration: this.durationInSeconds * 1000,
-//       });
-
-//       console.log(this.hiddenPosts);
-//     },
-//     (error: any) => {
-//       console.error(error);
-//     }
-//   );
-// }
 
   votes: any;
   upVotes(user_id: any, post_id: any) {

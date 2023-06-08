@@ -35,13 +35,13 @@
           <div class="content" *ngFor="let post of posts$ | filter:searchKey: 'title'">
             <div *ngIf="posts$.length === 0" style=" display: flex; align-items: center; font-size: 50px; font-family: 'IBM Plex Sans', sans-serif;">No records found</div>
             <!-- show if theres no record existing -->
-            <mat-card class="example-card">
+            <mat-card class="example-card" *ngIf="post.archived === 0">
               <span style="margin-left: 150px;">
                 <button mat-icon-button [matMenuTriggerFor]="menu" style="float: right;">
                   <mat-icon>more_horiz</mat-icon>
                 </button>
                 <mat-menu #menu="matMenu">
-                  <button mat-menu-item style="color: red;" (click)="deleteQuestions(post.id)">
+                  <button mat-menu-item style="color: red;" (click)="archiveQuestion(post.id)">
                     <mat-icon style="color: red;" >delete_outline</mat-icon>
                     <span style="font-family: 'Poppins', sans-serif;"  >Delete Post</span>
                   </button>
@@ -92,12 +92,11 @@
               <p>{{post.description}}</p>
             </mat-card-content>
             <hr>
-            <!-- <mat-divider></mat-divider> -->
-            <!-- <mat-card-actions align="start" >
-              <button mat-button color="primary" (click)="goToPost(post.id)"><mat-icon>visibility</mat-icon>  View</button>
-              <button mat-button color="accent" (click)="editQuestions(post)" > <mat-icon>edit</mat-icon> Update</button>
-              <button mat-button color="warn" (click)="deleteQuestions(post.id)" > <mat-icon>delete</mat-icon>Delete</button>
-            </mat-card-actions> -->
+       <mat-card-actions align="start" *ngIf="post.post_status === 'pending'">
+        <p style="font-size: 16px; margin-left: 7px; color: red;">A moderator has requested to close this post.</p>
+           <button mat-stroked-button color="primary" style="margin-left: 5px;" (click)="closePost(post)">Accept</button>
+           <button mat-stroked-button color="warn" style="margin-left: 5px;"(click)="declineRequest(post)" >Decline</button>
+         </mat-card-actions>
             </mat-card>
 
         </div>

@@ -24,7 +24,7 @@ export class AddModeratorComponent implements OnInit {
   image = environment.image;
   durationInSeconds = 2;
 
-  displayedColumns: string[] = [ 'number','studnum_fld', 'fname_fld', 'lname_fld', 'dept_fld', 'program_fld', 'profilepic_fld', 'created_at', ];
+  displayedColumns: string[] = [ 'number','studnum_fld', 'fname_fld', 'lname_fld', 'dept_fld', 'program_fld', 'profilepic_fld', 'created_at', 'action' ];
   dataSource!: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -79,32 +79,32 @@ export class AddModeratorComponent implements OnInit {
   }
 
   deletedData:any;
-  deleteModerator(id: any){
+  deleteModerator(id: any) {
     Swal.fire({
       title: 'Revoke Access',
-      text: 'Are you sure you want to revoke this priviledge?',
+      text: 'Are you sure you want to revoke this privilege?',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Yes',
       cancelButtonText: 'Cancel'
     }).then((result) => {
       if (result.value) {
-        this._apiService.request('revokeModerator/'+id, '', '', 'post').subscribe((res:any ) =>{
-          console.log(id)
-          this.deletedData = res;
-          window.location.reload();
-          const message = 'Revoked Succesfully!';
-            this.snackbar.open(message , '' , {
+        this._apiService.request('revokeModerator/' + id, '', '', 'post').subscribe(
+          (res: any) => {
+            console.log(id);
+            window.location.reload();
+            const message = 'Revoked Successfully!';
+            this.snackbar.open(message, '', {
               duration: this.durationInSeconds * 1000,
             });
-
-        },(error: any)=>{
-          console.log ("Error", error);
-         });
-      } else if (result.dismiss === Swal.DismissReason.cancel) {
-
+          },
+          (error: any) => {
+            console.log('Error', error);
+          }
+        );
       }
-    })
+    });
   }
+
 
 }

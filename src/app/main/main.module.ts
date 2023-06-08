@@ -28,6 +28,7 @@ import { CommentComponent } from './components/comment/comment.component';
 import { QuillModule } from 'ngx-quill';
 import { ReportCommentComponent } from './components/report-comment/report-comment.component';
 import { PolicyComponent } from './components/policy/policy.component';
+import { GuidelinesComponent } from './components/guidelines/guidelines.component';
 
 // import { MainRoutingModule } from "./main-routing.module";
 // import { QuestionsComponent } from './components/questions/questions.component';
@@ -56,6 +57,7 @@ import { PolicyComponent } from './components/policy/policy.component';
     CommentComponent,
     ReportCommentComponent,
     PolicyComponent,
+    GuidelinesComponent,
 
   ],
   imports: [

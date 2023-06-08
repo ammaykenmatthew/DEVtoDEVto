@@ -1,3 +1,4 @@
+
 //Rubik, Quicksand
 @import url('https://fonts.googleapis.com/css2?family=Quicksand&family=Rubik:wght@400;500&display=swap');
 
@@ -12,57 +13,28 @@
 
 
 
-
-  .container {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .flex-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start;
-  }
-
-  .table-container {
-    flex: 1;
-    margin-right: 10px;
-  }
-
-  .flex-item-left,
-  .flex-item-right {
-    flex: 1;
-  }
-
-  .container2{
-    margin: 18px;
-    max-height: 100%;
-    max-width: 100%;
-  }
+.container2{
+  margin: 18px;
+  max-height: 100%;
+  max-width: 100%;
+}
 
 
 
 .header{
-  margin-top: 20px;
-  font-family: 'Poppins', sans-serif;
-  font-size: 30px;
-  color: black;
-  p{
-    font-style: 'Rubik', sans-serif;
-    font-size: 17px;
-    color: grey;
-    margin-left: 23px;
-    margin-top: 14px;
-  }
+margin-top: 20px;
+font-family: 'Poppins', sans-serif;
+font-size: 30px;
+color: black;
+p{
+  font-style: 'Rubik', sans-serif;
+  font-size: 17px;
+  color: grey;
+  margin-left: 23px;
+  margin-top: 14px;
+}
 }
 
-
-.body{
-  margin: 0;
-  min-height: 100%;
-
-}
 
 .body_archive{
   margin: 0;
@@ -101,5 +73,3 @@ table {
   max-width: 125rem;
   margin: 0 auto;
 }
-
-

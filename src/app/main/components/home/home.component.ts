@@ -22,6 +22,7 @@ import { ReportComponent } from '../report/report.component';
 import Swal from 'sweetalert2';
 import { environment } from 'src/environments/environment.prod';
 import { PolicyComponent } from '../policy/policy.component';
+import { GuidelinesComponent } from '../guidelines/guidelines.component';
 
 @Component({
   selector: 'app-home',
@@ -543,6 +544,13 @@ getAllHiddenPosts() {
 
   openTermsPrivacy(){
     this.dialog.open(PolicyComponent, {
+      width: '98vh',
+      maxWidth: '100vw',
+    });
+  }
+
+  openGuidelines(){
+    this.dialog.open(GuidelinesComponent, {
       width: '98vh',
       maxWidth: '100vw',
     });

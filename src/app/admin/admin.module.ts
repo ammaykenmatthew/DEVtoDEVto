@@ -13,6 +13,7 @@ import { RegStudentComponent } from './components/reg-student/reg-student.compon
 import { ReportsComponent } from './components/reports/reports.component';
 import { AddModeratorComponent } from './components/add-moderator/add-moderator.component';
 import { RegModeratorComponent } from './components/reg-moderator/reg-moderator.component';
+import { ArchivedComponent } from './components/archived/archived.component';
 
 
 
@@ -27,6 +28,7 @@ import { RegModeratorComponent } from './components/reg-moderator/reg-moderator.
     ReportsComponent,
     AddModeratorComponent,
     RegModeratorComponent,
+    ArchivedComponent,
 
 
   ],

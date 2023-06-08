@@ -1,9 +1,9 @@
 <div class="container">
   <div class="header">
-    <mat-icon>school</mat-icon>
-    <span>Student List</span>
+    <mat-icon>supervised_user_circle</mat-icon>
+    <span>Student Users List</span>
     <br>
-    <p>View lists students that are using the application.</p>
+    <p>View lists student users that are using the application.</p>
   </div>
 
   <div class="body">
@@ -11,14 +11,14 @@
     <div class="side" >
       <div style="margin-top: 10px;">
         <span>
-        <h3>Search Student:</h3>
+        <h3>Search User:</h3>
         <mat-form-field appearance="outline">
           <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Where is .." #input>
         </mat-form-field>
 
     </span>
-
-    <button class="" (click)="addModal()" style="float:right; margin-right: 20px;"  >+Add Student</button>
+<!--
+    <button class="" (click)="addModal()" style="float:right; margin-right: 20px;"  >+Add User</button> -->
     </div>
 
   <div class="table-z">

@@ -195,7 +195,7 @@
 
                                       <!-- cLOSE AS MODERATOR -->
                                       <div class="del" *ngIf="role === 'moderator' && post.post_status =='open'">
-                                        <button mat-menu-item (click)="closePost(post)">
+                                        <button mat-menu-item (click)="closePostRequest(post)">
                                          <mat-icon style="color:red">close_outline</mat-icon>
                                          <span style="font-family: 'Poppins', sans-serif; color: red;"  >Close Post</span>
                                          </button>

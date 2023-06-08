@@ -206,6 +206,37 @@ export class MyQuestionsComponent implements OnInit {
   // openModal(){
   //   this.postForm.show();
   // }
+  archivedData:any;
+  archiveQuestion(id: any){
+    Swal.fire({
+      title: 'Delete Post?',
+      text: 'Are you sure you want to delete this post?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'Cancel'
+    }).then((result) => {
+      if (result.value) {
+        this._apiService.request('archivePost/'+id, '', '', 'post').subscribe((res:any ) =>{
+
+          this.archivedData = res;
+          this.posts$ = this.posts$.filter(post => post.id !== id);
+
+          window.location.reload();
+          const message = 'Deleted Succesfully!';
+            this.snackbar.open(message , '' , {
+              duration: this.durationInSeconds * 1000,
+            });
+
+        },(error: any)=>{
+          console.log ("Error", error);
+         });
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+
+      }
+    })
+  }
+
 
 
 
@@ -244,6 +275,34 @@ export class MyQuestionsComponent implements OnInit {
       }
     });
   }
+
+  declineRequest(post: any) {
+    Swal.fire({
+      title: 'Decline Request?',
+      text: 'Are you sure you want to decline the request to close this post?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, decline it!',
+      cancelButtonText: 'Cancel'
+    }).then((result) => {
+      if (result.value) {
+        this._apiService
+          .request('setPostStatus/' + post.id + '/' + 'open', '', '', 'post')
+          .subscribe(
+            (res: any) => {
+              post.post_status = 'open';
+              this.snackbar.open('Request to close the post has been declined.', '', {
+                duration: this.durationInSeconds * 1000,
+              });
+            },
+            (error: any) => {
+              console.log('Error', error);
+            }
+          );
+      }
+    });
+  }
+
 
   openPost(post: any) {
     this._apiService

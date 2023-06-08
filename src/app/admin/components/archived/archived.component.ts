@@ -8,19 +8,19 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import Swal from 'sweetalert2';
 
+
 @Component({
-  selector: 'app-studentpost',
-  templateUrl: './studentpost.component.html',
-  styleUrls: ['./studentpost.component.scss']
+  selector: 'app-archived',
+  templateUrl: './archived.component.html',
+  styleUrls: ['./archived.component.scss']
 })
-export class StudentpostComponent implements OnInit {
+export class ArchivedComponent implements OnInit {
   currentPage = 1;
   pageSize = 5;
   durationInSeconds = 2;
 
   displayedColumns: string[] = [
     'number',
-    'id',
     'student_name',
     'student_program',
     'title',
@@ -30,37 +30,9 @@ export class StudentpostComponent implements OnInit {
 
   ];
 
-  displayedColumns2: string[] = [
-    'id',
-    'user_id',
-    'comment_id',
-    'reported',
-    'report',
-    'created_at',
-
-  ];
-
-  displayedColumns3: string[] = [
-    'id',
-    'user_id',
-    'post_id',
-    'reported',
-    'report',
-    'created_at',
-
-  ];
-
   dataSource!: MatTableDataSource<any>;
-  dataSource2!: MatTableDataSource<any>; //for Reported Comments
-  dataSource3!: MatTableDataSource<any>;
-
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatPaginator) paginator2!: MatPaginator;
-  @ViewChild(MatPaginator) paginator3!: MatPaginator;
-
   @ViewChild(MatSort) sort!: MatSort;
-  @ViewChild(MatSort) sort2!: MatSort;
-  @ViewChild(MatSort) sort3!: MatSort;
 
   posts$: Array<any> = [];
   constructor(
@@ -69,54 +41,27 @@ export class StudentpostComponent implements OnInit {
     public snackbar: MatSnackBar,
     private dialog: MatDialog
   ) {
-    this._apiService
-    .request('showAllGlobalAdmin', '', this.posts$, 'get')
-    .subscribe((res: any) => {
-      this.dataSource = new MatTableDataSource(res);
 
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-      this.posts$ = res;
-      console.log(res);
-    }),
-    (error: any) => {
-      alert('Error posting data...');
-      console.log('Error posting data', error);
-    };
   }
 
   archived$: Array<any> = [];
   ngOnInit(): void {
     this._apiService
-      .request('showAllReports', '', '', 'get')
-      .subscribe((res: any) => {
-        this.dataSource3 = new MatTableDataSource(res);
+    .request('showAllArchivedAdmin', '', this.archived$, 'get')
+    .subscribe((res: any) => {
+      this.dataSource = new MatTableDataSource(res);
 
-        this.dataSource3.paginator = this.paginator3;
-        this.dataSource3.sort = this.sort3;
-        console.log(res);
-      }),
-      (error: any) => {
-        alert('Error getting data...');
-        console.log('Error getting data', error);
-      };
-
-      this._apiService
-      .request('showAllReportComments', '', '', 'get')
-      .subscribe((res: any) => {
-        this.dataSource2 = new MatTableDataSource(res);
-
-        this.dataSource2.paginator = this.paginator2;
-        this.dataSource2.sort = this.sort2;
-        console.log(res);
-      }),
-      (error: any) => {
-        alert('Error getting data...');
-        console.log('Error getting data', error);
-      };
-
-
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+      this.archived$ = res;
+      console.log(res);
+    }),
+    (error: any) => {
+      alert('Error fetching data...');
+      console.log('Error fetching data', error);
+    };
   }
+
 
   deletedData:any;
   deleteQuestions(id: any){
@@ -177,10 +122,8 @@ export class StudentpostComponent implements OnInit {
   }
 
 
-
-
-  //for all posts
-  applyFilter(event: Event) {
+   //for archived posts
+   applyFilter2(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
 
@@ -188,38 +131,8 @@ export class StudentpostComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
-  onPageChanged(event: PageEvent) {
-    this.currentPage = event.pageIndex + 1;
-    this.pageSize = event.pageSize;
-  }
-
-
-  //for archived posts
-  applyFilter2(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource2.filter = filterValue.trim().toLowerCase();
-
-    if (this.dataSource2.paginator) {
-      this.dataSource2.paginator.firstPage();
-    }
-  }
   onPageChanged2(event: PageEvent) {
     this.currentPage = event.pageIndex + 1;
     this.pageSize = event.pageSize;
   }
-
-    //for archived posts
-  applyFilter3(event: Event) {
-      const filterValue = (event.target as HTMLInputElement).value;
-      this.dataSource3.filter = filterValue.trim().toLowerCase();
-
-      if (this.dataSource3.paginator) {
-        this.dataSource3.paginator.firstPage();
-      }
-    }
-  onPageChanged3(event: PageEvent) {
-      this.currentPage = event.pageIndex + 1;
-      this.pageSize = event.pageSize;
-    }
-
 }

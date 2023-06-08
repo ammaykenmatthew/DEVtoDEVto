@@ -241,6 +241,33 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  closePostRequest(post: any) {
+    Swal.fire({
+      title: 'Close Post?',
+      text: 'Request to close this post?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, close it!',
+      cancelButtonText: 'Cancel'
+    }).then((result) => {
+      if (result.value) {
+    this._apiService
+      .request('requestModerator/' + post.id + '/' + 'pending', '', '', 'post')
+      .subscribe(
+        (res: any) => {
+          post.post_status = 'pending';
+          this.snackbar.open(res.message, '', {
+            duration: this.durationInSeconds * 1000,
+          });
+        },
+        (error: any) => {
+          console.log('Error', error);
+        }
+      );
+       }
+    })
+  }
+
   openPost(post: any) {
     this._apiService
       .request('setPostStatus/' + post.id + '/' + 'open', '', '', 'post')

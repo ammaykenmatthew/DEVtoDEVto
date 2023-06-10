@@ -131,22 +131,47 @@ export class PostFormComponent implements OnInit {
     }
   }
 
-  onFileChanged(event:any){
+  fileTypeError: boolean = false;
+  // onFileChanged(event:any){
+  //   const reader = new FileReader();
+  //   if(event.target.files && event.target.files.length){
+  //     const [photo] = event.target.files;
+  //     reader.readAsDataURL(photo);
+  //     reader.onload = () => {
+  //       this.imageSrc = reader.result as string;
+  //       this.fileChange = true;
+  //       this.postForm.patchValue({fileSource: reader.result});
+  //       console.log(this.postForm.get('photo'));
+  //     };
+
+  //   }
+  //   this.files = event.target.files;
+  //   //console.log(this.files);
+  // }
+  onFileChanged(event: any) {
     const reader = new FileReader();
-    if(event.target.files && event.target.files.length){
+    if (event.target.files && event.target.files.length) {
       const [photo] = event.target.files;
+
+      // Check if the file is an image
+      if (!photo.type.startsWith('image/')) {
+        this.fileTypeError = true;
+        return;
+      } else {
+        this.fileTypeError = false; // Set to false when the file type is valid
+      }
+
       reader.readAsDataURL(photo);
       reader.onload = () => {
         this.imageSrc = reader.result as string;
         this.fileChange = true;
-        this.postForm.patchValue({fileSource: reader.result});
+        this.postForm.patchValue({ fileSource: reader.result });
         console.log(this.postForm.get('photo'));
       };
-
     }
     this.files = event.target.files;
-    //console.log(this.files);
   }
+
 
   //*Save post per user id using localstorage and dialog
   SavePost(){

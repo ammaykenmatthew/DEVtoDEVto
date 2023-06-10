@@ -290,6 +290,7 @@ export class DashboardComponent implements AfterViewInit {
 
         let bsitCount = 0;
         let bscsCount = 0;
+        let bsemcCount = 0;
 
         // Count the number of students for each program
         res.forEach((student: any) => {
@@ -297,21 +298,25 @@ export class DashboardComponent implements AfterViewInit {
             bsitCount++;
           } else if (student.program_fld === 'BSCS') {
             bscsCount++;
+          } else if (student.program_fld === 'BSEMC') {
+            bsemcCount++;
           }
+
         });
 
         // Create the pie chart with the data
         this.pieChart = new Chart(this.ctx, {
           type: 'pie',
           data: {
-            labels: ['BSIT', 'BSCS'],
+            labels: ['BSIT', 'BSCS', 'BSEMC'],
             datasets: [
               {
                 backgroundColor: [
                   '#FFA500',
                   '#FF5F1F',
+                  '#ffcf1f'
                 ],
-                data: [bsitCount, bscsCount],
+                data: [bsitCount, bscsCount, bsemcCount],
               },
             ],
           },

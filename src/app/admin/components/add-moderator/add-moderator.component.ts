@@ -43,13 +43,15 @@ export class AddModeratorComponent implements OnInit {
     this.getAllModerators();
   }
 
+  moderatorsData:any;
   getAllModerators(){
     this._apiService.request('getModerators', '', '', 'get').subscribe((res:any)=>{
       this.dataSource = new MatTableDataSource(res);
-
+      console.log(res);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-      console.log(res);
+      this.moderatorsData = res;
+
 
     }), (error: any)=>{
       alert("Error posting data...");
@@ -79,7 +81,7 @@ export class AddModeratorComponent implements OnInit {
   }
 
   deletedData:any;
-  deleteModerator(id: any) {
+  deleteModerator(user_id: any) {
     Swal.fire({
       title: 'Revoke Access',
       text: 'Are you sure you want to revoke this privilege?',
@@ -89,22 +91,29 @@ export class AddModeratorComponent implements OnInit {
       cancelButtonText: 'Cancel'
     }).then((result) => {
       if (result.value) {
-        this._apiService.request('revokeModerator/' + id, '', '', 'post').subscribe(
-          (res: any) => {
-            console.log(id);
-            window.location.reload();
-            const message = 'Revoked Successfully!';
-            this.snackbar.open(message, '', {
-              duration: this.durationInSeconds * 1000,
-            });
-          },
-          (error: any) => {
-            console.log('Error', error);
-          }
-        );
+        const moderator = this.moderatorsData.find((mod: any) => mod.user_id === user_id);
+
+        if (moderator) {
+          this._apiService.request('revokeModerator/' + moderator.user_id, '', '', 'delete').subscribe(
+            (res: any) => {
+              this.deletedData = res;
+              console.log(this.deletedData);
+              window.location.reload();
+
+              const message = 'Revoked Successfully!';
+              this.snackbar.open(message, '', {
+                duration: this.durationInSeconds * 1000,
+              });
+            },
+            (error: any) => {
+              console.log('Error', error);
+            }
+          );
+        }
       }
     });
   }
+
 
 
 }

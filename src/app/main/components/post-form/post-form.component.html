@@ -35,7 +35,11 @@
           class="form-control"
           (change)="onFileChanged($event)"
           />
-    <!-- <div *ngIf="f['files'].touched && f['files'].invalid" class="alert alert-danger"></div>-->
+    </div>
+    <p class="error-message" *ngIf="fileTypeError" style="color: red; margin-left: 5px;">Please upload an image file.</p>
+  <br>
+
+  <!-- <div *ngIf="f['files'].touched && f['files'].invalid" class="alert alert-danger"></div>-->
       <!-- <div *ngIf="files.errors['required']">File is required.</div> -->
 
       <!-- <p
@@ -44,8 +48,6 @@
 
         Selecting a file is required.
       </p> -->
-    </div>
-  <br>
 
   <img [src]="imageSrc" *ngIf="imageSrc && fileChange" style="height: auto; width:auto;" class="responsive" loading="lazy">
   <img [src]="'https://gordoncollegeweb.com/capAPI/public/'+imageSrc" *ngIf="imageSrc && !fileChange" style="height: auto; width: auto;" class="responsive" loading="lazy">
@@ -76,6 +78,6 @@
 </div>
 <div mat-dialog-action [align]="'end'" style="margin-top: 1rem;" >
   <button class="close" type="button" mat-dialog-close>Close</button>
-  <button class="submit"  style="margin-left:8px;" mat-raised-button color="primary" mat-dialog-close (click)="SavePost()">{{actionBtn}}</button>
+  <button class="submit"  style="margin-left:8px;" mat-raised-button color="primary" mat-dialog-close (click)="SavePost()" [disabled]="fileTypeError">{{actionBtn}}</button>
 </div>
 

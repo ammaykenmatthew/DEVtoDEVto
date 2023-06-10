@@ -7,7 +7,7 @@ import {
 } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService } from 'src/app/services/auth.service';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
@@ -27,9 +27,7 @@ export class AddStudentComponent implements OnInit {
     'id',
     'studnum_fld',
     'fname_fld',
-
     'lname_fld',
-
     'dept_fld',
     'program_fld',
     'profilepic_fld',
@@ -49,8 +47,15 @@ export class AddStudentComponent implements OnInit {
     private dialog: MatDialog
   ) {}
 
+  currentPage = 1;
+  pageSize = 10;
+
   ngOnInit(): void {
     this.getAllPosts();
+  }
+  onPageChanged(event: PageEvent) {
+    this.currentPage = event.pageIndex + 1;
+    this.pageSize = event.pageSize;
   }
 
   getAllPosts() {

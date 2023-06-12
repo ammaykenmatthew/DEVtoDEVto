@@ -15,6 +15,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { ViewQuestionComponent } from '../view-question/view-question.component';
 import { ViewPostComponent } from 'src/app/main/components/view-post/view-post.component';
 import Chart from 'chart.js/auto';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -164,21 +166,40 @@ export class DashboardComponent implements AfterViewInit {
       options: {
         responsive: true,
         maintainAspectRatio: false,
-        scales: {
-          x: {
-            ticks: {
-              display: true,
+        plugins: {
+          legend: {
+            labels: {
+              boxWidth: 0,
+              font: {
+                size: 14,
+              },
             },
           },
-          y: {
-            ticks: {
-              display: true,
+          datalabels: {
+            anchor: 'end',
+            align: 'end',
+            formatter: (value: any, ctx: any) => {
+              let percentage = (value * 100 / ctx.chart.data.datasets[0].data.reduce((a: any, b: any) => a + b, 0)).toFixed(2);
+              return value + ' (' + percentage + '%)';
             },
+            font: {
+              weight: 'bolder'
+            },
+            color: [
+              'rgba(54, 162, 235, 2)',
+              'rgba(153, 102, 255, 2)',
+              'rgba(75, 192, 192, 2)',
+              'rgba(255, 159, 64, 2)',
+              'rgba(220, 20, 60, 2)',
+              'rgba(255, 206, 86, 2)',
+              'rgba(255, 99, 132, 2)',
+            ],
           },
         },
       },
+      plugins: [ChartDataLabels],
     });
-  }
+}
 
   barChartMethod() {
     this._apiService.request('tags', '', '', 'get').subscribe((res: any) => {
@@ -217,19 +238,38 @@ export class DashboardComponent implements AfterViewInit {
         options: {
           responsive: true,
           maintainAspectRatio: false,
-          scales: {
-            x: {
-              ticks: {
-                display: true,
+          plugins: {
+            legend: {
+              labels: {
+                boxWidth: 0,
+                font: {
+                  size: 14,
+                },
               },
             },
-            y: {
-              ticks: {
-                display: true,
+            datalabels: {
+              anchor: 'end',
+              align: 'end',
+              formatter: (value: any, ctx: any) => {
+                let percentage = (value * 100 / ctx.chart.data.datasets[0].data.reduce((a: any, b: any) => a + b, 0)).toFixed(2);
+                return value + ' (' + percentage + '%)';
               },
+              font: {
+                weight: 'bolder'
+              },
+              color: [
+                'rgba(54, 162, 235, 2)',
+                'rgba(153, 102, 255, 2)',
+                'rgba(75, 192, 192, 2)',
+                'rgba(255, 159, 64, 2)',
+                'rgba(220, 20, 60, 2)',
+                'rgba(255, 206, 86, 2)',
+                'rgba(255, 99, 132, 2)',
+              ],
             },
           },
         },
+        plugins: [ChartDataLabels],
       });
     });
   }
@@ -254,6 +294,41 @@ export class DashboardComponent implements AfterViewInit {
           },
         ],
       },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: false,
+            labels: {
+              boxWidth: 15,
+              font: {
+                size: 14,
+              },
+            },
+          },
+          datalabels: {
+            anchor: 'start',
+            align: 'end',
+            formatter: (value: any, ctx: any) => {
+              let gradeLabel = ctx.chart.data.labels[ctx.dataIndex]; // Get the grade label
+              let percentage = (
+                (value * 100) /
+                ctx.chart.data.datasets[0].data.reduce((a: any, b: any) => a + b, 0)
+              ).toFixed(2);
+              return gradeLabel + '\n' + value + ' (' + percentage + '%)';
+            },
+            font: {
+              weight: 'bolder',
+            },
+            color: ['rgba(0, 0, 0, 0.8'],
+          },
+        },
+      },
+      plugins: [ChartDataLabels],
+
+
+
     });
 
     this._apiService
@@ -320,8 +395,42 @@ export class DashboardComponent implements AfterViewInit {
               },
             ],
           },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                display: false,
+                labels: {
+                  boxWidth: 15,
+                  font: {
+                    size: 14,
+                  },
+                },
+              },
+              datalabels: {
+                anchor: 'end',
+                align: 'start',
+                formatter: (value: any, ctx: any) => {
+                  let gradeLabel = ctx.chart.data.labels[ctx.dataIndex]; // Get the grade label
+                  let percentage = (
+                    (value * 100) /
+                    ctx.chart.data.datasets[0].data.reduce((a: any, b: any) => a + b, 0)
+                  ).toFixed(2);
+                  return gradeLabel + '\n' + value + ' (' + percentage + '%)';
+                },
+                font: {
+                  weight: 'bolder',
+                },
+                color: ['rgba(0, 0, 0, 0.😎'],
+              },
+            },
+          },
+          plugins: [ChartDataLabels],
         });
       },
+
+
       (error: any) => {
         alert('Error getting data...');
         console.log('Error getting data', error);

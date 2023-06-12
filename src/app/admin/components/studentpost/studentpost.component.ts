@@ -50,13 +50,13 @@ export class StudentpostComponent implements OnInit {
 
   ];
 
-  dataSource!: MatTableDataSource<any>;
+  dataSource!: MatTableDataSource<any>; //for All Posts
   dataSource2!: MatTableDataSource<any>; //for Reported Comments
-  dataSource3!: MatTableDataSource<any>;
+  dataSource3!: MatTableDataSource<any>; //for Reported Posts
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatPaginator) paginator2!: MatPaginator;
-  @ViewChild(MatPaginator) paginator3!: MatPaginator;
+  @ViewChild('paginator') paginator!: MatPaginator; //for All Posts
+  @ViewChild('paginator2') paginator2!: MatPaginator; //for reported comment
+  @ViewChild('paginator3') paginator3!: MatPaginator; //for Reported Posts
 
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatSort) sort2!: MatSort;
@@ -176,6 +176,21 @@ export class StudentpostComponent implements OnInit {
     })
   }
 
+  _setDataSource(indexNumber: any) {
+    setTimeout(() => {
+      switch (indexNumber) {
+        case 0:
+          !this.dataSource.paginator ? this. dataSource.paginator = this.paginator : null;
+          break;
+        case 1:
+          !this.dataSource2.paginator ? this. dataSource2.paginator = this.paginator2 : null;
+          break;
+        case 2:
+        !this.dataSource3.paginator ? this. dataSource3.paginator = this.paginator3 : null;
+        break;
+      }
+    });
+  }
 
 
 
